@@ -9,10 +9,8 @@ gsap.registerPlugin(ScrollTrigger);
 function createHeroMotion(section: HTMLElement) {
   const video = section.querySelector(".hero-editorial__video");
   const grid = section.querySelector(".hero-editorial__grid");
-  const title = section.querySelector(".hero-editorial__title");
-  const cta = section.querySelector('a[href="/products"]') as HTMLElement | null;
 
-  if (!video || !grid || !title) return;
+  if (!video || !grid) return;
 
   const timeline = gsap.timeline({
     scrollTrigger: {
@@ -36,18 +34,6 @@ function createHeroMotion(section: HTMLElement) {
       { opacity: 0.5, x: -24 },
       { opacity: 1, x: 0 },
       0
-    )
-    .fromTo(
-      title,
-      { y: 70, opacity: 0.25, clipPath: "inset(0 0 100% 0)" },
-      { y: 0, opacity: 1, clipPath: "inset(0 0 0% 0)" },
-      0.12
-    )
-    .fromTo(
-      cta,
-      { y: 32, opacity: 0 },
-      { y: 0, opacity: 1 },
-      0.22
     );
 }
 
