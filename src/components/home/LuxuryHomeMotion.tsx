@@ -288,25 +288,5 @@ const motionMap = {
 };
 
 export function LuxuryHomeMotion() {
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    const sections = Array.from(document.querySelectorAll<HTMLElement>("[data-luxury-section]"));
-    if (!sections.length) return;
-
-    const ctx = gsap.context(() => {
-      sections.forEach((section) => {
-        const type = section.dataset.luxurySection;
-        if (!type) return;
-
-        const motion = motionMap[type as keyof typeof motionMap];
-        if (motion) motion(section);
-      });
-    });
-
-    return () => ctx.revert();
-  }, []);
-
   return null;
 }

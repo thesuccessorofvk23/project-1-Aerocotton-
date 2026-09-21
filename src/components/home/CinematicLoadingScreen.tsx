@@ -23,6 +23,8 @@ export function CinematicLoadingScreen({
     hasInitialized.current = true;
 
     setMounted(true);
+    setVisible(false);
+    return;
 
     const hasSeenIntro = window.sessionStorage.getItem(introStorageKey) === "true";
     if (hasSeenIntro) {
