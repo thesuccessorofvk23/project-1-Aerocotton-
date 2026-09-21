@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { pageMeta } from "@/lib/seo";
+import { CinematicLoadingScreen } from "@/components/home/CinematicLoadingScreen";
 import { HomeBelowHero } from "@/components/home/HomeBelowHero";
 
 export const metadata: Metadata = pageMeta({
@@ -12,7 +13,8 @@ export const metadata: Metadata = pageMeta({
 
 export default function HomePage() {
   return (
-  <>
+  <CinematicLoadingScreen>
+    <>
       <section data-luxury-section="hero" className="hero-editorial relative flex min-h-[100svh] overflow-hidden bg-cotton text-ink">
         <video
           className="hero-editorial__video absolute inset-0 h-full w-full object-cover"
@@ -54,5 +56,6 @@ export default function HomePage() {
       </section>
       <HomeBelowHero />
     </>
+  </CinematicLoadingScreen>
   );
 }
