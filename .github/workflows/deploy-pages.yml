@@ -21,34 +21,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Build static site
-        run: npm run build
-        env:
-          NEXT_TELEMETRY_DISABLED: "1"
-          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
-          NEXT_PUBLIC_RFQ_EMAIL: ${{ vars.NEXT_PUBLIC_RFQ_EMAIL }}
-
       - name: Prepare Pages artifact
         run: |
-          touch out/.nojekyll
-          cp CNAME out/CNAME
+          mkdir pages
+          cp index.html 404.html CNAME .nojekyll pages/
+          cp -R 404 _next _not-found about care-guide contact customer-care global-presence hero images loader manufacturing products sustainability pages/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: out
+          path: pages
 
   deploy:
     environment:
