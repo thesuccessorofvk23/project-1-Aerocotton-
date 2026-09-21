@@ -36,11 +36,14 @@ jobs:
       - name: Build static site
         run: npm run build
         env:
+          NEXT_TELEMETRY_DISABLED: "1"
           NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
           NEXT_PUBLIC_RFQ_EMAIL: ${{ vars.NEXT_PUBLIC_RFQ_EMAIL }}
 
-      - name: Prevent Jekyll from altering Next assets
-        run: touch out/.nojekyll
+      - name: Prepare Pages artifact
+        run: |
+          touch out/.nojekyll
+          cp CNAME out/CNAME
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
