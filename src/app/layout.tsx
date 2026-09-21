@@ -3,8 +3,6 @@ import "./globals.css";
 import { fraunces, poppins } from "./fonts";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { PageTransition } from "@/components/layout/PageTransition";
-import { MagneticCursor } from "@/components/ui/magnetic-cursor";
 import { organizationJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -49,13 +47,9 @@ export default function RootLayout({
         <a href="#main" className="skip-link">
           Skip to content
         </a>
-        <MagneticCursor>
-          <Header />
-          <main id="main">
-            <PageTransition>{children}</PageTransition>
-          </main>
-          <Footer />
-        </MagneticCursor>
+        <Header />
+        <main id="main">{children}</main>
+        <Footer />
       </body>
     </html>
   );

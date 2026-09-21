@@ -1215,6 +1215,15 @@ body::after {
     linear-gradient(158deg, var(--dye-a) 0%, var(--color-cocoa) 135%);
 }
 
+/* Motion is intentionally disabled across the static site. */
+*,
+*::before,
+*::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+
 /* ── Page transition (enter animation on route change) ────────────────── */
 @keyframes page-in {
   from {
