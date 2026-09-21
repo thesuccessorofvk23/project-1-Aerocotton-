@@ -14,11 +14,17 @@ export default function HomePage() {
   return (
   <>
       <section data-luxury-section="hero" className="hero-editorial relative flex min-h-[100svh] overflow-hidden bg-cotton text-ink">
-        <img
-          className="absolute inset-0 h-full w-full object-cover"
-          src="/images/editorial/workshop-detail.jpg"
-          alt="Cotton textile work in a manufacturing workshop"
-        />
+        <video
+          className="hero-editorial__video absolute inset-0 h-full w-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          aria-label="Cotton textile work in a manufacturing workshop"
+        >
+          <source src="/hero/video_watermark_removed.mp4" type="video/mp4" />
+        </video>
         <div className="hero-editorial__grid absolute inset-0" aria-hidden="true" />
 
         <div className="relative z-10 flex min-h-[100svh] w-full flex-col px-6 pb-8 pt-28 md:px-10 md:pb-10 md:pt-32">
