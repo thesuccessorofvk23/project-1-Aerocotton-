@@ -1,0 +1,81 @@
+
+> aerocotton-web@1.0.0 dev
+> next dev -p 3100
+
+▲ Next.js 16.3.4 (Turbopack)
+- Local:         http://localhost:3100
+- Network:       http://192.168.1.5:3100
+✓ Ready in 446ms
+✓ Running next.config.ts took 39ms
+
+ GET / 200 in 1498ms (next.js: 1122ms, application-code: 376ms)
+ GET / 200 in 124ms (next.js: 4ms, application-code: 120ms)
+ GET / 200 in 120ms (next.js: 4ms, application-code: 117ms)
+ GET / 200 in 116ms (next.js: 3ms, application-code: 112ms)
+ GET / 200 in 118ms (next.js: 4ms, application-code: 114ms)
+ GET /products 200 in 153ms (next.js: 46ms, application-code: 107ms)
+ GET /about 200 in 201ms (next.js: 100ms, application-code: 100ms)
+ GET /contact 200 in 122ms (next.js: 39ms, application-code: 83ms)
+ GET /nope 404 in 102ms (next.js: 38ms, application-code: 64ms)
+ GET / 200 in 107ms (next.js: 3ms, application-code: 104ms)
+ GET /products 200 in 89ms (next.js: 3ms, application-code: 86ms)
+ GET /about 200 in 71ms (next.js: 2ms, application-code: 68ms)
+ GET /contact 200 in 71ms (next.js: 4ms, application-code: 67ms)
+ GET /nope 404 in 64ms (next.js: 5ms, application-code: 59ms)
+ GET / 200 in 188ms (next.js: 24ms, application-code: 163ms)
+ GET / 200 in 125ms (next.js: 8ms, application-code: 117ms)
+ GET /manufacturing 200 in 198ms (next.js: 104ms, application-code: 94ms)
+ GET /products 200 in 61ms (next.js: 18ms, application-code: 43ms)
+ GET /products/nature/flatweave-throw 200 in 805ms (next.js: 69ms, generate-params: 595ms, application-code: 141ms)
+ GET /products/nature/flatweave-throw 200 in 68ms (next.js: 6ms, generate-params: 8ms, application-code: 55ms)
+ GET /contact 200 in 49ms (next.js: 11ms, application-code: 37ms)
+ GET /products 200 in 51ms (next.js: 5ms, application-code: 47ms)
+ GET / 200 in 60ms (next.js: 5ms, application-code: 55ms)
+ GET / 200 in 155ms (next.js: 13ms, application-code: 142ms)
+ GET / 200 in 71ms (next.js: 4ms, application-code: 66ms)
+ GET / 200 in 137ms (next.js: 4ms, application-code: 133ms)
+ GET / 200 in 155ms (next.js: 8ms, application-code: 147ms)
+ GET / 200 in 89ms (next.js: 5ms, application-code: 84ms)
+ GET / 200 in 144ms (next.js: 11ms, application-code: 133ms)
+ GET / 200 in 71ms (next.js: 5ms, application-code: 67ms)
+ GET / 200 in 132ms (next.js: 5ms, application-code: 127ms)
+✓ Compiled in 540ms
+ GET / 200 in 754ms (next.js: 76ms, application-code: 678ms)
+ GET / 200 in 258ms (next.js: 19ms, application-code: 238ms)
+✓ Compiled in 1388ms
+ GET / 200 in 660ms (next.js: 48ms, application-code: 611ms)
+ GET / 200 in 327ms (next.js: 17ms, application-code: 309ms)
+✓ Compiled in 3.2s
+✓ Compiled in 3.8s
+ GET / 200 in 1543ms (next.js: 61ms, application-code: 1482ms)
+ GET / 200 in 1194ms (next.js: 18ms, application-code: 1176ms)
+ GET / 200 in 420ms (next.js: 22ms, application-code: 398ms)
+ GET / 200 in 234ms (next.js: 15ms, application-code: 219ms)
+✓ Compiled in 1088ms
+ GET / 200 in 165ms (next.js: 12ms, application-code: 153ms)
+ GET / 200 in 91ms (next.js: 5ms, application-code: 86ms)
+ GET / 200 in 253ms (next.js: 9ms, application-code: 244ms)
+ GET / 200 in 118ms (next.js: 11ms, application-code: 107ms)
+ GET / 200 in 15ms (next.js: 4ms, application-code: 10ms)
+ GET / 200 in 61ms (next.js: 4ms, application-code: 57ms)
+ GET / 200 in 60ms (next.js: 4ms, application-code: 56ms)
+ GET / 200 in 845ms (next.js: 176ms, application-code: 669ms)
+ GET / 200 in 345ms (next.js: 22ms, application-code: 323ms)
+ GET / 200 in 383ms (next.js: 26ms, application-code: 357ms)
+ GET / 200 in 195ms (next.js: 15ms, application-code: 180ms)
+ GET /does-not-exist 404 in 211ms (next.js: 54ms, application-code: 157ms)
+ GET /404 404 in 144ms (next.js: 12ms, application-code: 132ms)
+ GET /404 404 in 40ms (next.js: 12ms, application-code: 28ms)
+ GET /404 404 in 68ms (next.js: 6ms, application-code: 62ms)
+ GET / 200 in 152ms (next.js: 8ms, application-code: 144ms)
+✓ Compiled in 726ms
+ GET / 200 in 560ms (next.js: 46ms, application-code: 514ms)
+ GET / 200 in 302ms (next.js: 14ms, application-code: 288ms)
+✓ Compiled in 221ms
+ GET / 200 in 268ms (next.js: 6ms, application-code: 262ms)
+✓ Compiled in 506ms
+ GET /products 200 in 471ms (next.js: 269ms, application-code: 202ms)
+ GET /404 404 in 116ms (next.js: 49ms, application-code: 67ms)
+ GET /404 404 in 250ms (next.js: 17ms, application-code: 233ms)
+ GET / 200 in 195ms (next.js: 18ms, application-code: 177ms)
+ GET / 200 in 306ms (next.js: 34ms, application-code: 272ms)

@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+/*
+ * AERO COTTON — Design tokens
+ * Warm neutrals + one accent. Brass is decorative / large-type only on ivory;
+ * use brass-ink for small brass text to keep WCAG AA contrast.
+ */
+@theme {
+  /* Surfaces */
+  --color-ivory: #f4f0e8;
+  --color-parchment: #ede7db;
+  --color-cotton: #e7e0d3;
+  --color-flax: #cfc5b2;
+  --color-linen: #efe9de;
+
+  /* Accents */
+  --color-brass: #b08d57;
+  --color-brass-deep: #8f7143;
+  --color-brass-ink: #7a5f35;
+  --color-moss: #4d5f52;
+  --color-moss-deep: #354a42;
+  --color-sky: #7d94a8;
+
+  /* Ink */
+  --color-ink: #171614;
+  --color-cocoa: #2a211c;
+  --color-umber: #57493f;
+  --color-taupe: #8a7d70;
+  --color-fog: #b6ac9e;
+  --color-outline: #d8d0c2;
+  --color-hairline: #e3dcd0;
+
+  /* Fonts */
+  --font-display: var(--font-fraunces), "Georgia", serif;
+  --font-sans: var(--font-poppins), "system-ui", sans-serif;
+
+  /* Type scale (editorial) */
+  --text-2xs: 0.75rem;
+  --text-2xs--line-height: 1.55;
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-display-xl: clamp(2.9rem, 8.4vw, 7.4rem);
+  --text-display-xl--line-height: 0.96;
+  --text-display-xl--letter-spacing: -0.02em;
+  --text-display-lg: clamp(2.3rem, 5.4vw, 4.6rem);
+  --text-display-lg--line-height: 1.02;
+  --text-display-lg--letter-spacing: -0.015em;
+  --text-display-md: clamp(1.8rem, 3.6vw, 3rem);
+  --text-display-md--line-height: 1.08;
+  --text-display-sm: clamp(1.45rem, 2.4vw, 2.1rem);
+  --text-display-sm--line-height: 1.14;
+
+  /* Motion */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-inout-soft: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Collection dye palettes — one thread, ten moods.
+ * Used by the fabric hero (uniforms) and by page accents. */
+:root {
+  --dye-a: #b08d57;
+  --dye-b: #d8c6a6;
+  --dye-c: #f4f0e8;
+}
+
+.dye-nature   { --dye-a: #4d5f52; --dye-b: #8aa08b; --dye-c: #e9ecdf; }
+.dye-mountain { --dye-a: #5d6b7a; --dye-b: #97a6b4; --dye-c: #eceef0; }
+.dye-beach    { --dye-a: #b08d57; --dye-b: #dcc9a5; --dye-c: #f6f1e7; }
+.dye-city     { --dye-a: #4b4a48; --dye-b: #8e8a84; --dye-c: #efedea; }
+.dye-forest   { --dye-a: #354a42; --dye-b: #5d7a6d; --dye-c: #e7ede8; }
+.dye-lake     { --dye-a: #43626f; --dye-b: #7fa0ac; --dye-c: #e9f0f2; }
+.dye-desert   { --dye-a: #a4743f; --dye-b: #d3ae7d; --dye-c: #f5ecdf; }
+.dye-waterfall{ --dye-a: #4a6b64; --dye-b: #88b0a8; --dye-c: #ecf3f1; }
+.dye-snow     { --dye-a: #8fa3b0; --dye-b: #c3d2da; --dye-c: #f6f8f9; }
+.dye-aurora   { --dye-a: #5b6b63; --dye-b: #93a4a0; --dye-c: #eef1ee; }

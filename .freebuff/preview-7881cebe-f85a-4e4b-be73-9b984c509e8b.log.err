@@ -1,0 +1,913 @@
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[browser] ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[browser] ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./src/app/fonts.ts
+Error: Module not found: Can't resolve 'next/font/google/target.css'
+Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+Error while looking up import map: Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Debug info:
+- Execution of NextFontGoogleReplacer::import_map_result failed
+- Execution of *get_font_css_properties failed
+- Execution of font_options_from_query_map failed
+- Missing weight for Poppins. Available weights: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Import trace:
+  Server Component:
+    ./src/app/fonts.ts
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
