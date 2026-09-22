@@ -9,10 +9,10 @@ import { cn } from "@/lib/cn";
 
 const leftNav = [
   { href: "/about", label: "About" },
+  { href: "/products", label: "Catalogue" },
 ];
 
 const rightNav = [
-  { href: "/products", label: "Products" },
   { href: CONTACT_HREF, label: "Contact" },
   { href: CONTACT_HREF, label: "Request a Quote" },
 ];
