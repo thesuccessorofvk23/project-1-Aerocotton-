@@ -21,7 +21,7 @@ export function CinematicLoadingScreen({
       document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
       setVisible(false);
-    }, 900);
+    }, 3900);
 
     return () => window.clearTimeout(release);
   }, []);
