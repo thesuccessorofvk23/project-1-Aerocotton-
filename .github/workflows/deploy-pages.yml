@@ -21,19 +21,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
 
-      - name: Prepare Pages artifact
-        run: |
-          mkdir pages
-          cp index.html 404.html CNAME .nojekyll pages/
-          cp -R 404 _next _not-found about care-guide contact customer-care global-presence hero images loader manufacturing products sustainability pages/
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site
+        run: npm run build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: pages
+          path: out
 
   deploy:
     environment:
