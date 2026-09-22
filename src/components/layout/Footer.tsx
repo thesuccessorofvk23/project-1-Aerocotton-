@@ -6,7 +6,6 @@ import { Reveal } from "@/components/motion/Reveal";
 
 const companyLinks = [
   ["About", "/about"],
-  ["Manufacturing", "/manufacturing"],
   ["Sustainability", "/sustainability"],
 ] as const;
 

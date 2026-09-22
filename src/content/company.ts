@@ -8,7 +8,7 @@
  *
  *   PENDING: certifications (GOTS / OEKO-TEX / ISO…)   → Sustainability
  *   PENDING: export country list                        → Global Presence
- *   PENDING: machinery / capacity figures               → Manufacturing
+ *   PENDING: machinery / capacity figures               → (Manufacturing page removed)
  *   PENDING: product categories per collection          → Products copy
  *   PENDING: phone, email, registrations (IEC/GSTIN)    → Contact, Footer
  */
@@ -111,3 +111,60 @@ export const values = [
     body: "From fibre selection to export packing, every stage is owned by someone whose name we know. Responsibility that doesn't outsource.",
   },
 ] as const;
+
+/* ────────────────────────────────────────────────────────────────────────
+ * About page — company profile content.
+ * CONFIRMED via client-provided company profile (Sept 2026). Product range,
+ * capabilities, quality & delivery claims and the quoted note are taken
+ * directly from Aerocotton's own profile text.
+ * ──────────────────────────────────────────────────────────────────────── */
+
+/** Story paragraphs (About page) — rendered with the scroll-paced text reveal. */
+export const aboutStory = [
+  "Aerocotton is a prominent manufacturer and exporter of home textiles, based in Karur — the textile capital of India. We are highly equipped with a network of printing and our own weaving and stitching units, producing cloth that crosses oceans and holds its own.",
+  "Our range spans bedspreads, curtains, cushion covers, table cloths, table runners, napkins, rugs, mats, furnishing fabrics and carpets — woven plain, striped, checked, in dobby and jacquard, in solid and multicolour, printed by pigment and rotary, embroidered on very large hook designs, and finished with lurex, fancy fringes and beads.",
+  "We also undertake any specific developments our clients require. A continuous process of expansion, enhancement and the latest technological innovations ensures the best quality items at competitive prices — robust quality checking and prompt delivery until the customer is fully satisfied.",
+] as const;
+
+/** Capability cards (About page). */
+export const aboutCapabilities = [
+  {
+    title: "Own weaving & stitching unit",
+    body: "Vertical control from yarn to finished made-up. Cloth is woven, cut and stitched under our own roof in Karur, then checked before it is packed for export.",
+  },
+  {
+    title: "Network of printing",
+    body: "Pigment and rotary printing across plains, stripes, checks, dobby and jacquard weaves — in solid and multicolour, matched to each client's brief.",
+  },
+  {
+    title: "Bespoke developments",
+    body: "We undertake any specific developments a client may require — from construction and colour to embroidery — with samples sent for quality evaluation on request.",
+  },
+] as const;
+
+/** Product range chips (About page). From the confirmed profile product list. */
+export const productRange = [
+  "Bedspreads",
+  "Curtains",
+  "Cushion covers",
+  "Table cloths",
+  "Table runners",
+  "Napkins",
+  "Rugs",
+  "Mats",
+  "Furnishing fabrics",
+  "Carpets",
+  "Baby products",
+  "Tote bags",
+] as const;
+
+/** Quoted line (About page). From the profile letter. */
+export const aboutQuote = {
+  text: "The success behind Aerocotton is maintaining good relationships with customers, timely production and prompt ETD.",
+  author: "Karthikeyan. V",
+  role: "Senior Marketing Manager",
+} as const;
+
+/** Letter excerpt (About page). From the profile letter. */
+export const aboutLetter =
+  "We are capable of supplying large as well as small quantities as per our client's requirement. If you would like to see our samples for quality evaluation, we will send samples to you very soon." as const;

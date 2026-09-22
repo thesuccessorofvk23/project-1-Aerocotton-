@@ -130,9 +130,6 @@ export default function ProductsPage() {
                 >
                   Start a custom enquiry
                 </ButtonLink>
-                <ButtonLink href="/manufacturing" variant="ghost" size="lg" className="!text-fog hover:!text-ivory">
-                  See our process
-                </ButtonLink>
               </div>
             </Reveal>
           </div>

@@ -8,8 +8,6 @@ import { MobileNav } from "./MobileNav";
 import { cn } from "@/lib/cn";
 
 const leftNav = [
-  { href: "/products", label: "Experience" },
-  { href: "/manufacturing", label: "Manufacturing" },
   { href: "/about", label: "About" },
 ];
 
