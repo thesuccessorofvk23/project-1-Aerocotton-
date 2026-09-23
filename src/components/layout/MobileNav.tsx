@@ -90,7 +90,6 @@ export function MobileNav() {
             <Link
               key={item.href}
               href={item.href}
-              data-magnetic
               className={cn(
                 "font-display text-4xl leading-tight",
                 pathname === item.href ? "text-brass" : "text-ivory hover:text-brass"

@@ -39,7 +39,6 @@ export function ButtonLink({
   return (
     <Link
       href={href}
-      data-magnetic
       className={cn(base, variants[variant], sizes[size], className)}
       {...rest}
     >

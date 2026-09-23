@@ -19,13 +19,18 @@ const rightNav = [
 
 export function Header() {
   const pathname = usePathname();
-  const [condensed, setCondensed] = useState(false);
+  const [condensed, setCondensed] = useState(pathname !== "/");
 
   useEffect(() => {
+    if (pathname === "/") {
+      setCondensed(true);
+      return;
+    }
+
     const updateHeader = () => {
       const hero = document.querySelector(".hero-editorial");
       setCondensed(
-        pathname !== "/" || !hero || hero.getBoundingClientRect().bottom <= 8
+        !hero || hero.getBoundingClientRect().bottom <= 8
       );
     };
     updateHeader();
@@ -56,7 +61,6 @@ export function Header() {
               key={item.href}
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
-              data-magnetic
               className={cn(
                 "text-[0.84rem] font-bold uppercase tracking-[0.17em] transition-colors duration-300",
                 !condensed
@@ -74,7 +78,6 @@ export function Header() {
         <Link
           href="/"
           aria-label="Aero Cotton — home"
-          data-magnetic
           className={cn(
             "flex-shrink-0 font-display text-lg font-semibold uppercase tracking-[0.28em] md:text-xl",
             condensed ? "text-ink" : "text-white"
@@ -89,7 +92,6 @@ export function Header() {
               key={item.label}
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
-              data-magnetic
               className={cn(
                 "text-[0.84rem] font-bold uppercase tracking-[0.17em] transition-colors duration-300",
                 item.label === "Request a Quote"

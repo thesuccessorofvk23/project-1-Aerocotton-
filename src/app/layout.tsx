@@ -3,7 +3,6 @@ import "./globals.css";
 import { fraunces, poppins } from "./fonts";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { organizationJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -48,7 +47,6 @@ export default function RootLayout({
         <a href="#main" className="skip-link">
           Skip to content
         </a>
-        <SmoothScroll />
         <Header />
         <main id="main">{children}</main>
         <Footer />

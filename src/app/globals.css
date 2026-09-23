@@ -7,7 +7,8 @@
 
 /* ── Base ─────────────────────────────────────────────────────────────── */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+  overflow-y: auto;
 }
 
 body {
@@ -18,6 +19,7 @@ body {
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
+  overflow-y: auto;
 }
 
 /* Paper-grain texture over everything (purely decorative) */
@@ -1006,158 +1008,6 @@ body::after {
   .home-custom__annotations { gap: 0.4rem; font-size: 0.55rem; letter-spacing: 0.1em; }
 }
 
-/* Homepage opening: the material is the wipe, so the handoff never needs a blank curtain. */
-.cinematic-intro {
-  position: fixed;
-  inset: 0;
-  z-index: 80;
-  isolation: isolate;
-  overflow: hidden;
-  background: transparent;
-}
-
-.cinematic-intro__doors {
-  position: absolute;
-  inset-block: 0;
-  z-index: 1;
-  width: 50%;
-  background: #f4f0e8;
-  backface-visibility: hidden;
-  will-change: transform;
-}
-
-.cinematic-intro__doors-left {
-  left: 0;
-  transform-origin: left center;
-}
-
-.cinematic-intro__doors-right {
-  right: 0;
-  transform-origin: right center;
-}
-
-.cinematic-intro__seam {
-  position: absolute;
-  top: 4.5vh;
-  bottom: 13.1vh;
-  inset-inline: 0 auto;
-  left: 50%;
-  z-index: 1;
-  width: 1px;
-  background: #171614;
-  opacity: 0;
-  transform: translateX(-50%) scaleY(0);
-  transform-origin: center;
-  will-change: transform, opacity;
-}
-
-.cinematic-intro__lockup {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 2;
-  display: grid;
-  gap: clamp(1.8rem, 3.2vw, 3.25rem);
-  width: min(78vw, 61rem);
-  transform: translate(-50%, -50%);
-  will-change: opacity;
-}
-
-.cinematic-intro__row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
-  align-items: center;
-  column-gap: clamp(1.25rem, 2.6vw, 2.75rem);
-  text-align: center;
-  white-space: nowrap;
-}
-
-.cinematic-intro__part {
-  display: block;
-  backface-visibility: hidden;
-  will-change: transform;
-}
-
-.cinematic-intro__small {
-  color: #57493f;
-  font-family: var(--font-sans);
-  font-size: clamp(0.62rem, 0.75vw, 0.82rem);
-  font-weight: 700;
-  letter-spacing: 0.3em;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-.cinematic-intro__large {
-  color: #171614;
-  font-family: var(--font-sans);
-  font-size: clamp(4.5rem, 10.9vw, 11.5rem);
-  font-weight: 800;
-  letter-spacing: -0.085em;
-  line-height: 0.78;
-}
-
-.cinematic-intro__small-left,
-.cinematic-intro__large-left {
-  grid-column: 1;
-  text-align: right;
-}
-
-.cinematic-intro__small-right,
-.cinematic-intro__large-right {
-  grid-column: 3;
-  text-align: left;
-}
-
-.cinematic-intro__row::after {
-  content: "";
-  grid-column: 2;
-  grid-row: 1;
-}
-
-.cinematic-intro__brand {
-  position: absolute;
-  top: clamp(1.5rem, 5vw, 4rem);
-  left: 50%;
-  z-index: 3;
-  margin: 0;
-  color: #171614;
-  font-family: var(--font-sans);
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.34em;
-  text-transform: uppercase;
-  transform: translateX(-50%);
-  white-space: nowrap;
-}
-
-@media (max-width: 640px) {
-  .cinematic-intro__lockup {
-    width: 94vw;
-    gap: 2rem;
-  }
-
-  .cinematic-intro__row {
-    column-gap: 0.9rem;
-  }
-
-  .cinematic-intro__large {
-    font-size: clamp(3.25rem, 17vw, 6.5rem);
-    letter-spacing: -0.07em;
-  }
-
-  .cinematic-intro__seam {
-    top: 4vh;
-    bottom: 9vh;
-  }
-}
-
-.magnetic-active,
-.magnetic-active * {
-  color: #fff !important;
-  -webkit-text-fill-color: #fff !important;
-}
-
 /* Visible skip link for keyboard users */
 .skip-link {
   position: fixed;
@@ -1221,7 +1071,6 @@ body::after {
 *::after {
   animation: none !important;
   transition: none !important;
-  scroll-behavior: auto !important;
 }
 
 /* ── Page transition (enter animation on route change) ────────────────── */
@@ -1249,25 +1098,8 @@ body::after {
   }
 }
 
-/* ── Scroll reveals (JS-gated so no-JS users see everything) ──────────── */
-.js .reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition:
-    opacity 0.8s var(--ease-out-soft),
-    transform 0.8s var(--ease-out-soft);
-}
-
-.js .reveal.is-in {
-  opacity: 1;
-  transform: none;
-}
-
 /* ── Reduced motion: kill decorative movement globally ────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
   *,
   *::before,
   *::after {

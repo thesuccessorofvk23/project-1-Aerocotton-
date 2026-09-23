@@ -4,8 +4,6 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/motion/Reveal";
-import { ScrollTextReveal } from "@/components/motion/ScrollTextReveal";
-import { ScrollParallax } from "@/components/motion/ScrollParallax";
 import {
   company,
   journey,
@@ -61,15 +59,16 @@ export default function AboutPage() {
             </div>
             <div className="space-y-10 lg:col-span-7 lg:col-start-6">
               {aboutStory.map((paragraph, i) => (
-                <ScrollTextReveal
+                <p
                   key={i}
-                  text={paragraph}
                   className={
                     i === 0
                       ? "text-xl/loose text-ink"
                       : "text-lg/loose text-umber"
                   }
-                />
+                >
+                  {paragraph}
+                </p>
               ))}
             </div>
           </div>
@@ -203,10 +202,8 @@ export default function AboutPage() {
         <Container>
           <div className="grid gap-12 lg:grid-cols-2">
             <Reveal>
-              <div className="editorial-media-frame relative aspect-[4/3] w-full overflow-hidden border border-hairline bg-cotton">
-                <ScrollParallax className="absolute inset-x-0 -inset-y-[8%]">
-                  <img src="/images/editorial/workshop-detail.jpg" alt="Textile workshop detail" className="h-full w-full object-cover" />
-                </ScrollParallax>
+              <div className="editorial-media-frame aspect-[4/3] w-full border border-hairline bg-cotton">
+                <img src="/images/editorial/workshop-detail.jpg" alt="Textile workshop detail" className="h-full w-full object-cover" />
               </div>
             </Reveal>
             <div>
