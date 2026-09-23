@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/motion/Reveal";
 import { ScrollTextReveal } from "@/components/motion/ScrollTextReveal";
+import { ScrollParallax } from "@/components/motion/ScrollParallax";
 import {
   company,
   journey,
@@ -202,8 +203,10 @@ export default function AboutPage() {
         <Container>
           <div className="grid gap-12 lg:grid-cols-2">
             <Reveal>
-              <div className="editorial-media-frame aspect-[4/3] w-full border border-hairline bg-cotton">
-                <img src="/images/editorial/workshop-detail.jpg" alt="Textile workshop detail" className="h-full w-full object-cover" />
+              <div className="editorial-media-frame relative aspect-[4/3] w-full overflow-hidden border border-hairline bg-cotton">
+                <ScrollParallax className="absolute inset-x-0 -inset-y-[8%]">
+                  <img src="/images/editorial/workshop-detail.jpg" alt="Textile workshop detail" className="h-full w-full object-cover" />
+                </ScrollParallax>
               </div>
             </Reveal>
             <div>
