@@ -22,15 +22,10 @@ export function Header() {
   const [condensed, setCondensed] = useState(pathname !== "/");
 
   useEffect(() => {
-    if (pathname === "/") {
-      setCondensed(true);
-      return;
-    }
-
     const updateHeader = () => {
       const hero = document.querySelector(".hero-editorial");
       setCondensed(
-        !hero || hero.getBoundingClientRect().bottom <= 8
+        pathname !== "/" || !hero || hero.getBoundingClientRect().bottom <= 8
       );
     };
     updateHeader();
