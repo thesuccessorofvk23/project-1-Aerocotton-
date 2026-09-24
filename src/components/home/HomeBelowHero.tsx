@@ -22,6 +22,32 @@ const guideTopics = [
   ["03", "Caring for cotton", "Simple habits that protect hand-feel and colour."],
   ["04", "A hospitality programme", "A practical starting point for a consistent range."],
 ] as const;
+const whyCards = [
+  {
+    tone: "sky",
+    title: "Material honesty",
+    body: "Fibre, weave and finish are specified openly, so the cloth in hand always matches the quote.",
+    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true"><rect x="5.5" y="5.5" width="13" height="13" rx="2.5" /><path d="M5.5 12h13M12 5.5v13" opacity="0.5" /></svg>,
+  },
+  {
+    tone: "parchment",
+    title: "Built to brief",
+    body: "Dimensions, palettes, weights and finishes developed around each client's programme.",
+    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 19l1.2-3.9L16.4 4.9a1.9 1.9 0 0 1 2.7 2.7L8.9 17.8 5 19z" /><path d="M14.6 6.7l2.7 2.7" /></svg>,
+  },
+  {
+    tone: "desert",
+    title: "Made under one roof",
+    body: "Own weaving and stitching in Karur, with every programme checked before it is packed.",
+    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true"><rect x="4.5" y="4.5" width="15" height="15" rx="2" /><path d="M4.5 9.8h15M4.5 14.7h15M9.8 4.5v15M14.7 4.5v15" opacity="0.7" /></svg>,
+  },
+  {
+    tone: "moss",
+    title: "Export minded",
+    body: `Serving international buyers since ${company.exportingSince} with prompt, dependable delivery.`,
+    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true"><circle cx="12" cy="12" r="7.5" /><path d="M4.5 12h15M12 4.5c2.9 2.5 2.9 12.5 0 15M12 4.5c-2.9 2.5-2.9 12.5 0 15" opacity="0.7" /></svg>,
+  },
+];
 const faqs = [
   ["What products do you manufacture?", "Towels, throws, blankets, bedding, robes and other cotton home textiles."],
   ["Can dimensions and colours be customized?", "Yes. Size, palette, weight, finish and selected details can be discussed around the programme."],
@@ -52,7 +78,7 @@ function Campaign({ index, title, body }: { index: number; title: string; body: 
 export function HomeBelowHero() {
   return <div className="aero-home-lower overflow-hidden">
     <section data-luxury-section="origin" className="aero-origin bg-ivory py-20 md:py-32"><Container><div className="aero-origin__grid"><Reveal className="aero-origin__copy"><p className="eyebrow">01 / About Aero Cotton</p><h2 className="mt-7 max-w-4xl font-sans text-[clamp(2.8rem,5.4vw,6.3rem)] font-medium leading-[0.92] tracking-[-0.06em] text-ink">We make cotton textiles with clarity and care.</h2><p className="mt-7 max-w-xl text-base/relaxed text-umber">From Karur to spaces around the world, we bring considered materials, dependable processes and everyday comfort together.</p><ButtonLink href="/about" className="mt-9">Learn more</ButtonLink></Reveal><Reveal delay={120} className="aero-origin__panel"><div className="aero-origin__panel-top"><span>Performance</span><small>Established {company.founded}</small></div><div className="aero-origin__metric">15<sup>+</sup></div><p className="aero-origin__metric-label">years of textile craft</p><div className="aero-origin__tags"><span>Material-led</span><span>Karur made</span><span>Export minded</span><span>Built to brief</span><span>Quality checked</span><span>Made to last</span></div></Reveal></div></Container></section>
-    <section data-luxury-section="editorial" className="aero-editorial-statement bg-ivory py-20 md:py-28"><Container><div className="aero-editorial-statement__grid"><Reveal className="aero-editorial-statement__copy"><p className="eyebrow">02 / The material</p><h2 className="mt-5 font-display text-display-lg text-ink">Made with attention. Designed for everyday use.</h2><p className="mt-5 max-w-md text-base/loose text-umber">From fibre selection to final inspection, every decision is made around how a textile will feel, perform and belong in the spaces around it.</p><Link href="/about" className="aero-arrow-link mt-8">Our point of view <span aria-hidden="true">↗</span></Link></Reveal><Reveal delay={100} className="aero-editorial-statement__visual"><img src="/images/editorial/workshop-detail.jpg" alt="Textile work in a manufacturing workshop" /><span>Karur / Tamil Nadu</span></Reveal></div></Container></section>
+    <section data-luxury-section="editorial" className="aero-why bg-ivory py-20 md:py-28"><Container><div className="aero-why__grid"><Reveal className="aero-why__visual"><img src="/images/editorial/quiet-bedroom.jpg" alt="Bedroom styled with Aerocotton bedspreads and cushions" /><div className="aero-why__veil" aria-hidden="true" /><div className="aero-why__visual-copy"><p className="eyebrow !text-ivory/75">02 / Why buyers choose us</p><h2 className="mt-4 font-sans text-[clamp(2.1rem,3.4vw,3.8rem)] font-medium leading-[1.02] tracking-[-0.05em] text-ivory">Why buyers choose us.</h2></div><p className="aero-why__visual-note">Karur / Tamil Nadu · Since {company.founded}</p></Reveal><div className="aero-why__cards">{whyCards.map((card, index) => <Reveal key={card.title} delay={index * 60}><article className={`aero-why-card aero-why-card--${card.tone}`}><span className="aero-why-card__icon" aria-hidden="true">{card.icon}</span><h3>{card.title}</h3><p>{card.body}</p></article></Reveal>)}</div></div></Container></section>
     <section data-luxury-section="feature" className="aero-feature-strip border-y border-hairline bg-linen py-10"><Container><div className="aero-feature-strip__grid">{[["01", "Material honesty", "100% cotton programmes"], ["02", "Karur made", "Tamil Nadu, India"], ["03", "Built to brief", "Size, palette and finish"], ["04", "Export minded", "International since 2015"]].map(([number, title, body]) => <div key={number}><span>{number}</span><strong>{title}</strong><small>{body}</small></div>)}</div></Container></section>
     <Campaign index={0} title="Nature, in the everyday." body="Botanical greens and soft constructions for the textiles that get reached for daily." />
     <section data-luxury-section="guide" className="aero-guide bg-ivory py-28 md:py-44"><Container><div className="aero-guide__heading"><div><p className="eyebrow">04 / Textile guide</p><h2 className="mt-5 font-display text-display-lg text-ink">A closer look at cotton.</h2></div><p className="max-w-sm text-base/loose text-umber">Useful context for choosing, specifying and caring for a textile programme.</p></div><div className="aero-guide__grid mt-12">{guideTopics.map(([number, title, body], index) => <Reveal key={number} delay={index * 60}><Link href="/care-guide" className="aero-guide-card"><div className={`aero-guide-card__image aero-guide-card__image--${index + 1}`}><span>{number}</span></div><p className="eyebrow mt-4">Guide / {number}</p><h3 className="mt-2 font-display text-display-sm text-ink">{title}</h3><p className="mt-2 text-sm/relaxed text-umber">{body}</p></Link></Reveal>)}</div></Container></section>
