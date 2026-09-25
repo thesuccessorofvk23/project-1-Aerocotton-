@@ -161,8 +161,8 @@ export const productRange = [
 /** Quoted line (About page). From the profile letter. */
 export const aboutQuote = {
   text: "The success behind Aerocotton is maintaining good relationships with customers, timely production and prompt ETD.",
-  author: "Karthikeyan. V",
-  role: "Senior Marketing Manager",
+  author: "Mrs. Rooba. S",
+  role: "Managing Director",
 } as const;
 
 /** Letter excerpt (About page). From the profile letter. */
