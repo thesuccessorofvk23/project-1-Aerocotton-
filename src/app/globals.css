@@ -759,17 +759,17 @@ body::after {
 
 /* ── Contact page — split photo/content card (reference: Stahl House contact) ── */
 .aero-contact {
-  min-height: 100svh;
+  min-height: calc(100svh - 4rem);
   display: grid;
-  padding: clamp(1.5rem, 4vw, 4.5rem);
-  padding-top: clamp(5.5rem, 10vw, 8rem);
+  padding: clamp(1.25rem, 3vw, 3rem);
+  padding-top: clamp(5rem, 9vw, 6.5rem);
   background: var(--color-parchment);
 }
 
 .aero-contact__frame {
   display: grid;
   width: 100%;
-  max-width: 98rem;
+  max-width: none;
   margin: 0 auto;
   overflow: hidden;
   border-radius: 0.35rem;
@@ -780,7 +780,7 @@ body::after {
 
 .aero-contact__visual {
   position: relative;
-  min-height: 34rem;
+  min-height: 100%;
   overflow: hidden;
   background: var(--color-cocoa);
   isolation: isolate;
@@ -961,7 +961,7 @@ body::after {
 }
 
 @media (max-width: 640px) {
-  .aero-contact { padding: 1rem; padding-top: 5.5rem; }
+  .aero-contact { padding: 0.75rem; padding-top: 5.25rem; }
   .aero-contact__intro { grid-template-columns: 1fr; align-items: start; }
   .aero-contact__panel { padding: 1.75rem 1.5rem 2.25rem; }
 }
