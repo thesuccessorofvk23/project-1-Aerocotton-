@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
-  rfqSchema,
   PRODUCT_OPTIONS,
   QUANTITY_OPTIONS,
+  rfqSchema,
   type RfqInput,
 } from "@/lib/rfq/schema";
 
@@ -33,7 +33,39 @@ const inputClass =
 const labelClass =
   "block text-2xs font-semibold uppercase tracking-[0.18em] text-taupe";
 
-export function RfqForm({ preselectedProduct }: { preselectedProduct?: string }) {
+function ResultNote({ result }: { result: RfqActionResult | null }) {
+  if (!result) return null;
+  return (
+    <p
+      role="status"
+      className={`mt-8 border px-6 py-4 text-sm ${
+        result.ok
+          ? "border-brass bg-linen text-ink"
+          : "border-red-800 bg-red-50 text-red-900"
+      }`}
+    >
+      {result.message}
+    </p>
+  );
+}
+
+function Turnstile() {
+  if (!process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY) return null;
+  return (
+    <div
+      className="cf-turnstile mt-8"
+      data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+    />
+  );
+}
+
+export function RfqForm({
+  preselectedProduct,
+  variant = "full",
+}: {
+  preselectedProduct?: string;
+  variant?: "full" | "compact";
+}) {
   const [values, setValues] = useState<RfqInput>({
     ...EMPTY,
     product:
@@ -45,21 +77,32 @@ export function RfqForm({ preselectedProduct }: { preselectedProduct?: string })
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<RfqActionResult | null>(null);
 
+  // On the static host, query params never reach the server render — read the
+  // ?product= deep link from product pages directly in the browser.
+  useEffect(() => {
+    if (variant !== "compact") return;
+    const product = new URLSearchParams(window.location.search).get("product");
+    if (product && PRODUCT_OPTIONS.includes(product as never)) {
+      setValues((v) => ({ ...v, product }));
+    }
+  }, [variant]);
+
   const set = (key: keyof RfqInput) => (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => setValues((v) => ({ ...v, [key]: e.target.value }));
+
+  function readTurnstileToken() {
+    if (!process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY) return "";
+    const tw = (window as unknown as { turnstile?: { getResponse?: () => string } })
+      .turnstile;
+    return tw?.getResponse?.() ?? "";
+  }
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setResult(null);
 
-    // Read Turnstile token if the widget is present.
-    let turnstileToken = values.turnstileToken;
-    if (process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY) {
-      const tw = (window as unknown as { turnstile?: { getResponse?: () => string } })
-        .turnstile;
-      turnstileToken = tw?.getResponse?.() ?? "";
-    }
+    const turnstileToken = readTurnstileToken();
 
     // Client-side validation with the shared schema.
     const parsed = rfqSchema.safeParse({ ...values, turnstileToken });
@@ -111,12 +154,124 @@ export function RfqForm({ preselectedProduct }: { preselectedProduct?: string })
     }
   }
 
+  async function onCompactSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setResult(null);
+
+    const fieldErrors: Record<string, string> = {};
+    if (!values.name.trim()) fieldErrors.name = "Please add your name.";
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(values.email)) {
+      fieldErrors.email = "Please add a valid business email.";
+    }
+    if (!values.message.trim()) {
+      fieldErrors.message = "Tell us briefly what you are sourcing.";
+    }
+    if (Object.keys(fieldErrors).length > 0) {
+      setErrors(fieldErrors);
+      return;
+    }
+    setErrors({});
+    setSubmitting(true);
+
+    const recipient = process.env.NEXT_PUBLIC_RFQ_EMAIL;
+    if (!recipient) {
+      setResult({
+        ok: false,
+        message: "Enquiry delivery is not configured yet. Please add NEXT_PUBLIC_RFQ_EMAIL before launch.",
+      });
+      setSubmitting(false);
+      return;
+    }
+
+    const subject = encodeURIComponent(`Enquiry from ${values.name}`);
+    const body = encodeURIComponent([
+      `Name: ${values.name}`,
+      `Business email: ${values.email}`,
+      `Product / collection: ${values.product || "General enquiry"}`,
+      "",
+      values.message,
+    ].join("\n"));
+
+    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+    setResult({
+      ok: true,
+      message: "Your email app is opening with the enquiry details ready to send.",
+    });
+    setSubmitting(false);
+    setValues((v) => ({ ...EMPTY, product: v.product }));
+  }
+
   const err = (key: string) =>
     errors[key] ? (
       <p id={`${key}-error`} role="alert" className="mt-2 text-xs text-red-800">
         {errors[key]}
       </p>
     ) : null;
+
+  if (variant === "compact") {
+    return (
+      <form onSubmit={onCompactSubmit} noValidate className="grid gap-7">
+        <div>
+          <label htmlFor="rfq-name" className={labelClass}>Full name *</label>
+          <input id="rfq-name" type="text" autoComplete="name" required
+            className={inputClass} value={values.name} onChange={set("name")}
+            aria-invalid={!!errors.name} aria-describedby={errors.name ? "name-error" : undefined} />
+          {err("name")}
+        </div>
+        <div>
+          <label htmlFor="rfq-email" className={labelClass}>Business email *</label>
+          <input id="rfq-email" type="email" autoComplete="email" required
+            className={inputClass} value={values.email} onChange={set("email")}
+            aria-invalid={!!errors.email} aria-describedby={errors.email ? "email-error" : undefined} />
+          {err("email")}
+        </div>
+        <div>
+          <label htmlFor="rfq-product" className={labelClass}>Product / collection</label>
+          <select id="rfq-product" className={inputClass} value={values.product} onChange={set("product")}>
+            <option value="">General enquiry</option>
+            {PRODUCT_OPTIONS.filter((opt) => opt !== "General enquiry").map((opt) => (
+              <option key={opt} value={opt}>{opt}</option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label htmlFor="rfq-message" className={labelClass}>Message *</label>
+          <textarea id="rfq-message" rows={3} required
+            placeholder="What are you sourcing, and at what scale?"
+            className={inputClass} value={values.message} onChange={set("message")}
+            aria-invalid={!!errors.message} aria-describedby={errors.message ? "message-error" : undefined} />
+          {err("message")}
+        </div>
+
+        {/* Honeypot — hidden from humans, catnip for bots */}
+        <div aria-hidden="true" className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden">
+          <label htmlFor="rfq-website">Website</label>
+          <input id="rfq-website" type="text" tabIndex={-1} autoComplete="off"
+            value={values.website} onChange={set("website")} />
+        </div>
+
+        <Turnstile />
+
+        <div className="mt-4 flex flex-wrap items-center gap-5">
+          <button
+            type="submit"
+            disabled={submitting}
+            className="group inline-flex items-center gap-4"
+          >
+            <span className="grid h-12 w-12 place-items-center rounded-full border border-brass-deep text-lg text-brass-deep transition-colors duration-300 group-hover:bg-brass-deep group-hover:text-ivory" aria-hidden="true">
+              →
+            </span>
+            <span className="text-2xs font-semibold uppercase tracking-[0.22em] text-brass-deep transition-colors duration-300 group-hover:text-ink">
+              {submitting ? "Sending…" : "Send request"}
+            </span>
+          </button>
+          <p className="text-2xs text-taupe">* Required. We reply within two business days.</p>
+        </div>
+
+        <ResultNote result={result} />
+      </form>
+    );
+  }
 
   return (
     <form onSubmit={onSubmit} noValidate>
@@ -204,12 +359,7 @@ export function RfqForm({ preselectedProduct }: { preselectedProduct?: string })
           value={values.website} onChange={set("website")} />
       </div>
 
-      {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ? (
-        <div
-          className="cf-turnstile mt-8"
-          data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
-        />
-      ) : null}
+      <Turnstile />
 
       <div className="mt-12 flex flex-wrap items-center gap-6">
         <button
@@ -225,18 +375,7 @@ export function RfqForm({ preselectedProduct }: { preselectedProduct?: string })
         </p>
       </div>
 
-      {result ? (
-        <p
-          role="status"
-          className={`mt-8 border px-6 py-4 text-sm ${
-            result.ok
-              ? "border-brass bg-linen text-ink"
-              : "border-red-800 bg-red-50 text-red-900"
-          }`}
-        >
-          {result.message}
-        </p>
-      ) : null}
+      <ResultNote result={result} />
     </form>
   );
 }

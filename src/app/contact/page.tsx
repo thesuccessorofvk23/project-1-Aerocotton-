@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 import { company } from "@/content/company";
-import { Container } from "@/components/ui/Container";
 import { RfqForm } from "@/components/rfq/RfqForm";
 
 export const metadata: Metadata = pageMeta({
@@ -11,92 +10,91 @@ export const metadata: Metadata = pageMeta({
   path: "/contact",
 });
 
-export default function ContactPage({
-  searchParams,
-}: {
-  searchParams?: { product?: string };
-}) {
-  const product = typeof searchParams?.product === "string" ? searchParams.product : undefined;
-
+export default function ContactPage() {
   return (
-    <>
-      <section className="border-b border-hairline bg-linen pb-16 pt-40">
-        <Container>
-          <p className="eyebrow">Contact</p>
-          <h1 className="font-display mt-6 max-w-4xl text-display-lg text-ink">
-            Tell us what you're sourcing.
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg/loose text-umber">
-            Quotations, sample boxes, custom programmes — one structured enquiry
-            reaches the right people at the mill.
+    <div className="aero-contact">
+      <section className="aero-contact__frame">
+        {/* Photo panel */}
+        <div className="aero-contact__visual">
+          <img
+            src="/images/editorial/textile-interior.jpg"
+            alt="Airy interior styled with Aerocotton textiles"
+          />
+          <div className="aero-contact__visual-veil" aria-hidden="true" />
+          <p className="aero-contact__wordmark">
+            <span>Aero&nbsp;Cotton</span>
           </p>
-        </Container>
-      </section>
+          <p className="aero-contact__visual-caption">
+            Karur / Tamil Nadu · Since {company.founded}
+          </p>
+        </div>
 
-      <section className="bg-ivory py-20 md:py-24">
-        <Container>
-          <div className="grid gap-16 lg:grid-cols-12">
-            {/* Form */}
-            <div className="lg:col-span-8">
-              <RfqForm preselectedProduct={product} />
+        {/* Content panel */}
+        <div className="aero-contact__panel">
+          <div className="aero-contact__intro">
+            <h1 className="aero-contact__title">Contact</h1>
+            <p className="aero-contact__lede">
+              Quotations, sample boxes and custom programmes — one enquiry
+              reaches the right people at the mill. We reply within two
+              business days.
+            </p>
+          </div>
+
+          <div className="aero-contact__columns">
+            {/* Mill direct */}
+            <div className="aero-contact__direct">
+              <h2>Mill direct</h2>
+              <address className="aero-contact__address">
+                <p className="aero-contact__address-name">{company.legalName}</p>
+                <p>
+                  {company.address.line1}, {company.address.line2}
+                </p>
+                <p>
+                  {company.address.city}, {company.address.region}
+                </p>
+                <p>{company.address.country}</p>
+              </address>
+
+              <div className="aero-contact__channels">
+                {company.contact.email ? (
+                  <a href={`mailto:${company.contact.email}`}>{company.contact.email}</a>
+                ) : null}
+                {company.contact.phone ? (
+                  <a href={`tel:${company.contact.phone}`}>{company.contact.phone}</a>
+                ) : null}
+                {company.contact.whatsapp ? (
+                  <a
+                    href={`https://wa.me/${company.contact.whatsapp}?text=${encodeURIComponent(
+                      "Hello Aerocotton — I would like to enquire about your collections."
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    WhatsApp the mill
+                  </a>
+                ) : null}
+                {!company.contact.email && !company.contact.phone && !company.contact.whatsapp ? (
+                  <p className="aero-contact__channels-note">
+                    Direct lines are being connected — the form reaches us
+                    immediately.
+                  </p>
+                ) : null}
+              </div>
+
+              <p className="aero-contact__direct-note">
+                Manufacturer &amp; exporter since {company.founded} ·
+                International shipping since {company.exportingSince}
+              </p>
             </div>
 
-            {/* Direct details */}
-            <aside className="lg:col-span-4">
-              <div className="border border-hairline bg-linen p-8">
-                <h2 className="font-display text-xl text-ink">Direct</h2>
-                <address className="mt-5 space-y-1 text-sm/relaxed not-italic text-umber">
-                  <p className="font-semibold text-ink">{company.legalName}</p>
-                  <p>{company.address.line1}, {company.address.line2}</p>
-                  <p>{company.address.city}, {company.address.region}</p>
-                  <p>{company.address.country}</p>
-                </address>
-
-                <div className="mt-6 space-y-3 border-t border-hairline pt-6 text-sm">
-                  {company.contact.email ? (
-                    <p>
-                      <span className="text-2xs uppercase tracking-[0.18em] text-taupe">Email — </span>
-                      <a className="text-brass-deep hover:underline" href={`mailto:${company.contact.email}`}>
-                        {company.contact.email}
-                      </a>
-                    </p>
-                  ) : null}
-                  {company.contact.phone ? (
-                    <p>
-                      <span className="text-2xs uppercase tracking-[0.18em] text-taupe">Phone — </span>
-                      <a className="text-brass-deep hover:underline" href={`tel:${company.contact.phone}`}>
-                        {company.contact.phone}
-                      </a>
-                    </p>
-                  ) : null}
-                  {company.contact.whatsapp ? (
-                    <p>
-                      <span className="text-2xs uppercase tracking-[0.18em] text-taupe">WhatsApp — </span>
-                      <a className="text-brass-deep hover:underline"
-                        href={`https://wa.me/${company.contact.whatsapp}?text=${encodeURIComponent(
-                          "Hello Aerocotton — I would like to enquire about your collections."
-                        )}`}
-                        target="_blank" rel="noopener noreferrer">
-                        Message the mill
-                      </a>
-                    </p>
-                  ) : null}
-                  {!company.contact.email && !company.contact.phone && !company.contact.whatsapp ? (
-                    <p className="text-2xs uppercase tracking-[0.16em] text-taupe">
-                      Direct lines are being connected — the form reaches us immediately.
-                    </p>
-                  ) : null}
-                </div>
-
-                <p className="mt-6 border-t border-hairline pt-6 text-2xs/relaxed text-taupe">
-                  Manufacturer &amp; exporter since {company.founded} ·
-                  International shipping since {company.exportingSince}
-                </p>
-              </div>
-            </aside>
+            {/* Enquiry form */}
+            <div className="aero-contact__form">
+              <h2>Trade enquiries</h2>
+              <RfqForm variant="compact" />
+            </div>
           </div>
-        </Container>
+        </div>
       </section>
-    </>
+    </div>
   );
 }

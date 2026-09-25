@@ -757,6 +757,215 @@ body::after {
 .aero-final__wash { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(ellipse at 78% 45%, var(--color-moss) 0 4%, transparent 38%), linear-gradient(120deg, transparent 30%, rgba(176, 141, 87, 0.22) 50%, transparent 70%); }
 .aero-final .eyebrow { position: relative; }
 
+/* ── Contact page — split photo/content card (reference: Stahl House contact) ── */
+.aero-contact {
+  min-height: 100svh;
+  display: grid;
+  padding: clamp(1.5rem, 4vw, 4.5rem);
+  padding-top: clamp(5.5rem, 10vw, 8rem);
+  background: var(--color-parchment);
+}
+
+.aero-contact__frame {
+  display: grid;
+  width: 100%;
+  max-width: 98rem;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 0.35rem;
+  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1fr);
+  background: var(--color-ivory);
+  box-shadow: 0 2rem 5rem rgba(42, 33, 28, 0.14);
+}
+
+.aero-contact__visual {
+  position: relative;
+  min-height: 34rem;
+  overflow: hidden;
+  background: var(--color-cocoa);
+  isolation: isolate;
+}
+
+.aero-contact__visual > img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.66) contrast(1.06);
+}
+
+.aero-contact__visual-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(23, 22, 20, 0.14), rgba(23, 22, 20, 0.4));
+}
+
+.aero-contact__visual::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  content: "";
+  opacity: 0.16;
+  background-image: var(--noise-url);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.aero-contact__wordmark {
+  position: absolute;
+  z-index: 2;
+  top: 1.5rem;
+  left: 1.5rem;
+}
+
+.aero-contact__wordmark span {
+  display: inline-block;
+  border: 1px solid rgba(244, 240, 232, 0.85);
+  padding: 0.55rem 0.9rem;
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.aero-contact__visual-caption {
+  position: absolute;
+  z-index: 2;
+  right: 1.5rem;
+  bottom: 1.35rem;
+  left: 1.5rem;
+  color: rgba(244, 240, 232, 0.85);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.aero-contact__panel {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  padding: clamp(2rem, 4.5vw, 4.25rem);
+}
+
+.aero-contact__intro {
+  display: grid;
+  gap: clamp(1.25rem, 2.5vw, 2.5rem);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: end;
+}
+
+.aero-contact__title {
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 4.6vw, 4.4rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.aero-contact__lede {
+  color: var(--color-umber);
+  font-size: 0.8rem;
+  line-height: 1.7;
+}
+
+.aero-contact__columns {
+  display: grid;
+  flex: 1;
+  gap: clamp(2rem, 4vw, 4rem);
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+  align-content: start;
+}
+
+.aero-contact__columns h2 {
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin-bottom: 1.4rem;
+}
+
+.aero-contact__address {
+  display: grid;
+  gap: 0.15rem;
+  font-size: 0.72rem;
+  font-style: normal;
+  line-height: 1.6;
+}
+
+.aero-contact__address p {
+  color: var(--color-umber);
+}
+
+.aero-contact__address-name {
+  color: var(--color-ink) !important;
+  font-weight: 600;
+}
+
+.aero-contact__channels {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 1.4rem;
+}
+
+.aero-contact__channels a {
+  width: max-content;
+  color: var(--color-brass-deep);
+  font-size: 0.72rem;
+  transition: color 200ms ease;
+}
+
+.aero-contact__channels a:hover {
+  color: var(--color-ink);
+}
+
+.aero-contact__channels-note {
+  max-width: 20rem;
+  color: var(--color-taupe);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+.aero-contact__direct-note {
+  max-width: 20rem;
+  margin-top: 1.75rem;
+  border-top: 1px solid var(--color-hairline);
+  padding-top: 1.1rem;
+  color: var(--color-taupe);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  line-height: 1.7;
+  text-transform: uppercase;
+}
+
+.aero-contact__form {
+  min-width: 0;
+}
+
+.aero-contact__form .grid > div {
+  min-width: 0;
+}
+
+@media (max-width: 1000px) {
+  .aero-contact__frame { grid-template-columns: 1fr; }
+  .aero-contact__visual { min-height: 22rem; }
+  .aero-contact__columns { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .aero-contact { padding: 1rem; padding-top: 5.5rem; }
+  .aero-contact__intro { grid-template-columns: 1fr; align-items: start; }
+  .aero-contact__panel { padding: 1.75rem 1.5rem 2.25rem; }
+}
+
 .aero-product-intro__grid,
 .aero-proof-collage__grid { display: grid; gap: clamp(2rem, 8vw, 8rem); grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: center; }
 .aero-product-intro__art { position: relative; grid-column: span 7; min-height: clamp(22rem, 43vw, 37rem); overflow: hidden; background: linear-gradient(180deg, var(--color-ivory), var(--color-parchment)); }
