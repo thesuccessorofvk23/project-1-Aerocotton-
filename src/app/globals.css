@@ -695,7 +695,7 @@ body::after {
 .aero-collection-band { display: flex; gap: clamp(2.5rem, 8vw, 9rem); align-items: center; }
 .aero-collection-band--reverse { flex-direction: row-reverse; }
 .aero-textile-plate { position: relative; flex: 1 1 58%; aspect-ratio: 1.3; overflow: hidden; background: var(--dye-c); isolation: isolate; }
-.aero-textile-plate::after, .aero-product-still::after, .aero-process__material::after, .aero-guide-card__image::after { position: absolute; inset: 0; content: ""; opacity: 0.22; background-image: var(--noise-url); mix-blend-mode: multiply; pointer-events: none; }
+.aero-textile-plate::after, .aero-product-still::after, .aero-process__material::after { position: absolute; inset: 0; content: ""; opacity: 0.22; background-image: var(--noise-url); mix-blend-mode: multiply; pointer-events: none; }
 .aero-textile-plate__fold { position: absolute; box-shadow: 0 2rem 3rem rgba(42, 33, 28, 0.18); }
 .aero-textile-plate__fold--one { inset: 13% 15% 20% 8%; background: linear-gradient(135deg, var(--dye-b), var(--dye-a)); transform: rotate(-8deg); }
 .aero-textile-plate__fold--two { inset: 25% 8% 12% 22%; background: linear-gradient(135deg, var(--dye-c), var(--dye-b)); transform: rotate(7deg); opacity: 0.88; }
@@ -726,17 +726,24 @@ body::after {
 .aero-process__layout li > span { color: var(--color-brass); font-family: var(--font-sans); font-size: 1.6rem; }
 .aero-process__layout h3 { color: var(--color-ivory); font-family: var(--font-sans); font-size: 1.45rem; font-weight: 500; }
 .aero-process__layout p { max-width: 34rem; margin-top: 0.4rem; color: var(--color-fog); font-size: 0.85rem; line-height: 1.65; }
-.aero-guide__grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+/* 04 — Textile guide: heading with pill CTA plus three portrait photo cards. */
+.aero-guide__heading { display: flex; flex-wrap: wrap; gap: 1.5rem 3rem; align-items: flex-end; justify-content: space-between; border-top: 1px solid rgba(23, 22, 20, 0.18); padding-top: 2rem; }
+.aero-guide__cta { display: inline-flex; align-items: center; gap: 0.7rem; border: 1px solid var(--color-outline); border-radius: 999px; padding: 0.85rem 1.5rem; color: var(--color-ink); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; transition: background 250ms ease, border-color 250ms ease, transform 250ms var(--ease-out-soft); }
+.aero-guide__cta:hover { border-color: var(--color-brass-deep); background: rgba(176, 141, 87, 0.08); transform: translateY(-2px); }
+.aero-guide__grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .aero-guide-card { display: block; min-width: 0; }
-.aero-guide-card__image { position: relative; min-height: 16rem; overflow: hidden; background: var(--color-cotton); }
-.aero-guide-card__image::before { position: absolute; inset: 18% 12%; content: ""; background: var(--color-moss); transform: rotate(-9deg); }
-.aero-guide-card__image--2::before { background: var(--color-brass); transform: rotate(8deg); }
-.aero-guide-card__image--3::before { background: var(--color-cocoa); transform: rotate(-3deg); }
-.aero-guide-card__image--4::before { background: var(--color-sky); transform: rotate(6deg); }
-.aero-guide-card__image span { position: absolute; z-index: 1; top: 0.8rem; left: 0.8rem; color: var(--color-ivory); font-family: var(--font-sans); font-size: 2rem; }
-.aero-guide-card .eyebrow { gap: 0.4rem; }
-.aero-guide-card .eyebrow::before { width: 1rem; }
-.aero-guide-card .aero-arrow-link { color: var(--color-brass-deep); }
+.aero-guide-card__media { position: relative; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 1.1rem; background: var(--color-cotton); isolation: isolate; }
+.aero-guide-card__media img { display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(0.72) contrast(1.05); transition: transform 600ms var(--ease-out-soft); }
+.aero-guide-card:hover .aero-guide-card__media img { transform: scale(1.05); }
+.aero-guide-card__shade { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(23, 22, 20, 0.16) 0%, rgba(23, 22, 20, 0.02) 38%, rgba(23, 22, 20, 0.55) 100%); }
+.aero-guide-card__media::after { position: absolute; inset: 0; z-index: 2; content: ""; opacity: 0.14; background-image: var(--noise-url); mix-blend-mode: multiply; pointer-events: none; }
+.aero-guide-card__pill { position: absolute; z-index: 3; top: 0.85rem; left: 0.85rem; border-radius: 999px; background: rgba(244, 240, 232, 0.92); padding: 0.45rem 0.85rem; color: var(--color-ink); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; }
+.aero-guide-card__arrow { position: absolute; z-index: 3; top: 0.75rem; right: 0.75rem; display: grid; width: 2.4rem; height: 2.4rem; place-items: center; border-radius: 999px; background: rgba(244, 240, 232, 0.92); color: var(--color-ink); font-size: 1.05rem; transition: background 250ms ease, color 250ms ease, transform 250ms var(--ease-out-soft); }
+.aero-guide-card:hover .aero-guide-card__arrow { background: var(--color-brass); color: var(--color-ivory); transform: translate(2px, -2px); }
+.aero-guide-card__caption { position: absolute; z-index: 3; right: 1.1rem; bottom: 1rem; left: 1.1rem; color: var(--color-ivory); font-family: var(--font-sans); font-size: clamp(1.15rem, 1.9vw, 1.55rem); font-weight: 500; line-height: 1.18; text-shadow: 0 1px 12px rgba(23, 22, 20, 0.35); }
+.aero-guide-card__caption strong { margin-right: 0.35rem; font-weight: 500; }
+.aero-guide-card__more { display: inline-flex; gap: 0.45rem; margin-top: 0.85rem; color: var(--color-brass-deep); font-size: 0.66rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; transition: gap 250ms var(--ease-out-soft); }
+.aero-guide-card:hover .aero-guide-card__more { gap: 0.8rem; }
 .aero-faq__grid > :first-child { grid-column: span 4; align-self: start; }
 .aero-faq__grid > :last-child { grid-column: span 7 / -1; }
 .aero-faq__list { border-top: 1px solid var(--color-outline); }
@@ -874,7 +881,6 @@ body::after {
 .aero-process-panel__frame li > span { color: var(--color-brass); font-family: var(--font-sans); font-size: 1.1rem; }
 .aero-process-panel__frame li strong { display: block; margin-top: 0.7rem; color: var(--color-ivory); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; }
 .aero-process-panel__frame li p { margin-top: 0.45rem; color: var(--color-fog); font-size: 0.64rem; line-height: 1.4; }
-.aero-guide__heading { display: grid; gap: 2rem; grid-template-columns: 1fr minmax(15rem, 0.45fr); align-items: end; border-top: 1px solid rgba(23, 22, 20, 0.18); padding-top: 2rem; }
 .aero-insights__grid { display: grid; gap: clamp(3rem, 9vw, 9rem); grid-template-columns: minmax(15rem, 0.65fr) minmax(0, 1fr); align-items: start; }
 .aero-insights__intro { padding-top: 0.5rem; }
 .aero-insights__list { display: grid; gap: 1rem; }
@@ -923,10 +929,6 @@ body::after {
 .aero-faq-page__list details > div { padding: 0 2.5rem 1.2rem 0; color: var(--color-umber); font-size: 0.78rem; line-height: 1.6; }
 .aero-faq-page__list details p + p { margin-top: 0.75rem; }
 .aero-faq-page__list details ul { margin-top: 0.75rem; list-style: disc; padding-left: 1rem; }
-.aero-guide__grid .aero-guide-card:nth-child(1) { grid-column: span 2; }
-.aero-guide__grid .aero-guide-card:nth-child(1) .aero-guide-card__image { min-height: 21rem; }
-.aero-guide__grid .aero-guide-card:nth-child(2) { padding-top: 3rem; }
-.aero-guide__grid .aero-guide-card:nth-child(4) { margin-top: -3rem; }
 
 @media (max-width: 900px) {
   .aero-origin__statement { max-width: 34rem; }
@@ -946,7 +948,7 @@ body::after {
   .aero-process-panel__frame ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .aero-process-panel__frame li:nth-child(2n) { border-right: 0; }
   .aero-process-panel__frame li { min-height: 5rem; }
-  .aero-guide__heading { grid-template-columns: 1fr; }
+  .aero-guide__heading { flex-direction: column; align-items: flex-start; }
   .aero-insights__grid { grid-template-columns: 1fr; }
   .aero-intro-band__copy, .aero-statement__visual, .aero-statement__copy, .aero-proof__heading, .aero-making__copy, .aero-making__visual { grid-column: 1 / -1; }
   .aero-product-still, .aero-proof__stats { grid-column: 2 / -1; }
@@ -990,7 +992,7 @@ body::after {
   .aero-proof__stats { grid-column: 1 / -1; }
   .aero-proof__note { display: grid; gap: 0.6rem; }
   .aero-guide__grid { grid-template-columns: 1fr; }
-  .aero-guide-card__image { min-height: 12rem; }
+  .aero-guide-card__media { aspect-ratio: 4 / 5; }
   .aero-faq__grid > :first-child, .aero-faq__grid > :last-child { grid-column: 1 / -1; }
   .aero-product-line { align-items: flex-start; flex-direction: column; gap: 0.45rem; }
   .aero-process__material { min-height: 16rem; }
@@ -1001,7 +1003,6 @@ body::after {
   .aero-why-card { min-height: 0; padding: 1.25rem; }
   .aero-insight-row__content { padding: 0.9rem 2.5rem 0.9rem 0.85rem; }
   .aero-insight-row__content h3 { font-size: 0.86rem; }
-  .aero-guide__grid .aero-guide-card:nth-child(1), .aero-guide__grid .aero-guide-card:nth-child(2), .aero-guide__grid .aero-guide-card:nth-child(4) { grid-column: auto; padding-top: 0; margin-top: 0; }
 }
 
 @media (max-width: 900px) {
