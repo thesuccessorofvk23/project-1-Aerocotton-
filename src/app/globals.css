@@ -889,18 +889,13 @@ body::after {
 .aero-insight-row__content h3 { max-width: 24ch; margin-top: 0.65rem; font-family: var(--font-sans); font-size: clamp(0.95rem, 1.5vw, 1.2rem); font-weight: 500; line-height: 1.16; }
 .aero-insight-row__content > span { position: absolute; right: 1.25rem; bottom: 1.1rem; color: var(--color-moss-deep); font-size: 1.1rem; transition: transform 250ms ease; }
 .aero-insight-row:hover .aero-insight-row__content > span { transform: translateX(0.25rem); }
-.aero-origin__grid { display: grid; gap: clamp(3rem, 10vw, 10rem); grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.48fr); align-items: center; min-height: clamp(34rem, 58vw, 48rem); }
-.aero-origin__copy { max-width: 55rem; }
-.aero-origin__copy .eyebrow { color: var(--color-umber); }
-.aero-origin__panel { position: relative; min-height: 20rem; overflow: hidden; border: 3px solid var(--color-ink); border-radius: 1.5rem; background: var(--color-ink); color: var(--color-ivory); box-shadow: 0 1.5rem 3rem rgba(23, 22, 20, 0.15); }
-.aero-origin__panel-top { display: grid; gap: 0.15rem; margin: 0.35rem; border-radius: 1rem; background: var(--color-linen); padding: 1.15rem 1.2rem 1rem; color: var(--color-ink); }
-.aero-origin__panel-top span { font-family: var(--font-sans); font-size: 1.35rem; font-weight: 500; letter-spacing: -0.04em; }
-.aero-origin__panel-top small { color: var(--color-taupe); font-size: 0.58rem; letter-spacing: 0.12em; }
-.aero-origin__metric { margin: 1.8rem 1.25rem 0; color: var(--color-brass); font-family: var(--font-sans); font-size: clamp(4rem, 8vw, 7rem); font-weight: 500; letter-spacing: -0.08em; line-height: 0.8; }
-.aero-origin__metric sup { margin-left: 0.15rem; font-size: 0.35em; letter-spacing: 0; vertical-align: top; }
-.aero-origin__metric-label { margin: 0.7rem 1.35rem 0; color: var(--color-fog); font-size: 0.68rem; letter-spacing: 0.08em; }
-.aero-origin__tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 2.4rem 1rem 1rem; }
-.aero-origin__tags span { border: 1px solid rgba(244, 240, 232, 0.16); border-radius: 999px; padding: 0.55rem 0.8rem; color: var(--color-ivory); font-size: 0.68rem; white-space: nowrap; }
+/* 01 — About Aero Cotton: centered bracket label, drop line, uppercase statement. */
+.aero-origin { text-align: center; }
+.aero-origin__inner { display: flex; flex-direction: column; align-items: center; }
+.aero-origin__label { color: var(--color-umber); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; }
+.aero-origin__drop { display: block; width: 1px; height: clamp(3rem, 6vw, 4.5rem); margin-top: 1.25rem; background: var(--color-brass); }
+.aero-origin__statement { max-width: 46rem; margin-top: clamp(1.5rem, 3.5vw, 2.75rem); color: var(--color-ink); font-family: var(--font-sans); font-size: clamp(1.45rem, 2.9vw, 2.6rem); font-weight: 500; line-height: 1.28; text-transform: uppercase; }
+.aero-origin__link { margin-top: clamp(1.75rem, 3.5vw, 2.75rem); }
 .aero-page-hero { position: relative; overflow: hidden; isolation: isolate; }
 .aero-page-hero::after { position: absolute; inset: 0; z-index: -1; content: ""; opacity: 0.35; background: linear-gradient(90deg, rgba(244, 240, 232, 0.6), transparent 48%, rgba(176, 141, 87, 0.08)), var(--noise-url); pointer-events: none; }
 .aero-page-hero h1 { max-width: 11ch; text-wrap: balance; }
@@ -934,7 +929,7 @@ body::after {
 .aero-guide__grid .aero-guide-card:nth-child(4) { margin-top: -3rem; }
 
 @media (max-width: 900px) {
-  .aero-origin__grid { grid-template-columns: 1fr minmax(16rem, 0.65fr); gap: 3rem; }
+  .aero-origin__statement { max-width: 30rem; }
   .aero-product-intro__art, .aero-proof-collage__visual, .aero-proof-collage__copy { grid-column: 1 / -1; }
   .aero-why__grid { grid-template-columns: 1fr; }
   .aero-why__visual { min-height: 24rem; }
@@ -968,8 +963,7 @@ body::after {
   .aero-faq-page__intro { max-width: 22rem; }
   .aero-faq-page__intro p { margin-top: 2rem; }
   .aero-faq-page__list summary { min-height: 3.4rem; font-size: 0.74rem; }
-  .aero-origin__grid { grid-template-columns: 1fr; min-height: auto; gap: 3rem; }
-  .aero-origin__panel { min-height: 19rem; max-width: 26rem; }
+  .aero-origin__statement { max-width: 26rem; font-size: 1.3rem; }
   .aero-product-intro__copy { grid-column: 1 / -1; }
   .aero-feature-strip__grid { grid-template-columns: 1fr 1fr; }
   .aero-feature-strip__grid div { min-height: 5rem; padding: 0 0.75rem; }
