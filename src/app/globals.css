@@ -1505,3 +1505,171 @@ body::after {
     animation: none !important;
   }
 }
+
+/* ── 03 — New collection: five-card curved 3D carousel ────────────────── */
+.aero-carousel__heading {
+  margin-top: 0.9rem;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: clamp(1.35rem, 2.6vw, 2.1rem);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.aero-carousel__stage {
+  position: relative;
+  height: clamp(24rem, 42vw, 33rem);
+  margin-top: clamp(2rem, 4vw, 3.5rem);
+  outline: none;
+}
+
+.aero-carousel__stage:focus-visible {
+  box-shadow: 0 0 0 2px var(--color-brass);
+}
+
+.aero-carousel__card {
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  width: clamp(15rem, 24vw, 22rem);
+  transition:
+    transform 820ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 620ms ease;
+  will-change: transform;
+}
+
+.aero-carousel__card-inner {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.aero-carousel__media {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--color-cotton);
+  box-shadow: 0 1.4rem 3rem rgba(23, 22, 20, 0.14);
+}
+
+.aero-carousel__card:not(.is-active) .aero-carousel__media {
+  box-shadow: 0 0.7rem 1.6rem rgba(23, 22, 20, 0.1);
+}
+
+.aero-carousel__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 500ms ease;
+  filter: saturate(0.78) contrast(1.03);
+}
+
+.aero-carousel__card.is-active .aero-carousel__media img {
+  filter: saturate(0.95) contrast(1.05);
+}
+
+.aero-carousel__card:not(.is-active) .aero-carousel__card-inner:hover ~ .aero-carousel__media img {
+  filter: saturate(0.95);
+}
+
+.aero-carousel__info {
+  display: block;
+  padding-top: 0.85rem;
+  text-align: center;
+}
+
+.aero-carousel__info strong {
+  display: block;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.aero-carousel__info small {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--color-taupe);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+}
+
+.aero-carousel__card.is-active .aero-carousel__info strong {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.aero-carousel__controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.9rem;
+  margin-top: 1.4rem;
+}
+
+.aero-carousel__controls button {
+  display: grid;
+  width: 2.6rem;
+  height: 2.6rem;
+  place-items: center;
+  border: 1px solid var(--color-outline);
+  border-radius: 999px;
+  color: var(--color-ink);
+  font-size: 1rem;
+  transition: background 250ms ease, border-color 250ms ease, color 250ms ease;
+}
+
+.aero-carousel__controls button:hover {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+  color: var(--color-ivory);
+}
+
+.aero-carousel__view-all {
+  display: inline-flex;
+  border: 1px solid var(--color-ink);
+  border-radius: 999px;
+  padding: 0.9rem 2.4rem;
+  color: var(--color-ink);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  transition: background 250ms ease, color 250ms ease;
+}
+
+.aero-carousel__view-all:hover {
+  background: var(--color-ink);
+  color: var(--color-ivory);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aero-carousel__card {
+    transition-duration: 1ms;
+  }
+}
+
+@media (max-width: 900px) {
+  .aero-carousel__stage { height: clamp(21rem, 58vw, 27rem); }
+  .aero-carousel__card { width: clamp(13rem, 44vw, 17rem); }
+  .aero-carousel__info strong { max-width: 13rem; margin-inline: auto; }
+}
+
+@media (max-width: 640px) {
+  .aero-carousel__stage { height: clamp(19rem, 66vw, 24rem); }
+  .aero-carousel__card { width: clamp(12rem, 56vw, 15rem); }
+  .aero-carousel__controls { margin-top: 1rem; }
+}
