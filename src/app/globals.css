@@ -1519,7 +1519,7 @@ body::after {
 }
 
 .aero-gallery__row {
-  --gallery-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --gallery-ease: cubic-bezier(0.65, 0, 0.35, 1);
   display: flex;
   gap: clamp(0.6rem, 1.2vw, 1.1rem);
   height: clamp(26rem, 40vw, 40rem);
@@ -1531,7 +1531,7 @@ body::after {
 .aero-gallery__panel {
   flex: 1 1 0;
   min-width: 0;
-  transition: flex-grow 640ms var(--gallery-ease), transform 640ms var(--gallery-ease);
+  transition: flex-grow 950ms var(--gallery-ease), transform 950ms var(--gallery-ease);
   will-change: flex-grow;
 }
 
@@ -1563,7 +1563,7 @@ body::after {
   overflow: hidden;
   background: var(--color-cotton);
   box-shadow: 0 1.2rem 2.6rem rgba(23, 22, 20, 0.13);
-  transition: box-shadow 450ms ease;
+  transition: box-shadow 650ms ease;
 }
 
 .aero-gallery__media::after {
@@ -1581,7 +1581,7 @@ body::after {
   height: 100%;
   object-fit: cover;
   filter: saturate(0.8) contrast(1.03);
-  transition: transform 700ms var(--gallery-ease), filter 450ms ease;
+  transition: transform 1050ms var(--gallery-ease), filter 650ms ease;
 }
 
 /* Hover focus: brighter, gently zooming, lifted shadow. */
@@ -1630,7 +1630,7 @@ body::after {
   font-size: 0.72rem;
   line-height: 1.5;
   opacity: 0;
-  transition: max-height 640ms var(--gallery-ease), opacity 420ms ease 80ms, margin-top 640ms var(--gallery-ease);
+  transition: max-height 950ms var(--gallery-ease), opacity 650ms ease 150ms, margin-top 950ms var(--gallery-ease);
 }
 
 .aero-gallery__panel:hover .aero-gallery__intro,
