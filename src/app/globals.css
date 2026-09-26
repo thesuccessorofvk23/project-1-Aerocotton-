@@ -786,7 +786,8 @@ body::after {
 .aero-catalogue-row__media {
   position: relative;
   grid-column: 1 / span 2;
-  min-height: clamp(16rem, 26vw, 22rem);
+  grid-row: 1;
+  height: clamp(16rem, 26vw, 22rem);
   overflow: hidden;
   background: var(--color-cotton);
 }
@@ -820,7 +821,7 @@ body::after {
   justify-content: space-between;
   gap: 2.5rem;
   grid-column: 3 / span 1;
-  min-height: clamp(16rem, 26vw, 22rem);
+  grid-row: 1;
   padding: 1.8rem 2rem 1.6rem;
 }
 
@@ -860,6 +861,19 @@ body::after {
   line-height: 1.6;
 }
 
+/* Explicit row placement — one catalogue row per grid row. */
+.aero-catalogue__grid > .aero-catalogue-item:nth-child(1) .aero-catalogue-row__media,
+.aero-catalogue__grid > .aero-catalogue-item:nth-child(1) .aero-catalogue-row__copy { grid-row: 1; }
+.aero-catalogue__grid > .aero-catalogue-item:nth-child(2) .aero-catalogue-row__media,
+.aero-catalogue__grid > .aero-catalogue-item:nth-child(2) .aero-catalogue-row__copy { grid-row: 2; }
+.aero-catalogue__grid > .aero-catalogue-item:nth-child(3) .aero-catalogue-row__media,
+.aero-catalogue__grid > .aero-catalogue-item:nth-child(3) .aero-catalogue-row__copy { grid-row: 3; }
+.aero-catalogue__grid > .aero-catalogue-item:nth-child(4) .aero-catalogue-row__media,
+.aero-catalogue__grid > .aero-catalogue-item:nth-child(4) .aero-catalogue-row__copy { grid-row: 4; }
+.aero-catalogue__grid > .aero-catalogue-item:nth-child(5) .aero-catalogue-row__media,
+.aero-catalogue__grid > .aero-catalogue-item:nth-child(5) .aero-catalogue-row__copy { grid-row: 5; }
+
+
 /* Row 2 — text col 2, photo cols 3-4 (Plinth sinks). */
 .aero-catalogue-row--copy-first .aero-catalogue-row__copy {
   grid-column: 2 / span 1;
@@ -868,15 +882,6 @@ body::after {
 
 .aero-catalogue-row--copy-first .aero-catalogue-row__media {
   grid-column: 3 / span 2;
-}
-
-/* Row 4 — photo col 3, text col 4 (Sushi lamps). */
-.aero-catalogue-row--narrow .aero-catalogue-row__media {
-  grid-column: 3 / span 1;
-}
-
-.aero-catalogue-row--narrow .aero-catalogue-row__copy {
-  grid-column: 4 / span 1;
 }
 
 .aero-guide__heading { display: flex; flex-wrap: wrap; gap: 1.5rem 3rem; align-items: flex-end; justify-content: space-between; border-top: 1px solid rgba(23, 22, 20, 0.18); padding-top: 2rem; }
@@ -1315,7 +1320,7 @@ body::after {
   .aero-catalogue__head-cell:nth-child(4) { display: none; }
   .aero-catalogue__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .aero-catalogue-row__media,
-  .aero-catalogue-row__copy { grid-column: auto !important; min-height: 15rem; }
+  .aero-catalogue-row__copy { grid-column: auto !important; grid-row: auto !important; height: auto; min-height: 15rem; }
   .aero-catalogue-row__copy { padding: 1.4rem 0 1.4rem 1.4rem; }
   .aero-guide__heading { flex-direction: column; align-items: flex-start; }
   .aero-insights__grid { grid-template-columns: 1fr; }
@@ -1362,7 +1367,7 @@ body::after {
   .aero-proof__note { display: grid; gap: 0.6rem; }
   .aero-catalogue__grid { grid-template-columns: 1fr; border-top: 0; }
   .aero-catalogue-row__media,
-  .aero-catalogue-row__copy { grid-column: auto !important; min-height: 0; }
+  .aero-catalogue-row__copy { grid-column: auto !important; grid-row: auto !important; height: auto; min-height: 0; }
   .aero-catalogue-row__media { min-height: 14rem; }
   .aero-catalogue-row__copy { min-height: 0; padding: 1.3rem 0 1.9rem; }
   .aero-guide__grid { grid-template-columns: 1fr; }
