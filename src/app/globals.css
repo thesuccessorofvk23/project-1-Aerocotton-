@@ -3,6 +3,7 @@
 /* Shared paper-grain noise (body texture + preloader curtains). */
 :root {
   --noise-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0.05'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+  --catalogue-line: rgba(23, 22, 20, 0.16);
 }
 
 /* ── Base ─────────────────────────────────────────────────────────────── */
@@ -726,7 +727,158 @@ body::after {
 .aero-process__layout li > span { color: var(--color-brass); font-family: var(--font-sans); font-size: 1.6rem; }
 .aero-process__layout h3 { color: var(--color-ivory); font-family: var(--font-sans); font-size: 1.45rem; font-weight: 500; }
 .aero-process__layout p { max-width: 34rem; margin-top: 0.4rem; color: var(--color-fog); font-size: 0.85rem; line-height: 1.65; }
-/* 04 — Textile guide: heading with pill CTA plus three portrait photo cards. */
+/* 05 — Catalogue: reference hairline grid — 4 columns, full-bleed photo/copy cells
+   with empty neighbours and a vertical rule between columns. */
+.aero-catalogue__head {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: start;
+}
+
+.aero-catalogue__head-cell {
+  min-height: clamp(8rem, 12vw, 11rem);
+  padding: 1.9rem 1.5rem 0 0;
+  border-left: 1px solid var(--catalogue-line);
+}
+
+.aero-catalogue__head-cell:nth-child(2) { padding-left: 2rem; }
+.aero-catalogue__head-cell:nth-child(3) { padding-left: 1.6rem; }
+
+.aero-catalogue__title {
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: clamp(1.7rem, 2.6vw, 2.3rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.aero-catalogue__nav {
+  display: inline-flex;
+  gap: 1.6rem;
+  padding-top: 0.45rem;
+}
+
+.aero-catalogue__nav a {
+  color: var(--color-taupe);
+  font-size: 0.78rem;
+  transition: color 200ms ease;
+}
+
+.aero-catalogue__nav a:hover {
+  color: var(--color-ink);
+}
+
+.aero-catalogue__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--catalogue-line);
+}
+
+.aero-catalogue-item {
+  display: contents;
+}
+
+.aero-catalogue-row {
+  display: contents;
+}
+
+.aero-catalogue-row__media {
+  position: relative;
+  grid-column: 1 / span 2;
+  min-height: clamp(16rem, 26vw, 22rem);
+  overflow: hidden;
+  background: var(--color-cotton);
+}
+
+.aero-catalogue-row__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.72) contrast(1.04);
+  transition: transform 800ms var(--ease-out-soft);
+}
+
+.aero-catalogue-row:hover .aero-catalogue-row__media img {
+  transform: scale(1.035);
+}
+
+.aero-catalogue-row__media::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+  opacity: 0.14;
+  background-image: var(--noise-url);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.aero-catalogue-row__copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2.5rem;
+  grid-column: 3 / span 1;
+  min-height: clamp(16rem, 26vw, 22rem);
+  padding: 1.8rem 2rem 1.6rem;
+}
+
+.aero-catalogue-row__kicker {
+  color: var(--color-taupe);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.aero-catalogue-row__body h3 {
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: clamp(1.45rem, 2.2vw, 2.05rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  transition: color 250ms ease;
+}
+
+.aero-catalogue-row:hover .aero-catalogue-row__body h3 {
+  color: var(--color-brass-deep);
+}
+
+.aero-catalogue-row__meta {
+  margin-top: 0.5rem;
+  color: var(--color-umber);
+  font-size: 0.74rem;
+  line-height: 1.5;
+}
+
+.aero-catalogue-row__foot {
+  margin-top: 0.9rem;
+  color: var(--color-taupe);
+  font-size: 0.62rem;
+  line-height: 1.6;
+}
+
+/* Row 2 — text col 2, photo cols 3-4 (Plinth sinks). */
+.aero-catalogue-row--copy-first .aero-catalogue-row__copy {
+  grid-column: 2 / span 1;
+  padding-left: 2rem;
+}
+
+.aero-catalogue-row--copy-first .aero-catalogue-row__media {
+  grid-column: 3 / span 2;
+}
+
+/* Row 4 — photo col 3, text col 4 (Sushi lamps). */
+.aero-catalogue-row--narrow .aero-catalogue-row__media {
+  grid-column: 3 / span 1;
+}
+
+.aero-catalogue-row--narrow .aero-catalogue-row__copy {
+  grid-column: 4 / span 1;
+}
+
 .aero-guide__heading { display: flex; flex-wrap: wrap; gap: 1.5rem 3rem; align-items: flex-end; justify-content: space-between; border-top: 1px solid rgba(23, 22, 20, 0.18); padding-top: 2rem; }
 .aero-guide__cta { display: inline-flex; align-items: center; gap: 0.7rem; border: 1px solid var(--color-outline); border-radius: 999px; padding: 0.85rem 1.5rem; color: var(--color-ink); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; transition: background 250ms ease, border-color 250ms ease, transform 250ms var(--ease-out-soft); }
 .aero-guide__cta:hover { border-color: var(--color-brass-deep); background: rgba(176, 141, 87, 0.08); transform: translateY(-2px); }
@@ -1157,6 +1309,14 @@ body::after {
   .aero-process-panel__frame ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .aero-process-panel__frame li:nth-child(2n) { border-right: 0; }
   .aero-process-panel__frame li { min-height: 5rem; }
+  .aero-catalogue__head { grid-template-columns: 1fr; }
+  .aero-catalogue__head-cell { min-height: 0; border-left: 0; padding: 0 0 1.5rem; }
+  .aero-catalogue__head-cell:nth-child(2) { padding-left: 0; }
+  .aero-catalogue__head-cell:nth-child(4) { display: none; }
+  .aero-catalogue__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .aero-catalogue-row__media,
+  .aero-catalogue-row__copy { grid-column: auto !important; min-height: 15rem; }
+  .aero-catalogue-row__copy { padding: 1.4rem 0 1.4rem 1.4rem; }
   .aero-guide__heading { flex-direction: column; align-items: flex-start; }
   .aero-insights__grid { grid-template-columns: 1fr; }
   .aero-intro-band__copy, .aero-statement__visual, .aero-statement__copy, .aero-proof__heading, .aero-making__copy, .aero-making__visual { grid-column: 1 / -1; }
@@ -1200,6 +1360,11 @@ body::after {
   .aero-section-head { grid-template-columns: 1fr; }
   .aero-proof__stats { grid-column: 1 / -1; }
   .aero-proof__note { display: grid; gap: 0.6rem; }
+  .aero-catalogue__grid { grid-template-columns: 1fr; border-top: 0; }
+  .aero-catalogue-row__media,
+  .aero-catalogue-row__copy { grid-column: auto !important; min-height: 0; }
+  .aero-catalogue-row__media { min-height: 14rem; }
+  .aero-catalogue-row__copy { min-height: 0; padding: 1.3rem 0 1.9rem; }
   .aero-guide__grid { grid-template-columns: 1fr; }
   .aero-guide-card__media { aspect-ratio: 4 / 5; }
   .aero-faq__grid > :first-child, .aero-faq__grid > :last-child { grid-column: 1 / -1; }
