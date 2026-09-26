@@ -21,19 +21,20 @@ export type CarouselProduct = {
 };
 
 /** The visible arc — relative position → transform.
- *  X offsets are in card-widths (multiples of 100%), so the five-card
- *  composition always spans the full stage width at any viewport size. */
+ *  Matches the reference composition: four equal portrait panels with the
+ *  outer pair raised highest, inner pair slightly lower, and the active
+ *  center card double-width sitting lowest. X offsets are in card-widths. */
 const POSITIONS = [-2, -1, 0, 1, 2] as const;
 
 const POSITION_STYLES: Record<
   number,
   { x: string; y: string; scale: number; rotate: number; z: number; opacity: number }
 > = {
-  [-2]: { x: "-156%", y: "6%", scale: 0.68, rotate: -6, z: 1, opacity: 0.78 },
-  [-1]: { x: "-78%", y: "2.5%", scale: 0.85, rotate: -3, z: 2, opacity: 0.92 },
+  [-2]: { x: "-252%", y: "0%", scale: 1, rotate: -7, z: 2, opacity: 1 },
+  [-1]: { x: "-151%", y: "0%", scale: 1, rotate: -3, z: 3, opacity: 1 },
   [0]: { x: "0%", y: "0%", scale: 1, rotate: 0, z: 5, opacity: 1 },
-  [1]: { x: "78%", y: "2.5%", scale: 0.85, rotate: 3, z: 2, opacity: 0.92 },
-  [2]: { x: "156%", y: "6%", scale: 0.68, rotate: 6, z: 1, opacity: 0.78 },
+  [1]: { x: "151%", y: "0%", scale: 1, rotate: 3, z: 3, opacity: 1 },
+  [2]: { x: "252%", y: "0%", scale: 1, rotate: 7, z: 2, opacity: 1 },
 };
 
 /** One feed entry per collection — real photography mapped per landscape. */
