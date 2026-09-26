@@ -25,7 +25,7 @@ const catalogueRows = [
   { collection: collections[0], title: "Everyday throws", meta: "Throws & blankets", year: "Established 2010", image: "/images/editorial/campaign-nature.jpg", alt: "Nature collection throw in a calm interior", layout: "photo-first" },
   { collection: collections[1], title: "Woven blankets", meta: "Throws & blankets", year: "International 2015", image: "/images/editorial/woven-texture.jpg", alt: "Close weave of a Mountain collection blanket", layout: "copy-first" },
   { collection: collections[2], title: "Flatweave towels", meta: "Towels", year: "Crafted in Karur", image: "/images/editorial/textile-interior.jpg", alt: "Beach collection towels in an airy interior", layout: "photo-first" },
-  { collection: collections[3], title: "Terry towel sets", meta: "Towels", year: "Built to brief", image: "/images/editorial/workshop-detail.jpg", alt: "City collection terry towel in the workshop", layout: "photo-first" },
+  { collection: collections[3], title: "Terry towel sets", meta: "Towels", year: "Built to brief", image: "/images/editorial/workshop-detail.jpg", alt: "City collection terry towel in the workshop", layout: "copy-first" },
   { collection: collections[4], title: "Waffle robes", meta: "Robes", year: "Quality checked", image: "/images/editorial/quiet-bedroom.jpg", alt: "Forest collection waffle robes in a bedroom", layout: "photo-first" },
 ] as const;
 const whyCards = [
