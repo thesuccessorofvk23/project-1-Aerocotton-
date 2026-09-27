@@ -8,11 +8,14 @@ export function ProductCard({
   product: { name: string; tagline: string; image: string; collectionName: string };
   href: string;
 }) {
+  const src = product.image.startsWith("/images/products/")
+    ? product.image
+    : editorialImage(product.collectionName);
   return (
     <Link href={href} className="group block">
       <div className="aspect-[4/5] overflow-hidden border border-hairline bg-cotton">
         <img
-          src={editorialImage(product.collectionName)}
+          src={src}
           alt={product.name}
           className="h-full w-full object-cover transition-transform duration-700 ease-out-soft group-hover:scale-[1.04]"
         />

@@ -120,6 +120,12 @@ export function CatalogueExplorer({
     () => [...new Set(products.map((p) => p.weaveTag))],
     [products]
   );
+  /** Facet groups with a single value (or nothing to filter) are hidden. */
+  const hasMaterialFacet = materialFacets.length > 1;
+  const hasWeaveFacet = weaveFacets.length > 1;
+  const hasSeriesFacet = seriesNames.length > 1;
+  const hasGsmFacet = products.some((p) => p.gsm !== null);
+  const hasColourFacet = products.some((p) => p.variants.length > 0);
   const colourFacets = useMemo(() => {
     const seen = new Map<string, string>();
     for (const p of products) {
@@ -345,6 +351,7 @@ export function CatalogueExplorer({
             </ul>
           </details>
 
+          {hasSeriesFacet && (
           <details className="aero-plp__group" open>
             <summary>
               Series <Chevron open />
@@ -368,7 +375,9 @@ export function CatalogueExplorer({
               ))}
             </ul>
           </details>
+          )}
 
+          {hasMaterialFacet && (
           <details className="aero-plp__group" open>
             <summary>
               Material <Chevron open />
@@ -392,7 +401,9 @@ export function CatalogueExplorer({
               ))}
             </ul>
           </details>
+          )}
 
+          {hasWeaveFacet && (
           <details className="aero-plp__group">
             <summary>
               Weave / Finish <Chevron open={false} />
@@ -416,7 +427,9 @@ export function CatalogueExplorer({
               ))}
             </ul>
           </details>
+          )}
 
+          {hasGsmFacet && (
           <details className="aero-plp__group">
             <summary>
               GSM (towels) <Chevron open={false} />
@@ -440,7 +453,9 @@ export function CatalogueExplorer({
               ))}
             </ul>
           </details>
+          )}
 
+          {hasColourFacet && (
           <details className="aero-plp__group">
             <summary>
               Colour <Chevron open={false} />
@@ -463,6 +478,7 @@ export function CatalogueExplorer({
               ))}
             </div>
           </details>
+          )}
         </aside>
 
         <div className="aero-plp__main">
@@ -477,8 +493,8 @@ export function CatalogueExplorer({
                   <option>Featured</option>
                   <option>Name A–Z</option>
                   <option>Name Z–A</option>
-                  <option>GSM: Low to High</option>
-                  <option>GSM: High to Low</option>
+                  {hasGsmFacet && <option>GSM: Low to High</option>}
+                  {hasGsmFacet && <option>GSM: High to Low</option>}
                 </select>
               </label>
               <div className="aero-plp__views" role="group" aria-label="View">
