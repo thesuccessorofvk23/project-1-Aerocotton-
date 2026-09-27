@@ -54,7 +54,7 @@ const whyCards = [
   },
 ];
 const faqs = [
-  ["What products do you manufacture?", "Cushions, chair pads, blankets, kitchen and table textiles, towels, bedding and other cotton home textiles."],
+  ["What products do you manufacture?", "Table runners, aprons, pillows, towels, table covers, cloth bags, blankets, chair pads and cushions — woven, printed and stitched in Karur."],
   ["Can dimensions and colours be customized?", "Yes. Size, palette, weight, finish and selected details can be discussed around the programme."],
   ["Do you support private label?", "Private-label woven labels and programme-specific packaging are available for suitable orders."],
   ["What are your minimum order quantities?", "MOQ depends on the product, construction, dimensions and finish. Share your brief and we will confirm."],

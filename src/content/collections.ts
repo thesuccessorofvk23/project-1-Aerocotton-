@@ -34,6 +34,7 @@ export const collections: Collection[] = [
         slug: "flatweave-throw",
         name: "Flatweave Throw",
         category: "Blankets & Throws",
+        productType: "Blankets",
         tagline: "Everyday weave in quiet botanical green.",
         description:
           "A double-sided flatweave throw with a clean reverse and a hand-finished edge. Weighted for drape rather than bulk, it works as a bed accent, a reading-chair companion, or a guest-room staple.",
@@ -56,6 +57,7 @@ export const collections: Collection[] = [
         slug: "dobby-cushion",
         name: "Dobby Cushion Cover",
         category: "Cushions & Chair Pads",
+        productType: "Cushions",
         tagline: "Woven texture for composed seating.",
         description:
           "A dobby-woven cushion cover in botanical green, with a concealed zip and mitred corners. Sold as covers alone or with feather inserts, it lines up cleanly across a retail wall or a guest suite.",
@@ -71,6 +73,28 @@ export const collections: Collection[] = [
         customization:
           "Sizes, weaves and inserts to programme; piping and embroidered details available.",
         image: "/images/collections/nature-cushion.svg",
+      }),
+      p({
+        id: "nature-cotton-pillow",
+        slug: "cotton-pillow",
+        name: "Cotton Pillow",
+        category: "Textiles – Product Range",
+        productType: "Pillows",
+        tagline: "Combed-cotton case, resilient fill.",
+        description:
+          "A cotton pillow with a tightly woven cambric case and a resilient cotton-blend fill that keeps its shape through commercial laundering. Covered for hospitality programmes and retail pairs alike.",
+        materials: ["100% cotton shell", "Cotton-blend fill"],
+        applications: ["Bedding", "Hospitality", "Retail"],
+        specs: [
+          { label: "Sizes", value: "50 × 75 cm" },
+          { label: "Weight", value: "~800 GSM fill" },
+          { label: "Case", value: "Downproof cambric" },
+          { label: "Finish", value: "Piped edge" },
+        ],
+        variants: ["White", "Ivory"],
+        customization:
+          "Fill weights, case fabrics and size sets to programme; hospitality label options.",
+        image: "/images/collections/nature-pillow.svg",
       }),
     ],
   },
@@ -90,6 +114,7 @@ export const collections: Collection[] = [
         slug: "woven-blanket",
         name: "Woven Blanket",
         category: "Blankets & Throws",
+        productType: "Blankets",
         tagline: "Full-loom weight for cold-weather programmes.",
         description:
           "A dense, full-loom woven blanket with a subtle twill structure. Built for hospitalitylaundry cycles and retail shelves alike; the kind of blanket that gets inherited.",
@@ -112,6 +137,7 @@ export const collections: Collection[] = [
         slug: "stripe-kitchen-towel",
         name: "Stripe Kitchen Towel",
         category: "Kitchen Towels",
+        productType: "Towels",
         tagline: "Yarn-dyed stripes, everyday utility.",
         description:
           "A yarn-dyed kitchen towel with a terry reverse and a hanging loop. Absorbent enough for a working kitchen and tidy enough for an open shelf — the towel buyers reorder by the dozen.",
@@ -127,6 +153,28 @@ export const collections: Collection[] = [
         customization:
           "Stripe palettes, woven-in logos and retail hanging options to programme.",
         image: "/images/collections/mountain-kitchen-towel.svg",
+      }),
+      p({
+        id: "mountain-canvas-tote",
+        slug: "canvas-tote-bag",
+        name: "Canvas Tote Bag",
+        category: "Textiles – Product Range",
+        productType: "Cloth Bags",
+        tagline: "Heavy duck cotton, built to carry.",
+        description:
+          "A tote in heavyweight duck cotton with reinforced handles and a flat base that stands while it is packed. Screen-print or embroidered branding; the bag that outlives the campaign it was made for.",
+        materials: ["100% cotton canvas"],
+        applications: ["Retail", "Promotional", "Gifting"],
+        specs: [
+          { label: "Sizes", value: "38 × 42 cm" },
+          { label: "Weight", value: "~340 GSM" },
+          { label: "Weave", value: "Heavy duck canvas" },
+          { label: "Details", value: "Reinforced handles, flat base" },
+        ],
+        variants: ["Natural", "Slate", "Charcoal"],
+        customization:
+          "Sizes, handle styles and printed or embroidered branding to programme.",
+        image: "/images/collections/mountain-tote.svg",
       }),
     ],
   },
@@ -146,6 +194,7 @@ export const collections: Collection[] = [
         slug: "flatweave-towel",
         name: "Flatweave Towel",
         category: "Textiles – Product Range",
+        productType: "Towels",
         tagline: "Sand-shaking flatweave in sun-bleached tones.",
         description:
           "A tightly woven flatweave towel that shakes sand clean and dries twice as fast as terry. Runs light in a suitcase and looks better creased.",
@@ -168,6 +217,7 @@ export const collections: Collection[] = [
         slug: "woven-placemat-set",
         name: "Woven Place Mat Set",
         category: "Place Mats & Runners",
+        productType: "Printed Table Runners",
         tagline: "Sun-bleached weave for the table.",
         description:
           "Flatwoven place mats in sun-bleached neutrals, finished with a knotted fringe. Sturdy under daily service and soft enough to roll for storage; sold in sets of four or six.",
@@ -202,6 +252,7 @@ export const collections: Collection[] = [
         slug: "terry-towel-set",
         name: "Terry Towel Set",
         category: "Textiles – Product Range",
+        productType: "Towels",
         tagline: "Zero-twist plush in stone neutrals.",
         description:
           "Zero-twist terry with a dense, thirsty pile and a dobby border. The set covers bath, hand and face sizes with matched edges for a composed shelf line.",
@@ -224,6 +275,7 @@ export const collections: Collection[] = [
         slug: "checked-chair-pad",
         name: "Checked Chair Pad",
         category: "Cushions & Chair Pads",
+        productType: "Chair Pads",
         tagline: "Yarn-dyed checks with a cushioned seat.",
         description:
           "A yarn-dyed chair pad with a cotton-filled seat and ties that hold it square through daily use. Sits well with matching table linen and comes out of the wash none the worse.",
@@ -258,6 +310,7 @@ export const collections: Collection[] = [
         slug: "bathrobe",
         name: "Bathrobe",
         category: "Textiles – Product Range",
+        productType: "Cloth Materials",
         tagline: "Weighted waffle weave, deep forest tone.",
         description:
           "A waffle-weave robe with a shawl collar and deep patch pockets. Absorbs like terry, packs like a shirt — the robe guests mention in reviews.",
@@ -280,6 +333,7 @@ export const collections: Collection[] = [
         slug: "workshop-apron",
         name: "Workshop Apron",
         category: "Kitchen & Table Presentation",
+        productType: "Apron with Gloves",
         tagline: "Deep-green duck canvas, built to work.",
         description:
           "A cross-back apron in heavyweight woven cotton with adjustable neck and waist ties. Deep pockets take tools or towels; the weave takes whatever a working kitchen or studio throws at it.",
@@ -293,7 +347,7 @@ export const collections: Collection[] = [
         ],
         variants: ["Forest", "Natural", "Charcoal"],
         customization:
-          "Colourways, strap finishes and embroidered branding to programme.",
+          "Colourways, strap finishes, embroidered branding and a matching oven glove to programme.",
         image: "/images/collections/forest-apron.svg",
       }),
     ],
@@ -314,6 +368,7 @@ export const collections: Collection[] = [
         slug: "quilted-coverlet",
         name: "Quilted Coverlet",
         category: "Textiles – Product Range",
+        productType: "Cloth Materials",
         tagline: "Lightly quilted, endlessly layerable.",
         description:
           "A lightly quilted coverlet with a cotton-fill loft that layers over sheets or under a duvet. Designed to smooth a bed in one motion.",
@@ -336,6 +391,7 @@ export const collections: Collection[] = [
         slug: "sateen-tablecloth",
         name: "Sateen Tablecloth",
         category: "Table Presentation",
+        productType: "Table Top Cover",
         tagline: "Still blues with a quiet sheen.",
         description:
           "A mercerised sateen tablecloth with a soft drape and a calm, even surface. Stain-finished for service and pressed to hold a crease — the cloth a table deserves on the good days.",
@@ -370,9 +426,10 @@ export const collections: Collection[] = [
         slug: "jacquard-runner",
         name: "Jacquard Runner",
         category: "Place Mats & Runners",
-        tagline: "Woven pattern, no print.",
+        productType: "Printed Table Runners",
+        tagline: "Woven, then printed to last.",
         description:
-          "A jacquard-woven table runner whose pattern is the cloth itself — no print to fade, no finish to wear off. A table piece that survives its decade.",
+          "A jacquard-woven table runner finished with buyer artwork — the ground carries the weave, the surface carries the print. No fading, no worn finish: a table piece that survives its decade.",
         materials: ["100% cotton", "Jacquard woven"],
         applications: ["Table linen", "Retail", "Gifting"],
         specs: [
@@ -383,7 +440,7 @@ export const collections: Collection[] = [
         ],
         variants: ["Ochre", "Brass", "Cocoa"],
         customization:
-          "Custom jacquard patterns from buyer artwork; napery sets matched on request.",
+          "Custom jacquard grounds and prints from buyer artwork; napery sets matched on request.",
         image: "/images/collections/desert-runner.svg",
         featured: false,
       }),
@@ -392,6 +449,7 @@ export const collections: Collection[] = [
         slug: "autumn-cushion-cover",
         name: "Autumn Cushion Cover",
         category: "Autumn Cushion 2026",
+        productType: "Cushions",
         tagline: "The Autumn 2026 series, in baked earth tones.",
         description:
           "The seasonal cushion of the Autumn 2026 series: jacquard-woven textures in ochre, rust and cocoa with a self-bound edge. A capsule programme refreshed each season for retail floors and festive gifting.",
@@ -426,6 +484,7 @@ export const collections: Collection[] = [
         slug: "dobby-towel",
         name: "Dobby Towel",
         category: "Textiles – Product Range",
+        productType: "Towels",
         tagline: "Geometric border, thirsty pile.",
         description:
           "A combed-cotton terry towel with a geometric dobby border. High absorbency, low lint — the workhorse of a well-run linen room.",
@@ -448,6 +507,7 @@ export const collections: Collection[] = [
         slug: "cad-print-tea-towel",
         name: "CAD Print Tea Towel",
         category: "Kitchen Towels",
+        productType: "Towels",
         tagline: "Studio artwork, printed crisp.",
         description:
           "A combed-cotton tea towel carrying CAD-printed artwork — buyer designs sampled fast and matched across repeat runs. High absorbency, low lint, and a dobby border that frames the print.",
@@ -482,6 +542,7 @@ export const collections: Collection[] = [
         slug: "percale-bedding",
         name: "Percale Bedding Set",
         category: "Textiles – Product Range",
+        productType: "Cloth Materials",
         tagline: "Crisp weave, honest white.",
         description:
           "A crisp percale sheet set in honest white — the weave and finish do the talking. Cold-water wash, minimal shrinkage, hotel-grade longevity.",
@@ -500,10 +561,33 @@ export const collections: Collection[] = [
         featured: false,
       }),
       p({
+        id: "snow-furnishing-fabric",
+        slug: "furnishing-fabric",
+        name: "Furnishing Fabric",
+        category: "Textiles – Product Range",
+        productType: "Cloth Materials",
+        tagline: "The metre-cloth behind the made-ups.",
+        description:
+          "Woven furnish cloth sold by the metre — plains, stripes, checks, dobby and jacquard in solid and multicolour. The same constructions behind our made-ups, available to buyers who cut and stitch their own.",
+        materials: ["100% cotton", "Yarn-dyed"],
+        applications: ["Upholstery", "Soft furnishings", "Trade"],
+        specs: [
+          { label: "Widths", value: "150 cm" },
+          { label: "Weight", value: "~280 GSM" },
+          { label: "Weave", value: "Plain, dobby & jacquard" },
+          { label: "Finish", value: "Singe, calender" },
+        ],
+        variants: ["White", "Ivory", "Natural"],
+        customization:
+          "Constructions, palettes and finishes woven to buyer artwork; sampling on request.",
+        image: "/images/collections/snow-fabric.svg",
+      }),
+      p({
         id: "snow-hemstitch-napkin",
         slug: "hemstitch-napkin-set",
         name: "Hemstitch Napkin Set",
         category: "Table Presentation",
+        productType: "Table Top Cover",
         tagline: "Honest white, drawn-thread hem.",
         description:
           "Undyed cotton napkins with a drawn-thread hemstitch — the kind of detail read at arm's length. Pressed flat, packed in dozens, and matched to the sateen tablecloth on request.",
@@ -538,6 +622,7 @@ export const collections: Collection[] = [
         slug: "structure-throw",
         name: "Structure Throw",
         category: "Blankets & Throws",
+        productType: "Blankets",
         tagline: "Dimensional weave, tonal shift.",
         description:
           "A dimensional weave that reads solid across the room and textured up close, with tonal shifts along its length. The conversation piece that still behaves like a blanket.",
@@ -560,6 +645,7 @@ export const collections: Collection[] = [
         slug: "table-gift-set",
         name: "Table Gift Set",
         category: "Kitchen & Table Presentation",
+        productType: "Table Top Cover",
         tagline: "A signature set for festive tables.",
         description:
           "A boxed presentation set pairing a dimensional-weave runner with matched napkins and place mats. Special weaves and finishes from the Aurora programme, packed for festive and corporate gifting.",

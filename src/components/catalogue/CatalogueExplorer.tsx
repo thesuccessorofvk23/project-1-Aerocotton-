@@ -1,12 +1,13 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 
 export type PlpProduct = {
   id: string;
   name: string;
   category: string;
+  productType: string;
   collection: string;
   collectionSlug: string;
   productSlug: string;
@@ -25,6 +26,11 @@ export type PlpCategory = {
   image: string;
 };
 
+export type PlpSeries = {
+  name: string;
+  count: number;
+};
+
 /** Variant names → swatch hex (matches the site's collection palettes). */
 const COLOUR_HEX: Record<string, string> = {
   White: "#f4f1ea",
@@ -40,6 +46,7 @@ const COLOUR_HEX: Record<string, string> = {
   Sand: "#dcc9a5",
   Brass: "#b08d57",
   Ochre: "#a4743f",
+  Rust: "#9a5433",
   Cocoa: "#7a5a3a",
   Lake: "#43626f",
   Mist: "#c3d2da",
@@ -73,13 +80,18 @@ function Chevron({ open }: { open: boolean }) {
 
 export function CatalogueExplorer({
   products,
-  categories,
+  typeCategories,
+  seriesCategories,
 }: {
   products: PlpProduct[];
-  categories: PlpCategory[];
+  typeCategories: PlpCategory[];
+  seriesCategories: PlpSeries[];
 }) {
   const [query, setQuery] = useState("");
-  const [activeCats, setActiveCats] = useState<string[]>(categories.map((c) => c.name));
+  /** Debounced mirror of `query` — filtering stays off the critical path while typing. */
+  const [debouncedQuery, setDebouncedQuery] = useState("");
+  const [activeTypes, setActiveTypes] = useState<string[]>(typeCategories.map((c) => c.name));
+  const [activeSeries, setActiveSeries] = useState<string[]>(seriesCategories.map((c) => c.name));
   const [materials, setMaterials] = useState<string[]>([]);
   const [weaves, setWeaves] = useState<string[]>([]);
   const [gsmFilters, setGsmFilters] = useState<string[]>([]);
@@ -88,9 +100,17 @@ export function CatalogueExplorer({
   const [view, setView] = useState<"grid" | "list">("grid");
   const [page, setPage] = useState(1);
   const explorerRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
-  const categoryNames = categories.map((c) => c.name);
-  const allSelected = activeCats.length === categoryNames.length;
+  useEffect(() => {
+    const t = setTimeout(() => setDebouncedQuery(query), 180);
+    return () => clearTimeout(t);
+  }, [query]);
+
+  const typeNames = typeCategories.map((c) => c.name);
+  const seriesNames = seriesCategories.map((c) => c.name);
+  const allTypesSelected = activeTypes.length === typeNames.length;
+  const allSeriesSelected = activeSeries.length === seriesNames.length;
 
   const materialFacets = useMemo(
     () => [...new Set(products.map((p) => p.materialTag))],
@@ -111,6 +131,20 @@ export function CatalogueExplorer({
     return [...seen.entries()].map(([hex, name]) => ({ hex, name }));
   }, [products]);
 
+  /** One haystack per product — matched once, checked for every token. */
+  const haystacks = useMemo(
+    () =>
+      new Map(
+        products.map((p) => [
+          p.id,
+          [p.name, p.collection, p.materialTag, p.weaveTag, p.productType, p.category, ...p.variants]
+            .join(" ")
+            .toLowerCase(),
+        ])
+      ),
+    [products]
+  );
+
   const countBy = (fn: (p: PlpProduct) => boolean) =>
     products.filter(fn).length;
 
@@ -119,7 +153,9 @@ export function CatalogueExplorer({
 
   const resetAll = () => {
     setQuery("");
-    setActiveCats(categoryNames);
+    setDebouncedQuery("");
+    setActiveTypes(typeNames);
+    setActiveSeries(seriesNames);
     setMaterials([]);
     setWeaves([]);
     setGsmFilters([]);
@@ -127,16 +163,17 @@ export function CatalogueExplorer({
     setPage(1);
   };
 
-  const selectCategory = (name: string | null) => {
-    setActiveCats(name ? [name] : categoryNames);
+  const selectType = (name: string | null) => {
+    setActiveTypes(name ? [name] : typeNames);
     setPage(1);
     explorerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
+    const tokens = debouncedQuery.trim().toLowerCase().split(/\s+/).filter(Boolean);
     let list = products.filter((p) => {
-      if (!activeCats.includes(p.category)) return false;
+      if (!activeTypes.includes(p.productType)) return false;
+      if (!activeSeries.includes(p.category)) return false;
       if (materials.length && !materials.includes(p.materialTag)) return false;
       if (weaves.length && !weaves.includes(p.weaveTag)) return false;
       if (
@@ -145,8 +182,10 @@ export function CatalogueExplorer({
       )
         return false;
       if (colour && !p.variants.some((v) => (COLOUR_HEX[v] ?? "") === colour)) return false;
-      if (q && !`${p.name} ${p.collection} ${p.materialTag} ${p.category}`.toLowerCase().includes(q))
-        return false;
+      if (tokens.length) {
+        const hay = haystacks.get(p.id) ?? "";
+        if (!tokens.every((t) => hay.includes(t))) return false;
+      }
       return true;
     });
     const byGsm = (a: PlpProduct, b: PlpProduct) => (a.gsm ?? 0) - (b.gsm ?? 0);
@@ -156,7 +195,7 @@ export function CatalogueExplorer({
     else if (sort === "GSM: High to Low") list = [...list].sort((a, b) => byGsm(b, a));
     else list = [...list].sort((a, b) => Number(b.featured) - Number(a.featured));
     return list;
-  }, [products, activeCats, materials, weaves, gsmFilters, colour, query, sort]);
+  }, [products, activeTypes, activeSeries, materials, weaves, gsmFilters, colour, debouncedQuery, sort, haystacks]);
 
   const pageCount = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
   const safePage = Math.min(page, pageCount);
@@ -164,7 +203,8 @@ export function CatalogueExplorer({
 
   const anyFilterActive =
     query !== "" ||
-    !allSelected ||
+    !allTypesSelected ||
+    !allSeriesSelected ||
     materials.length > 0 ||
     weaves.length > 0 ||
     gsmFilters.length > 0 ||
@@ -172,16 +212,16 @@ export function CatalogueExplorer({
 
   return (
     <section className="aero-plp bg-ivory" ref={explorerRef}>
-      {/* Category strip */}
+      {/* Product-type strip */}
       <div className="aero-plp__strip-wrap border-y border-hairline bg-linen">
         <div className="mx-auto w-full max-w-[2520px] px-6 md:px-10 lg:px-16">
-          <div className="aero-plp__strip" role="tablist" aria-label="Product categories">
+          <div className="aero-plp__strip" role="tablist" aria-label="Product types">
             <button
               type="button"
               role="tab"
-              aria-selected={allSelected}
-              className={`aero-plp__cat aero-plp__cat--all ${allSelected ? "is-active" : ""}`}
-              onClick={() => selectCategory(null)}
+              aria-selected={allTypesSelected}
+              className={`aero-plp__cat aero-plp__cat--all ${allTypesSelected ? "is-active" : ""}`}
+              onClick={() => selectType(null)}
             >
               <span className="aero-plp__cat-icon" aria-hidden="true">
                 <svg viewBox="0 0 16 16" width="14" height="14">
@@ -193,14 +233,14 @@ export function CatalogueExplorer({
               <span className="aero-plp__cat-name">All Products</span>
               <span className="aero-plp__cat-count">{products.length} Products</span>
             </button>
-            {categories.map((cat) => (
+            {typeCategories.map((cat) => (
               <button
                 key={cat.name}
                 type="button"
                 role="tab"
-                aria-selected={activeCats.length === 1 && activeCats[0] === cat.name}
+                aria-selected={activeTypes.length === 1 && activeTypes[0] === cat.name}
                 className="aero-plp__cat"
-                onClick={() => selectCategory(cat.name)}
+                onClick={() => selectType(cat.name)}
               >
                 <span className="aero-plp__cat-thumb">
                   <img src={cat.image} alt="" loading="lazy" />
@@ -227,53 +267,97 @@ export function CatalogueExplorer({
 
           <details className="aero-plp__group" open>
             <summary>
-              Search products <Chevron open />
+              Search <Chevron open />
             </summary>
             <div className="aero-plp__search">
               <input
+                ref={searchInputRef}
                 type="search"
-                placeholder="Search by name, material, weave…"
+                placeholder="Search towels, cushion, jacquard…"
                 value={query}
                 onChange={(e) => {
                   setQuery(e.target.value);
                   setPage(1);
                 }}
-                aria-label="Search products"
+                aria-label="Search products by name, type, series, material, weave or colour"
               />
-              <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true">
-                <circle cx="7" cy="7" r="4.6" fill="none" stroke="currentColor" strokeWidth="1.3" />
-                <path d="M10.5 10.5L14 14" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-              </svg>
+              {query ? (
+                <button
+                  type="button"
+                  className="aero-plp__search-clear"
+                  aria-label="Clear search"
+                  onClick={() => {
+                    setQuery("");
+                    searchInputRef.current?.focus();
+                  }}
+                >
+                  <svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true">
+                    <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+                  </svg>
+                </button>
+              ) : (
+                <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true">
+                  <circle cx="7" cy="7" r="4.6" fill="none" stroke="currentColor" strokeWidth="1.3" />
+                  <path d="M10.5 10.5L14 14" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+                </svg>
+              )}
             </div>
+            <p className="aero-plp__search-hint">
+              Name, type, series, material, weave or colour.
+            </p>
           </details>
 
           <details className="aero-plp__group" open>
             <summary>
-              Category <Chevron open />
+              Product Type <Chevron open />
             </summary>
             <ul className="aero-plp__checks">
               <li>
                 <label>
                   <input
                     type="checkbox"
-                    checked={allSelected}
+                    checked={allTypesSelected}
                     onChange={() => {
-                      setActiveCats(allSelected ? [] : categoryNames);
+                      setActiveTypes(allTypesSelected ? [] : typeNames);
                       setPage(1);
                     }}
                   />
-                  <span>All Products</span>
+                  <span>All Types</span>
                   <small>({products.length})</small>
                 </label>
               </li>
-              {categories.map((cat) => (
+              {typeCategories.map((cat) => (
                 <li key={cat.name}>
                   <label>
                     <input
                       type="checkbox"
-                      checked={activeCats.includes(cat.name)}
+                      checked={activeTypes.includes(cat.name)}
                       onChange={() => {
-                        setActiveCats((list) => toggle(list, cat.name));
+                        setActiveTypes((list) => toggle(list, cat.name));
+                        setPage(1);
+                      }}
+                    />
+                    <span>{cat.name}</span>
+                    <small>({cat.count})</small>
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </details>
+
+          <details className="aero-plp__group" open>
+            <summary>
+              Series <Chevron open />
+            </summary>
+            <ul className="aero-plp__checks">
+              {seriesCategories.map((cat) => (
+                <li key={cat.name}>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={activeSeries.includes(cat.name)}
+                      onChange={() => {
+                        setActiveSeries((list) => toggle(list, cat.name));
                         setPage(1);
                       }}
                     />
@@ -309,9 +393,9 @@ export function CatalogueExplorer({
             </ul>
           </details>
 
-          <details className="aero-plp__group" open>
+          <details className="aero-plp__group">
             <summary>
-              Weave / Finish <Chevron open />
+              Weave / Finish <Chevron open={false} />
             </summary>
             <ul className="aero-plp__checks">
               {weaveFacets.map((w) => (
@@ -443,7 +527,7 @@ export function CatalogueExplorer({
                       <img src={p.image} alt={p.name} loading="lazy" />
                     </span>
                     <span className="aero-plp__body">
-                      <span className="aero-plp__eyebrow">{p.category}</span>
+                      <span className="aero-plp__eyebrow">{p.productType}</span>
                       <span className="aero-plp__name-row">
                         <span className="aero-plp__name">{p.name}</span>
                         <span className="aero-plp__arrow" aria-hidden="true">
@@ -452,6 +536,7 @@ export function CatalogueExplorer({
                           </svg>
                         </span>
                       </span>
+                      <span className="aero-plp__series">{p.category}</span>
                       <span className="aero-plp__spec">{p.spec}</span>
                     </span>
                   </Link>

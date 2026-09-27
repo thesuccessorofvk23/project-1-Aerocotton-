@@ -24,6 +24,8 @@ export interface Product {
   name: string;
   /** Product series, e.g. "Cushions & Chair Pads" — mirrors the client's series names. */
   category: string;
+  /** Product type from the client's product-types list, e.g. "Cushions" or "Blankets". */
+  productType: string;
   /** One-line hook for cards. */
   tagline: string;
   /** 2–3 sentence B2B description. */
