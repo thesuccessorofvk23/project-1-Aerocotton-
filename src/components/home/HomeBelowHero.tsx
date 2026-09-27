@@ -21,11 +21,11 @@ const guideCards = [
   { number: "03", pill: "Care", title: "Caring for cotton", body: "Simple habits that protect hand-feel and colour.", image: "/images/editorial/quiet-bedroom.jpg", alt: "Bedroom styled with cotton bedspreads" },
 ];
 const catalogueRows = [
-  { collection: collections[0], title: "Everyday throws", meta: "Throws & blankets", year: "Established 2010", image: "/images/editorial/campaign-nature.jpg", alt: "Nature collection throw in a calm interior", layout: "photo-first" },
-  { collection: collections[1], title: "Woven blankets", meta: "Throws & blankets", year: "International 2015", image: "/images/editorial/woven-texture.jpg", alt: "Close weave of a Mountain collection blanket", layout: "copy-first" },
-  { collection: collections[2], title: "Flatweave towels", meta: "Towels", year: "Crafted in Karur", image: "/images/editorial/textile-interior.jpg", alt: "Beach collection towels in an airy interior", layout: "photo-first" },
-  { collection: collections[3], title: "Terry towel sets", meta: "Towels", year: "Built to brief", image: "/images/editorial/workshop-detail.jpg", alt: "City collection terry towel in the workshop", layout: "copy-first" },
-  { collection: collections[4], title: "Waffle robes", meta: "Robes", year: "Quality checked", image: "/images/editorial/quiet-bedroom.jpg", alt: "Forest collection waffle robes in a bedroom", layout: "photo-first" },
+  { collection: collections[0], title: "Everyday throws", meta: "Blankets & Throws", year: "Established 2010", image: "/images/editorial/campaign-nature.jpg", alt: "Nature collection throw in a calm interior", layout: "photo-first" },
+  { collection: collections[1], title: "Woven blankets", meta: "Blankets & Throws", year: "International 2015", image: "/images/editorial/woven-texture.jpg", alt: "Close weave of a Mountain collection blanket", layout: "copy-first" },
+  { collection: collections[2], title: "Woven place mats", meta: "Place Mats & Runners", year: "Crafted in Karur", image: "/images/editorial/textile-interior.jpg", alt: "Beach collection place mats in an airy interior", layout: "photo-first" },
+  { collection: collections[3], title: "Chair pads & cushions", meta: "Cushions & Chair Pads", year: "Built to brief", image: "/images/editorial/workshop-detail.jpg", alt: "City collection chair pads in the workshop", layout: "copy-first" },
+  { collection: collections[4], title: "Robes & aprons", meta: "Kitchen & Table Presentation", year: "Quality checked", image: "/images/editorial/quiet-bedroom.jpg", alt: "Forest collection robes and aprons at home", layout: "photo-first" },
 ] as const;
 const whyCards = [
   {
@@ -54,7 +54,7 @@ const whyCards = [
   },
 ];
 const faqs = [
-  ["What products do you manufacture?", "Towels, throws, blankets, bedding, robes and other cotton home textiles."],
+  ["What products do you manufacture?", "Cushions, chair pads, blankets, kitchen and table textiles, towels, bedding and other cotton home textiles."],
   ["Can dimensions and colours be customized?", "Yes. Size, palette, weight, finish and selected details can be discussed around the programme."],
   ["Do you support private label?", "Private-label woven labels and programme-specific packaging are available for suitable orders."],
   ["What are your minimum order quantities?", "MOQ depends on the product, construction, dimensions and finish. Share your brief and we will confirm."],

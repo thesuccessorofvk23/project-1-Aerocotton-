@@ -22,7 +22,7 @@ export interface Product {
   /** URL segment: /products/[collection]/[slug] */
   slug: string;
   name: string;
-  /** Short family, e.g. "Throws & Blankets" */
+  /** Product series, e.g. "Cushions & Chair Pads" — mirrors the client's series names. */
   category: string;
   /** One-line hook for cards. */
   tagline: string;
