@@ -46,6 +46,7 @@ export default function ProductsPage() {
       id: product.id,
       name: product.name,
       category: product.category,
+      productType: product.productType,
       collection: product.collectionName,
       collectionSlug: product.collectionSlug,
       productSlug: product.slug,
@@ -59,19 +60,53 @@ export default function ProductsPage() {
     };
   });
 
-  const categoryNames = [...new Set(products.map((p) => p.category))];
-  const categories = categoryNames.map((name) => {
-    const inCategory = products.filter((p) => p.category === name);
-    const slug = inCategory[0]?.collectionSlug;
+  /** Product-type strip — ordered to follow the client's own product-types list. */
+  const TYPE_ORDER = [
+    "Printed Table Runners",
+    "Apron with Gloves",
+    "Pillows",
+    "Cloth Materials",
+    "Towels",
+    "Table Top Cover",
+    "Cloth Bags",
+    "Blankets",
+    "Chair Pads",
+    "Cushions",
+  ];
+  const typeNames = [...new Set(products.map((p) => p.productType))].sort(
+    (a, b) => TYPE_ORDER.indexOf(a) - TYPE_ORDER.indexOf(b)
+  );
+  const typeCategories = typeNames.map((name) => {
+    const inType = products.filter((p) => p.productType === name);
+    const slug = inType[0]?.collectionSlug;
     const collection = collections.find((c) => c.slug === slug);
     return {
       name,
-      count: inCategory.length,
+      count: inType.length,
       image: collection
         ? editorialImage(collection.name)
         : "/images/editorial/woven-texture.jpg",
     };
   });
+
+  /** Series facet — the client's eight line-sheet series, kept in sheet order. */
+  const SERIES_ORDER = [
+    "Autumn Cushion 2026",
+    "Place Mats & Runners",
+    "Table Presentation",
+    "Kitchen Towels",
+    "Blankets & Throws",
+    "Cushions & Chair Pads",
+    "Kitchen & Table Presentation",
+    "Textiles – Product Range",
+  ];
+  const seriesNames = [...new Set(products.map((p) => p.category))].sort(
+    (a, b) => SERIES_ORDER.indexOf(a) - SERIES_ORDER.indexOf(b)
+  );
+  const seriesCategories = seriesNames.map((name) => ({
+    name,
+    count: products.filter((p) => p.category === name).length,
+  }));
 
   return (
     <>
@@ -93,7 +128,11 @@ export default function ProductsPage() {
         </Container>
       </section>
 
-      <CatalogueExplorer products={products} categories={categories} />
+      <CatalogueExplorer
+        products={products}
+        typeCategories={typeCategories}
+        seriesCategories={seriesCategories}
+      />
 
       {/* Custom manufacturing CTA — kept from the previous page */}
       <section className="aero-plp__custom bg-ink py-20 text-ivory">

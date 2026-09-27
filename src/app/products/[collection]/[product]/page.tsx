@@ -109,7 +109,11 @@ export default async function ProductPage({
 
               <dl className="mt-8 grid grid-cols-2 gap-x-8 gap-y-4 border-t border-hairline pt-6">
                 <div>
-                  <dt className="text-2xs uppercase tracking-[0.2em] text-taupe">Category</dt>
+                  <dt className="text-2xs uppercase tracking-[0.2em] text-taupe">Product Type</dt>
+                  <dd className="mt-1 text-sm text-ink">{product.productType}</dd>
+                </div>
+                <div>
+                  <dt className="text-2xs uppercase tracking-[0.2em] text-taupe">Series</dt>
                   <dd className="mt-1 text-sm text-ink">{product.category}</dd>
                 </div>
                 <div>
