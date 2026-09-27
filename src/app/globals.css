@@ -2147,3 +2147,213 @@ body::after {
   .aero-plp__grid { grid-template-columns: 1fr; }
   .aero-plp__pagination { flex-wrap: wrap; }
 }
+
+/* ══ About page — dark hero card, principles panel, team grid ══ */
+
+.aero-about-hero-wrap { background: var(--color-ivory); padding: 1.2rem 0 0; }
+
+.aero-about-hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  min-height: clamp(26rem, 44vw, 34rem);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  border-radius: 1.4rem;
+  background: var(--color-cocoa);
+  padding: clamp(1.6rem, 3vw, 2.6rem);
+}
+
+.aero-about-hero__img {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.5) saturate(0.7);
+}
+
+.aero-about-hero__brand {
+  position: absolute;
+  top: clamp(1.4rem, 2.6vw, 2.2rem);
+  left: clamp(1.6rem, 3vw, 2.6rem);
+  color: var(--color-ivory);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+}
+
+.aero-about-hero__title {
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  font-size: clamp(3rem, 6.5vw, 5.4rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.aero-about-hero__sub {
+  margin-top: 0.9rem;
+  max-width: 30rem;
+  color: rgba(244, 240, 232, 0.78);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.aero-about-panel-wrap { background: var(--color-ivory); padding: 1.2rem 0 0; }
+
+.aero-about-panel {
+  border-radius: 1.4rem;
+  background: var(--color-linen);
+  padding: clamp(2rem, 4vw, 3.6rem);
+}
+
+.aero-about-pill {
+  display: inline-flex;
+  border-radius: 999px;
+  background: rgba(23, 22, 20, 0.06);
+  padding: 0.45rem 0.95rem;
+  color: var(--color-umber);
+  font-size: 0.66rem;
+  font-weight: 500;
+}
+
+.aero-about-statement {
+  margin-top: 2rem;
+  max-width: 44rem;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: clamp(1.5rem, 2.6vw, 2.15rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.aero-about-statement span { color: var(--color-taupe); }
+
+.aero-about-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2.4rem;
+}
+
+.aero-about-card {
+  border-radius: 1.1rem;
+  background: var(--color-ivory);
+  padding: 1.6rem 1.5rem 1.7rem;
+  transition: transform 300ms var(--ease-out-soft), box-shadow 300ms ease;
+}
+
+.aero-about-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1.2rem 2.4rem rgba(23, 22, 20, 0.08);
+}
+
+.aero-about-card__icon {
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 0.8rem;
+  background: var(--color-ink);
+  color: var(--color-ivory);
+  font-size: 0.85rem;
+}
+
+.aero-about-card__icon svg { width: 1.15rem; height: 1.15rem; }
+
+.aero-about-card h3 {
+  margin-top: 4.5rem;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.aero-about-card p {
+  margin-top: 0.55rem;
+  color: var(--color-umber);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.aero-about-cards--values { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.aero-about-cards--values .aero-about-card h3 { margin-top: 3rem; }
+
+.aero-about-team { background: var(--color-ivory); padding: clamp(4rem, 8vw, 7rem) 0 0; }
+
+.aero-about-team__heading {
+  margin-top: 1.3rem;
+  max-width: 30rem;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: clamp(1.65rem, 3vw, 2.4rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+}
+
+.aero-about-team__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2.6rem;
+}
+
+.aero-about-team__card {
+  overflow: hidden;
+  border-radius: 1.1rem;
+  background: var(--color-cotton);
+}
+
+.aero-about-team__card img {
+  display: block;
+  width: 100%;
+  height: clamp(13rem, 22vw, 17rem);
+  object-fit: cover;
+  filter: saturate(0.78);
+  transition: transform 700ms var(--ease-out-soft);
+}
+
+.aero-about-team__card:hover img { transform: scale(1.04); }
+
+.aero-about-team__card figcaption {
+  padding: 0.85rem 1.1rem 0.95rem;
+  color: var(--color-umber);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.aero-about-team__copy { margin-top: 2.6rem; max-width: 44rem; }
+.aero-about-team__copy p { color: var(--color-umber); font-size: 0.95rem; line-height: 1.7; }
+.aero-about-team__copy p + p { margin-top: 1rem; }
+
+.aero-about-story { background: var(--color-ivory); padding: clamp(4rem, 8vw, 7rem) 0; }
+
+.aero-about-range { border-top: 1px solid var(--color-outline); background: var(--color-ivory); padding: clamp(4rem, 8vw, 6.5rem) 0; }
+
+.aero-about-chip {
+  border: 1px solid var(--color-hairline, rgba(23, 22, 20, 0.12));
+  background: var(--color-linen);
+  padding: 0.65rem 1.25rem;
+  color: var(--color-umber);
+  font-size: 0.8rem;
+}
+
+.aero-about-values { background: var(--color-ivory); padding: 0 0 clamp(4rem, 8vw, 6.5rem); }
+
+.aero-about-letter { border-top: 1px solid var(--color-outline); background: var(--color-linen); padding: clamp(3.5rem, 7vw, 5.5rem) 0; }
+
+@media (max-width: 900px) {
+  .aero-about-cards { grid-template-columns: 1fr; }
+  .aero-about-cards--values { grid-template-columns: 1fr; }
+  .aero-about-team__grid { grid-template-columns: 1fr; }
+  .aero-about-card h3 { margin-top: 3rem; }
+}
