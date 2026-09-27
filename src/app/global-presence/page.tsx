@@ -83,7 +83,7 @@ export default function GlobalPresencePage() {
               },
               {
                 title: "Hospitality",
-                body: "Towels, robes and bedding built to laundry-cycle specifications, with programme sizing and repeat-order consistency.",
+                body: "Printed kitchen and table textiles built to programme specifications, with repeat-order consistency.",
               },
               {
                 title: "Retail & private label",

@@ -6,9 +6,9 @@ import { allProducts, collections } from "@/content/collections";
 import { editorialImage } from "@/lib/editorial";
 
 export const metadata: Metadata = pageMeta({
-  title: "Products — ten collections of cotton home textiles",
+  title: "Products — printed kitchen & table textiles from Karur",
   description:
-    "Explore Aerocotton's premium home textile products across ten collections, made by a family-run manufacturer and exporter in Karur, India.",
+    "Browse Aerocotton's catalogue of printed aprons, kitchen towel sets, cushions and tablecloths, made by a family-run manufacturer and exporter in Karur, India.",
   path: "/products",
 });
 
@@ -80,14 +80,13 @@ export default function ProductsPage() {
   );
   const typeCategories = typeNames.map((name) => {
     const inType = products.filter((p) => p.productType === name);
-    const slug = inType[0]?.collectionSlug;
-    const collection = collections.find((c) => c.slug === slug);
+    const realPhoto = inType.find((p) => p.image.startsWith("/images/products/"));
     return {
       name,
       count: inType.length,
-      image: collection
-        ? editorialImage(collection.name)
-        : "/images/editorial/woven-texture.jpg",
+      image:
+        realPhoto?.image ??
+        (inType[0] ? editorialImage(inType[0].collection) : "/images/editorial/woven-texture.jpg"),
     };
   });
 
@@ -124,8 +123,9 @@ export default function ProductsPage() {
           <p className="aero-plp-hero__eyebrow">Product catalogue</p>
           <h1 className="aero-plp-hero__title">Our Collection</h1>
           <p className="aero-plp-hero__lede">
-            Explore our range of premium home textile products, crafted for
-            quality, comfort and modern living.
+            Our current catalogue: printed aprons, kitchen towel sets, cushions
+            and tablecloths from the Kitchen & Table Presentation series —
+            woven and printed in Karur.
           </p>
         </Container>
       </section>

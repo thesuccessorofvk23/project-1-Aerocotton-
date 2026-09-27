@@ -208,7 +208,15 @@ export default async function ProductPage({
                 className={`group block ${rel.collectionSlug === product.collectionSlug ? collection.dyeClass : "dye-beach"}`}
               >
                 <div className="aspect-[4/5] overflow-hidden border border-hairline bg-cotton">
-                  <img src={editorialImage(rel.collectionName)} alt={rel.name} className="h-full w-full object-cover transition-transform duration-700 ease-out-soft group-hover:scale-[1.04]" />
+                  <img
+                    src={
+                      rel.image.startsWith("/images/products/")
+                        ? rel.image
+                        : editorialImage(rel.collectionName)
+                    }
+                    alt={rel.name}
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out-soft group-hover:scale-[1.04]"
+                  />
                 </div>
                 <p className="mt-4 text-2xs uppercase tracking-[0.2em] text-brass-deep">
                   {rel.collectionName}
