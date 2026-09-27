@@ -729,45 +729,11 @@ body::after {
 .aero-process__layout p { max-width: 34rem; margin-top: 0.4rem; color: var(--color-fog); font-size: 0.85rem; line-height: 1.65; }
 /* 05 — Catalogue: reference hairline grid — 4 columns, full-bleed photo/copy cells
    with empty neighbours and a vertical rule between columns. */
-.aero-catalogue__head {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  align-items: start;
-}
-
-.aero-catalogue__head-cell {
-  min-height: clamp(8rem, 12vw, 11rem);
-  padding: 1.9rem 1.5rem 0 0;
-  border-left: 1px solid var(--catalogue-line);
-}
-
-.aero-catalogue__head-cell:nth-child(2) { padding-left: 2rem; }
-.aero-catalogue__head-cell:nth-child(3) { padding-left: 1.6rem; }
-
-.aero-catalogue__title {
-  color: var(--color-ink);
-  font-family: var(--font-sans);
-  font-size: clamp(1.7rem, 2.6vw, 2.3rem);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.05;
-}
-
-.aero-catalogue__nav {
-  display: inline-flex;
-  gap: 1.6rem;
-  padding-top: 0.45rem;
-}
-
-.aero-catalogue__nav a {
-  color: var(--color-taupe);
-  font-size: 0.78rem;
-  transition: color 200ms ease;
-}
-
-.aero-catalogue__nav a:hover {
-  color: var(--color-ink);
-}
+/* Header mirrors the Textile guide format: eyebrow + serif display heading
+   on the left, pill CTA sitting at the bottom-right (guide header rhythm). */
+.aero-catalogue__heading { display: flex; flex-wrap: wrap; gap: 1.5rem 3rem; align-items: flex-end; justify-content: space-between; border-top: 1px solid rgba(23, 22, 20, 0.18); padding-top: 2rem; }
+.aero-catalogue__cta { display: inline-flex; align-items: center; gap: 0.7rem; border: 1px solid var(--color-outline); border-radius: 999px; padding: 0.85rem 1.5rem; color: var(--color-ink); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; transition: background 250ms ease, border-color 250ms ease, transform 250ms var(--ease-out-soft); }
+.aero-catalogue__cta:hover { border-color: var(--color-brass-deep); background: rgba(176, 141, 87, 0.08); transform: translateY(-2px); }
 
 .aero-catalogue__grid {
   display: grid;
@@ -787,7 +753,7 @@ body::after {
   position: relative;
   grid-column: 1 / span 2;
   grid-row: 1;
-  height: clamp(16rem, 26vw, 22rem);
+  height: clamp(19rem, 32vw, 27rem);
   overflow: hidden;
   background: var(--color-cotton);
 }
@@ -910,9 +876,21 @@ body::after {
 .aero-faq__list summary span { color: var(--color-brass-deep); font-size: 1.4rem; font-weight: 400; transition: transform 200ms ease; }
 .aero-faq__list details[open] summary span { transform: rotate(45deg); }
 .aero-faq__list details p { max-width: 42rem; padding: 0 2rem 1.25rem 0; color: var(--color-umber); font-size: 0.88rem; line-height: 1.7; }
-.aero-final { min-height: 30rem; display: flex; align-items: center; }
-.aero-final__wash { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(ellipse at 78% 45%, var(--color-moss) 0 4%, transparent 38%), linear-gradient(120deg, transparent 30%, rgba(176, 141, 87, 0.22) 50%, transparent 70%); }
-.aero-final .eyebrow { position: relative; }
+/* 09 — Final CTA: split-panel — boxed wordmark + kicker + serif copy on an
+   ivory panel, full-height photo filling the right two-thirds. */
+.aero-final { display: grid; grid-template-columns: minmax(20rem, 5fr) 8fr; }
+.aero-final__copy { display: flex; align-items: center; padding: clamp(3rem, 6vw, 6rem) clamp(2rem, 5vw, 5.5rem); background: var(--color-ivory); }
+.aero-final__inner { display: flex; flex-direction: column; align-items: flex-start; width: 100%; }
+.aero-final__wordmark { border: 1px solid var(--color-ink); padding: 0.55rem 1.1rem; color: var(--color-ink); font-size: 0.66rem; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; }
+.aero-final__kicker { margin-top: clamp(2.5rem, 5vw, 4.5rem); color: var(--color-taupe); font-size: 0.6rem; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; }
+.aero-final__title { margin-top: 1.1rem; max-width: 18rem; color: var(--color-ink); font-family: var(--font-display); font-size: clamp(1.7rem, 2.4vw, 2.3rem); font-weight: 500; letter-spacing: -0.01em; line-height: 1.15; }
+.aero-final__body { margin-top: 1.2rem; max-width: 19rem; color: var(--color-umber); font-size: 0.92rem; line-height: 1.65; }
+.aero-final__cta { display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 2.2rem; border-bottom: 1px solid var(--color-brass-deep); padding-bottom: 0.35rem; color: var(--color-ink); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; transition: color 250ms ease, gap 250ms var(--ease-out-soft); }
+.aero-final__cta:hover { color: var(--color-brass-deep); gap: 1rem; }
+.aero-final__media { position: relative; min-height: clamp(30rem, 48vw, 44rem); overflow: hidden; background: var(--color-cotton); }
+.aero-final__media img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.75) contrast(1.03); }
+.aero-final__media::after { position: absolute; inset: 0; content: ''; opacity: 0.14; background-image: var(--noise-url); mix-blend-mode: multiply; pointer-events: none; }
+.aero-final__caption { position: absolute; z-index: 1; bottom: 1.1rem; left: 1.2rem; color: var(--color-ivory); font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; text-shadow: 0 1px 10px rgba(23, 22, 20, 0.45); }
 
 /* ── Contact page — split photo/content card (reference: Stahl House contact) ── */
 .aero-contact {
@@ -1314,10 +1292,10 @@ body::after {
   .aero-process-panel__frame ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .aero-process-panel__frame li:nth-child(2n) { border-right: 0; }
   .aero-process-panel__frame li { min-height: 5rem; }
-  .aero-catalogue__head { grid-template-columns: 1fr; }
-  .aero-catalogue__head-cell { min-height: 0; border-left: 0; padding: 0 0 1.5rem; }
-  .aero-catalogue__head-cell:nth-child(2) { padding-left: 0; }
-  .aero-catalogue__head-cell:nth-child(4) { display: none; }
+  .aero-catalogue__heading { flex-direction: column; align-items: flex-start; }
+  .aero-final { grid-template-columns: 1fr; }
+  .aero-final__media { min-height: 20rem; order: -1; }
+  .aero-final__inner { max-width: 34rem; }
   .aero-catalogue__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .aero-catalogue-row__media,
   .aero-catalogue-row__copy { grid-column: auto !important; grid-row: auto !important; height: auto; min-height: 15rem; }
