@@ -92,7 +92,15 @@ export default async function ProductPage({
 
           <div className="mt-10 grid gap-12 lg:grid-cols-2">
             <div className="aspect-[4/5] w-full overflow-hidden border border-hairline bg-cotton">
-              <img src={editorialImage(collection.name)} alt={product.name} className="h-full w-full object-cover" />
+              <img
+                src={
+                  product.image.startsWith("/images/products/")
+                    ? product.image
+                    : editorialImage(collection.name)
+                }
+                alt={product.name}
+                className="h-full w-full object-cover"
+              />
             </div>
 
             <div className="flex flex-col justify-center">

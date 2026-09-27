@@ -50,7 +50,9 @@ export default function ProductsPage() {
       collection: product.collectionName,
       collectionSlug: product.collectionSlug,
       productSlug: product.slug,
-      image: editorialImage(product.collectionName),
+      image: product.image.startsWith("/images/products/")
+        ? product.image
+        : editorialImage(product.collectionName),
       spec: `${weight ? `${weight.replace(/^~\s*/, "").replace(" GSM", " GSM")} · ` : ""}${product.materials[0] ?? "100% cotton"}`,
       gsm: gsmOf(weight),
       weaveTag: weave,
