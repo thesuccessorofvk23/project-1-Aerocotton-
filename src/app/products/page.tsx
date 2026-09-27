@@ -8,7 +8,7 @@ import { editorialImage } from "@/lib/editorial";
 export const metadata: Metadata = pageMeta({
   title: "Products — printed kitchen & table textiles from Karur",
   description:
-    "Browse Aerocotton's catalogue of printed aprons, kitchen towel sets, cushions and tablecloths, made by a family-run manufacturer and exporter in Karur, India.",
+    "Browse Aerocotton's catalogue of printed aprons, kitchen towel sets and CAD designs, cushions, tablecloths and table presentation linen, made by a family-run manufacturer and exporter in Karur, India.",
   path: "/products",
 });
 
@@ -90,16 +90,11 @@ export default function ProductsPage() {
     };
   });
 
-  /** Series facet — the client's eight line-sheet series, kept in sheet order. */
+  /** Series facet — the client's line-sheet series, kept in sheet order. */
   const SERIES_ORDER = [
-    "Autumn Cushion 2026",
-    "Place Mats & Runners",
-    "Table Presentation",
-    "Kitchen Towels",
-    "Blankets & Throws",
-    "Cushions & Chair Pads",
     "Kitchen & Table Presentation",
-    "Textiles – Product Range",
+    "Kitchen Towels CAD",
+    "Table Presentation",
   ];
   const seriesNames = [...new Set(products.map((p) => p.category))].sort(
     (a, b) => SERIES_ORDER.indexOf(a) - SERIES_ORDER.indexOf(b)
@@ -123,9 +118,9 @@ export default function ProductsPage() {
           <p className="aero-plp-hero__eyebrow">Product catalogue</p>
           <h1 className="aero-plp-hero__title">Our Collection</h1>
           <p className="aero-plp-hero__lede">
-            Our current catalogue: printed aprons, kitchen towel sets, cushions
-            and tablecloths from the Kitchen & Table Presentation series —
-            woven and printed in Karur.
+            Our current catalogue across three series — Kitchen & Table
+            Presentation, Kitchen Towels CAD and Table Presentation — woven,
+            printed and stitched in Karur.
           </p>
         </Container>
       </section>

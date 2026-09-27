@@ -1,11 +1,13 @@
 /**
  * AERO COTTON — the catalogue: real products from the client's line sheets.
  *
- * Products below are the confirmed items from the client's "Kitchen & Table
- * Presentation" catalogue (10-page PDF, designs 01–09 plus tablecloth
- * colourways), with photography extracted from that document
- * (public/images/products/…). Product copy beyond the confirmed sizes and
- * design numbers is placeholder-grade, to be confirmed by Aerocotton.
+ * Products below are the confirmed items from three client catalogues, with
+ * photography extracted from those documents (public/images/products/…):
+ *   — "Kitchen & Table Presentation" (designs 01–09 + tablecloth colourways)
+ *   — "Kitchen Towels CAD" (printed kitchen-towel designs 01–09)
+ *   — "Table Presentation" (printed table-linen designs 01–10)
+ * Product copy beyond the confirmed design numbers is placeholder-grade,
+ * to be confirmed by Aerocotton.
  *
  * Each product sits in one of the ten landscape collections (Nature,
  * Mountain, Beach, City, Forest, Lake, Desert, Waterfall, Snow, Aurora).
@@ -50,6 +52,26 @@ export const collections: Collection[] = [
           "Cover-only or with inserts; print recolours and coordinated sets to programme.",
         image: "/images/products/cushion-design-05.jpg",
       }),
+      p({
+        id: "nature-tp-design-01",
+        slug: "tp-design-01",
+        name: "Table Presentation Design-01",
+        category: "Table Presentation",
+        productType: "Table Top Cover",
+        tagline: "Printed table linen, Design-01.",
+        description:
+          "Design-01 from the Table Presentation series: printed table linen developed in Karur on our own ground cloth. One of ten catalogue designs for retail and hospitality tables.",
+        materials: ["100% cotton", "Pigment print"],
+        applications: ["Table linen", "Retail", "Gifting"],
+        specs: [
+          { label: "Design", value: "Design-01" },
+          { label: "Series", value: "Table Presentation" },
+        ],
+        variants: [],
+        customization:
+          "Sizes, prints and hem finishes to programme; napery sets matched on request.",
+        image: "/images/products/tp-design-01.jpg",
+      }),
     ],
   },
   {
@@ -83,6 +105,47 @@ export const collections: Collection[] = [
         customization:
           "Catalogue designs can be recoloured or printed to buyer artwork; glove pairing and branding on request.",
         image: "/images/products/apron-design-02.jpg",
+      }),
+      p({
+        id: "mountain-kt-cad-01",
+        slug: "kt-cad-01",
+        name: "Kitchen Towel CAD Design-01",
+        category: "Kitchen Towels CAD",
+        productType: "Towels",
+        tagline: "CAD print, 50 × 70 cm, Design-01.",
+        description:
+          "Design-01 from the Kitchen Towels CAD series: a 50 × 70 cm kitchen towel carrying CAD-printed artwork on an absorbent cotton ground. One of nine printed designs developed for retail and promotional programmes.",
+        materials: ["100% cotton", "Pigment print"],
+        applications: ["Kitchen linens", "Retail", "Promotional"],
+        specs: [
+          { label: "Size", value: "50 × 70 cm" },
+          { label: "Design", value: "Design-01" },
+          { label: "Series", value: "Kitchen Towels CAD" },
+        ],
+        variants: [],
+        customization:
+          "Buyer artwork reproduced from CAD files; colour matching and sampling before bulk.",
+        image: "/images/products/kt-cad-01.jpg",
+      }),
+      p({
+        id: "mountain-tp-design-02",
+        slug: "tp-design-02",
+        name: "Table Presentation Design-02",
+        category: "Table Presentation",
+        productType: "Table Top Cover",
+        tagline: "Printed table linen, Design-02.",
+        description:
+          "Design-02 from the Table Presentation series: printed table linen developed in Karur on our own ground cloth. One of ten catalogue designs for retail and hospitality tables.",
+        materials: ["100% cotton", "Pigment print"],
+        applications: ["Table linen", "Retail", "Gifting"],
+        specs: [
+          { label: "Design", value: "Design-02" },
+          { label: "Series", value: "Table Presentation" },
+        ],
+        variants: [],
+        customization:
+          "Sizes, prints and hem finishes to programme; napery sets matched on request.",
+        image: "/images/products/tp-design-02.jpg",
       }),
     ],
   },
@@ -119,6 +182,47 @@ export const collections: Collection[] = [
           "Print artwork, set composition and hanging details to programme; woven-in logos available.",
         image: "/images/products/kitchen-towel-design-04.jpg",
       }),
+      p({
+        id: "beach-kt-cad-02",
+        slug: "kt-cad-02",
+        name: "Kitchen Towel CAD Design-02",
+        category: "Kitchen Towels CAD",
+        productType: "Towels",
+        tagline: "CAD print, 50 × 70 cm, Design-02.",
+        description:
+          "Design-02 from the Kitchen Towels CAD series: a 50 × 70 cm kitchen towel carrying CAD-printed artwork on an absorbent cotton ground. Colours matched across repeat runs for programme continuity.",
+        materials: ["100% cotton", "Pigment print"],
+        applications: ["Kitchen linens", "Retail", "Promotional"],
+        specs: [
+          { label: "Size", value: "50 × 70 cm" },
+          { label: "Design", value: "Design-02" },
+          { label: "Series", value: "Kitchen Towels CAD" },
+        ],
+        variants: [],
+        customization:
+          "Buyer artwork reproduced from CAD files; colour matching and sampling before bulk.",
+        image: "/images/products/kt-cad-02.jpg",
+      }),
+      p({
+        id: "beach-tp-design-03",
+        slug: "tp-design-03",
+        name: "Table Presentation Design-03",
+        category: "Table Presentation",
+        productType: "Table Top Cover",
+        tagline: "Printed table linen, Design-03.",
+        description:
+          "Design-03 from the Table Presentation series: printed table linen developed in Karur on our own ground cloth. One of ten catalogue designs for retail and hospitality tables.",
+        materials: ["100% cotton", "Pigment print"],
+        applications: ["Table linen", "Retail", "Gifting"],
+        specs: [
+          { label: "Design", value: "Design-03" },
+          { label: "Series", value: "Table Presentation" },
+        ],
+        variants: [],
+        customization:
+          "Sizes, prints and hem finishes to programme; napery sets matched on request.",
+        image: "/images/products/tp-design-03.jpg",
+      }),
     ],
   },
   {
@@ -152,6 +256,47 @@ export const collections: Collection[] = [
         customization:
           "Catalogue designs can be recoloured or printed to buyer artwork; glove pairing and branding on request.",
         image: "/images/products/apron-design-01.jpg",
+      }),
+      p({
+        id: "city-kt-cad-03",
+        slug: "kt-cad-03",
+        name: "Kitchen Towel CAD Design-03",
+        category: "Kitchen Towels CAD",
+        productType: "Towels",
+        tagline: "CAD print, 50 × 70 cm, Design-03.",
+        description:
+          "Design-03 from the Kitchen Towels CAD series: a 50 × 70 cm kitchen towel carrying CAD-printed artwork on an absorbent cotton ground. Woven and printed under our own roof in Karur.",
+        materials: ["100% cotton", "Pigment print"],
+        applications: ["Kitchen linens", "Retail", "Promotional"],
+        specs: [
+          { label: "Size", value: "50 × 70 cm" },
+          { label: "Design", value: "Design-03" },
+          { label: "Series", value: "Kitchen Towels CAD" },
+        ],
+        variants: [],
+        customization:
+          "Buyer artwork reproduced from CAD files; colour matching and sampling before bulk.",
+        image: "/images/products/kt-cad-03.jpg",
+      }),
+      p({
+        id: "city-tp-design-04",
+        slug: "tp-design-04",
+        name: "Table Presentation Design-04",
+        category: "Table Presentation",
+        productType: "Table Top Cover",
+        tagline: "Printed table linen, Design-04.",
+        description:
+          "Design-04 from the Table Presentation series: printed table linen developed in Karur on our own ground cloth. One of ten catalogue designs for retail and hospitality tables.",
+        materials: ["100% cotton", "Pigment print"],
+        applications: ["Table linen", "Retail", "Gifting"],
+        specs: [
+          { label: "Design", value: "Design-04" },
+          { label: "Series", value: "Table Presentation" },
+        ],
+        variants: [],
+        customization:
+          "Sizes, prints and hem finishes to programme; napery sets matched on request.",
+        image: "/images/products/tp-design-04.jpg",
       }),
     ],
   },
@@ -187,6 +332,47 @@ export const collections: Collection[] = [
           "Square and rectangular sizes, prints and hem finishes to programme; napery sets matched on request.",
         image: "/images/products/tablecloth-cocoa.jpg",
       }),
+      p({
+        id: "forest-kt-cad-04",
+        slug: "kt-cad-04",
+        name: "Kitchen Towel CAD Design-04",
+        category: "Kitchen Towels CAD",
+        productType: "Towels",
+        tagline: "CAD print, 50 × 70 cm, Design-04.",
+        description:
+          "Design-04 from the Kitchen Towels CAD series: a 50 × 70 cm kitchen towel carrying CAD-printed artwork on an absorbent cotton ground. Woven and printed under our own roof in Karur.",
+        materials: ["100% cotton", "Pigment print"],
+        applications: ["Kitchen linens", "Retail", "Promotional"],
+        specs: [
+          { label: "Size", value: "50 × 70 cm" },
+          { label: "Design", value: "Design-04" },
+          { label: "Series", value: "Kitchen Towels CAD" },
+        ],
+        variants: [],
+        customization:
+          "Buyer artwork reproduced from CAD files; colour matching and sampling before bulk.",
+        image: "/images/products/kt-cad-04.jpg",
+      }),
+      p({
+        id: "forest-tp-design-05",
+        slug: "tp-design-05",
+        name: "Table Presentation Design-05",
+        category: "Table Presentation",
+        productType: "Table Top Cover",
+        tagline: "Printed table linen, Design-05.",
+        description:
+          "Design-05 from the Table Presentation series: printed table linen developed in Karur on our own ground cloth. One of ten catalogue designs for retail and hospitality tables.",
+        materials: ["100% cotton", "Pigment print"],
+        applications: ["Table linen", "Retail", "Gifting"],
+        specs: [
+          { label: "Design", value: "Design-05" },
+          { label: "Series", value: "Table Presentation" },
+        ],
+        variants: [],
+        customization:
+          "Sizes, prints and hem finishes to programme; napery sets matched on request.",
+        image: "/images/products/tp-design-05.jpg",
+      }),
     ],
   },
   {
@@ -221,6 +407,47 @@ export const collections: Collection[] = [
         customization:
           "Print artwork, set composition and hanging details to programme; woven-in logos available.",
         image: "/images/products/kitchen-towel-design-03.jpg",
+      }),
+      p({
+        id: "lake-kt-cad-05",
+        slug: "kt-cad-05",
+        name: "Kitchen Towel CAD Design-05",
+        category: "Kitchen Towels CAD",
+        productType: "Towels",
+        tagline: "CAD print, 50 × 70 cm, Design-05.",
+        description:
+          "Design-05 from the Kitchen Towels CAD series: a 50 × 70 cm kitchen towel carrying CAD-printed artwork on an absorbent cotton ground. High absorbency, low lint, colours matched across runs.",
+        materials: ["100% cotton", "Pigment print"],
+        applications: ["Kitchen linens", "Retail", "Promotional"],
+        specs: [
+          { label: "Size", value: "50 × 70 cm" },
+          { label: "Design", value: "Design-05" },
+          { label: "Series", value: "Kitchen Towels CAD" },
+        ],
+        variants: [],
+        customization:
+          "Buyer artwork reproduced from CAD files; colour matching and sampling before bulk.",
+        image: "/images/products/kt-cad-05.jpg",
+      }),
+      p({
+        id: "lake-tp-design-06",
+        slug: "tp-design-06",
+        name: "Table Presentation Design-06",
+        category: "Table Presentation",
+        productType: "Table Top Cover",
+        tagline: "Printed table linen, Design-06.",
+        description:
+          "Design-06 from the Table Presentation series: printed table linen developed in Karur on our own ground cloth. One of ten catalogue designs for retail and hospitality tables.",
+        materials: ["100% cotton", "Pigment print"],
+        applications: ["Table linen", "Retail", "Gifting"],
+        specs: [
+          { label: "Design", value: "Design-06" },
+          { label: "Series", value: "Table Presentation" },
+        ],
+        variants: [],
+        customization:
+          "Sizes, prints and hem finishes to programme; napery sets matched on request.",
+        image: "/images/products/tp-design-06.jpg",
       }),
     ],
   },
@@ -277,6 +504,47 @@ export const collections: Collection[] = [
           "Square and rectangular sizes, prints and hem finishes to programme; napery sets matched on request.",
         image: "/images/products/tablecloth-clay.jpg",
       }),
+      p({
+        id: "desert-kt-cad-06",
+        slug: "kt-cad-06",
+        name: "Kitchen Towel CAD Design-06",
+        category: "Kitchen Towels CAD",
+        productType: "Towels",
+        tagline: "CAD print, 50 × 70 cm, Design-06.",
+        description:
+          "Design-06 from the Kitchen Towels CAD series: a 50 × 70 cm kitchen towel carrying CAD-printed artwork on an absorbent cotton ground. Woven and printed under our own roof in Karur.",
+        materials: ["100% cotton", "Pigment print"],
+        applications: ["Kitchen linens", "Retail", "Promotional"],
+        specs: [
+          { label: "Size", value: "50 × 70 cm" },
+          { label: "Design", value: "Design-06" },
+          { label: "Series", value: "Kitchen Towels CAD" },
+        ],
+        variants: [],
+        customization:
+          "Buyer artwork reproduced from CAD files; colour matching and sampling before bulk.",
+        image: "/images/products/kt-cad-06.jpg",
+      }),
+      p({
+        id: "desert-tp-design-07",
+        slug: "tp-design-07",
+        name: "Table Presentation Design-07",
+        category: "Table Presentation",
+        productType: "Table Top Cover",
+        tagline: "Printed table linen, Design-07.",
+        description:
+          "Design-07 from the Table Presentation series: printed table linen developed in Karur on our own ground cloth. One of ten catalogue designs for retail and hospitality tables.",
+        materials: ["100% cotton", "Pigment print"],
+        applications: ["Table linen", "Retail", "Gifting"],
+        specs: [
+          { label: "Design", value: "Design-07" },
+          { label: "Series", value: "Table Presentation" },
+        ],
+        variants: [],
+        customization:
+          "Sizes, prints and hem finishes to programme; napery sets matched on request.",
+        image: "/images/products/tp-design-07.jpg",
+      }),
     ],
   },
   {
@@ -311,6 +579,47 @@ export const collections: Collection[] = [
           "Cover-only or with inserts; print recolours and coordinated sets to programme.",
         image: "/images/products/cushion-design-06.jpg",
       }),
+      p({
+        id: "waterfall-kt-cad-07",
+        slug: "kt-cad-07",
+        name: "Kitchen Towel CAD Design-07",
+        category: "Kitchen Towels CAD",
+        productType: "Towels",
+        tagline: "CAD print, 50 × 70 cm, Design-07.",
+        description:
+          "Design-07 from the Kitchen Towels CAD series: a 50 × 70 cm kitchen towel carrying CAD-printed artwork on an absorbent cotton ground. Woven and printed under our own roof in Karur.",
+        materials: ["100% cotton", "Pigment print"],
+        applications: ["Kitchen linens", "Retail", "Promotional"],
+        specs: [
+          { label: "Size", value: "50 × 70 cm" },
+          { label: "Design", value: "Design-07" },
+          { label: "Series", value: "Kitchen Towels CAD" },
+        ],
+        variants: [],
+        customization:
+          "Buyer artwork reproduced from CAD files; colour matching and sampling before bulk.",
+        image: "/images/products/kt-cad-07.jpg",
+      }),
+      p({
+        id: "waterfall-tp-design-08",
+        slug: "tp-design-08",
+        name: "Table Presentation Design-08",
+        category: "Table Presentation",
+        productType: "Table Top Cover",
+        tagline: "Printed table linen, Design-08.",
+        description:
+          "Design-08 from the Table Presentation series: printed table linen developed in Karur on our own ground cloth. One of ten catalogue designs for retail and hospitality tables.",
+        materials: ["100% cotton", "Pigment print"],
+        applications: ["Table linen", "Retail", "Gifting"],
+        specs: [
+          { label: "Design", value: "Design-08" },
+          { label: "Series", value: "Table Presentation" },
+        ],
+        variants: [],
+        customization:
+          "Sizes, prints and hem finishes to programme; napery sets matched on request.",
+        image: "/images/products/tp-design-08.jpg",
+      }),
     ],
   },
   {
@@ -344,6 +653,26 @@ export const collections: Collection[] = [
         customization:
           "Square and rectangular sizes, prints and hem finishes to programme; napery sets matched on request.",
         image: "/images/products/tablecloth-natural.jpg",
+      }),
+      p({
+        id: "snow-tp-design-09",
+        slug: "tp-design-09",
+        name: "Table Presentation Design-09",
+        category: "Table Presentation",
+        productType: "Table Top Cover",
+        tagline: "Printed table linen, Design-09.",
+        description:
+          "Design-09 from the Table Presentation series: printed table linen developed in Karur on our own ground cloth. One of ten catalogue designs for retail and hospitality tables.",
+        materials: ["100% cotton", "Pigment print"],
+        applications: ["Table linen", "Retail", "Gifting"],
+        specs: [
+          { label: "Design", value: "Design-09" },
+          { label: "Series", value: "Table Presentation" },
+        ],
+        variants: [],
+        customization:
+          "Sizes, prints and hem finishes to programme; napery sets matched on request.",
+        image: "/images/products/tp-design-09.jpg",
       }),
     ],
   },
@@ -399,6 +728,68 @@ export const collections: Collection[] = [
         customization:
           "Cover-only or with inserts; print recolours and coordinated sets to programme.",
         image: "/images/products/cushion-design-09.jpg",
+      }),
+      p({
+        id: "aurora-kt-cad-08",
+        slug: "kt-cad-08",
+        name: "Kitchen Towel CAD Design-08",
+        category: "Kitchen Towels CAD",
+        productType: "Towels",
+        tagline: "CAD print, 50 × 70 cm, Design-08.",
+        description:
+          "Design-08 from the Kitchen Towels CAD series: a 50 × 70 cm kitchen towel carrying CAD-printed artwork on an absorbent cotton ground. Woven and printed under our own roof in Karur.",
+        materials: ["100% cotton", "Pigment print"],
+        applications: ["Kitchen linens", "Retail", "Promotional"],
+        specs: [
+          { label: "Size", value: "50 × 70 cm" },
+          { label: "Design", value: "Design-08" },
+          { label: "Series", value: "Kitchen Towels CAD" },
+        ],
+        variants: [],
+        customization:
+          "Buyer artwork reproduced from CAD files; colour matching and sampling before bulk.",
+        image: "/images/products/kt-cad-08.jpg",
+      }),
+      p({
+        id: "aurora-kt-cad-09",
+        slug: "kt-cad-09",
+        name: "Kitchen Towel CAD Design-09",
+        category: "Kitchen Towels CAD",
+        productType: "Towels",
+        tagline: "CAD print, 50 × 70 cm, Design-09.",
+        description:
+          "Design-09 closes the Kitchen Towels CAD run: a 50 × 70 cm kitchen towel carrying CAD-printed artwork on an absorbent cotton ground, printed in Karur.",
+        materials: ["100% cotton", "Pigment print"],
+        applications: ["Kitchen linens", "Retail", "Promotional"],
+        specs: [
+          { label: "Size", value: "50 × 70 cm" },
+          { label: "Design", value: "Design-09" },
+          { label: "Series", value: "Kitchen Towels CAD" },
+        ],
+        variants: [],
+        customization:
+          "Buyer artwork reproduced from CAD files; colour matching and sampling before bulk.",
+        image: "/images/products/kt-cad-09.jpg",
+      }),
+      p({
+        id: "aurora-tp-design-10",
+        slug: "tp-design-10",
+        name: "Table Presentation Design-10",
+        category: "Table Presentation",
+        productType: "Table Top Cover",
+        tagline: "Printed table linen, Design-10.",
+        description:
+          "Design-10 closes the Table Presentation run: printed table linen developed in Karur on our own ground cloth, for retail and hospitality tables.",
+        materials: ["100% cotton", "Pigment print"],
+        applications: ["Table linen", "Retail", "Gifting"],
+        specs: [
+          { label: "Design", value: "Design-10" },
+          { label: "Series", value: "Table Presentation" },
+        ],
+        variants: [],
+        customization:
+          "Sizes, prints and hem finishes to programme; napery sets matched on request.",
+        image: "/images/products/tp-design-10.jpg",
       }),
     ],
   },
