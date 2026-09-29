@@ -1,11 +1,22 @@
 /**
  * AERO COTTON — the catalogue: real products from the client's line sheets.
  *
- * Products below are the confirmed items from three client catalogues, with
+ * Written out below are the items from three client catalogues, with
  * photography extracted from those documents (public/images/products/…):
  *   — "Kitchen & Table Presentation" (designs 01–09 + tablecloth colourways)
  *   — "Kitchen Towels CAD" (printed kitchen-towel designs 01–09)
  *   — "Table Presentation" (printed table-linen designs 01–10)
+ *
+ * The five decks added later (autumn cushions, blankets, place mats & runners,
+ * cushions & chair pads, textiles programme) live in `./catalogue.ts` as
+ * compact deck tables and are merged into the collections at the foot of this
+ * file — 157 designs, one product page each.
+ *
+ * Two further entries are not from any deck: the cotton tote bag (Beach) and the
+ * block-printed runner (Lake), the catalogue's first modelled pieces, shipped
+ * with realtime geometry under `public/models/` instead of a photograph. A
+ * third modelled piece — the autumn print cushion (Desert) — joined later from
+ * a client-supplied 3D scan.
  * Product copy beyond the confirmed design numbers is placeholder-grade,
  * to be confirmed by Aerocotton.
  *
@@ -16,10 +27,12 @@
  */
 
 import type { Collection, Product } from "./types";
+import { catalogueByCollection } from "./catalogue";
+import { classifyProduct } from "./product-taxonomy";
 
 const p = (product: Product): Product => product;
 
-export const collections: Collection[] = [
+const lineSheets: Collection[] = [
   {
     slug: "nature",
     name: "Nature",
@@ -222,6 +235,35 @@ export const collections: Collection[] = [
         customization:
           "Sizes, prints and hem finishes to programme; napery sets matched on request.",
         image: "/images/products/tp-design-03.jpg",
+      }),
+      //
+      // The catalogue's first 3D piece. Unlike every other line-sheet entry the
+      // model itself is the asset: buyers rotate the sample in the browser
+      // before a physical swatch is cut. Thumbnail still is rendered from that
+      // model by `scripts/render-mesh-preview.mjs`.
+      p({
+        id: "beach-cotton-tote-bag",
+        slug: "cotton-tote-bag",
+        name: "Cotton Tote Bag",
+        category: "Cloth Bags",
+        productType: "Cloth Bags",
+        tagline: "Turn the sample over in realtime.",
+        description:
+          "A stitched cotton tote cut with a flat gusset and twin self-fabric handles, finished in Karur. This is the first piece in the catalogue modelled in three dimensions — the view above is the sample itself, drawn realtime in the browser, so a buyer can check the gusset depth, the handle drop and the fall of the cloth before asking for anything to be couriered.",
+        materials: ["100% cotton"],
+        applications: ["Retail totes", "Gifting", "Promotional"],
+        specs: [
+          { label: "Construction", value: "Flat gusset, twin self-fabric handles" },
+          { label: "Colour", value: "Natural cotton, print to buyer artwork" },
+          { label: "Series", value: "Cloth Bags" },
+          { label: "3D model", value: "Realtime OBJ — 4,706 faces" },
+        ],
+        variants: [],
+        customization:
+          "Sizes, gusset depth, handle drop and print artwork to programme; the 3D file is supplied on request for buyer-side visualisation.",
+        model: "/models/cotton-tote-bag.obj",
+        image: "/images/products/cloth-bags/cotton-tote-bag.jpg",
+        featured: true,
       }),
     ],
   },
@@ -449,6 +491,34 @@ export const collections: Collection[] = [
           "Sizes, prints and hem finishes to programme; napery sets matched on request.",
         image: "/images/products/tp-design-06.jpg",
       }),
+      //
+      // The second 3D piece — an indigo block-printed runner, shipped as a
+      // textured `.glb` and photographed on a display rail (the rail is part of
+      // the scan). Thumbnail still rendered from the model by
+      // `scripts/render-mesh-preview.mjs`.
+      p({
+        id: "lake-block-printed-runner",
+        slug: "block-printed-runner",
+        name: "Block-Printed Fringed Runner",
+        category: "Place Mats & Runners",
+        productType: "Printed Table Runners",
+        tagline: "Indigo block print, knotted fringe — turn it over.",
+        description:
+          "A printed cotton runner in a dense indigo block-print check, with a knotted fringe closing both ends. It is modelled here folded over a display rail, exactly as the sample reaches a buyer, so the print reads at true scale and the fringe can be inspected before a swatch is cut. The indigo came out of the vat deeper than the sheet shows — the model keeps the sample's own texture.",
+        materials: ["100% cotton", "Block print"],
+        applications: ["Table linen", "Retail", "Gifting"],
+        specs: [
+          { label: "Print", value: "Indigo block check, cream ground" },
+          { label: "Finish", value: "Knotted fringe, both ends" },
+          { label: "Series", value: "Place Mats & Runners" },
+          { label: "3D model", value: "Realtime GLB — 4,814 faces, textured" },
+        ],
+        variants: [],
+        customization:
+          "Length, width and print scale to programme; fringe or hemmed ends, and the 3D file is supplied on request for buyer-side visualisation.",
+        model: "/models/block-printed-runner.glb",
+        image: "/images/products/fringed-runner/block-printed-runner.jpg",
+      }),
     ],
   },
   {
@@ -503,6 +573,37 @@ export const collections: Collection[] = [
         customization:
           "Square and rectangular sizes, prints and hem finishes to programme; napery sets matched on request.",
         image: "/images/products/tablecloth-clay.jpg",
+      }),
+      //
+      // The third 3D piece — a client-supplied scan of an autumn-print sample
+      // cushion (puffy face, orange leaf-and-bloom motifs on a white ground).
+      // Arrived as a 43 MB Tripo PBR export; the realtime file is decimated to
+      // ~67k faces by `scripts/decimate-glb.mjs`, which also keeps the scan's
+      // own colour texture byte-for-byte and writes a cloth-safe material.
+      // The still below is rendered from that same model by
+      // `scripts/render-mesh-preview.mjs`.
+      p({
+        id: "desert-autumn-print-cushion",
+        slug: "autumn-print-cushion",
+        name: "Autumn Print Cushion",
+        category: "Autumn Cushions 2026",
+        productType: "Cushions",
+        tagline: "Orange autumn print on white — turn the sample over.",
+        description:
+          "A 40 × 40 cm printed cushion cover in an autumn print — scattered orange leaf and bloom motifs with fine dark accents on a white ground. Modelled here from a scan of the sample itself, so the print can be inspected from every side before a swatch is cut; the realtime viewer keeps the sample's own colour texture.",
+        materials: ["100% cotton", "Pigment print"],
+        applications: ["Living rooms", "Retail", "Gifting"],
+        specs: [
+          { label: "Size", value: "40 × 40 cm" },
+          { label: "Colourway", value: "Orange on white" },
+          { label: "Series", value: "Autumn Cushions 2026" },
+          { label: "3D model", value: "Realtime GLB — 66,882 faces, textured" },
+        ],
+        variants: ["Tangerine", "White"],
+        customization:
+          "Cover-only or with inserts; print recolours, sizes and coordinated sets to programme; the 3D file is supplied on request for buyer-side visualisation.",
+        model: "/models/autumn-print-cushion.glb",
+        image: "/images/products/cushions-chair-pads/autumn-print-cushion.jpg",
       }),
       p({
         id: "desert-kt-cad-06",
@@ -794,6 +895,18 @@ export const collections: Collection[] = [
     ],
   },
 ];
+
+/**
+ * The ten landscape collections, each one carrying its hand-written line-sheet
+ * items plus the slice of the catalogue decks assigned to it.
+ */
+export const collections: Collection[] = lineSheets.map((collection) => ({
+  ...collection,
+  products: [
+    ...collection.products,
+    ...(catalogueByCollection[collection.slug] ?? []),
+  ].map(classifyProduct),
+}));
 
 /** Flat product list with parent-collection reference attached. */
 export interface ProductWithCollection extends Product {

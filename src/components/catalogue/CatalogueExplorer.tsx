@@ -6,22 +6,27 @@ import Link from "next/link";
 export type PlpProduct = {
   id: string;
   name: string;
+  department: string;
   category: string;
   productType: string;
   collection: string;
   collectionSlug: string;
   productSlug: string;
   image: string;
+  /** Pattern / colourway line, indexed by search. */
+  tagline: string;
   spec: string;
   gsm: number | null;
   weaveTag: string;
   materialTag: string;
   featured: boolean;
+  model: boolean;
   variants: string[];
 };
 
 export type PlpCategory = {
   name: string;
+  department: string;
   count: number;
   image: string;
 };
@@ -53,6 +58,13 @@ const COLOUR_HEX: Record<string, string> = {
   Seafoam: "#88b0a8",
   Storm: "#5b6b63",
   Aurora: "#5b6b63",
+  Navy: "#2b3a55",
+  Cobalt: "#32508c",
+  Scarlet: "#b8392f",
+  Cranberry: "#8e2a3a",
+  Blush: "#e2b6ad",
+  Tangerine: "#d97a35",
+  Multicolour: "#c2a1d4",
 };
 
 const GSM_RANGES = [
@@ -80,16 +92,19 @@ function Chevron({ open }: { open: boolean }) {
 
 export function CatalogueExplorer({
   products,
+  departmentCategories,
   typeCategories,
   seriesCategories,
 }: {
   products: PlpProduct[];
+  departmentCategories: Omit<PlpCategory, "department">[];
   typeCategories: PlpCategory[];
   seriesCategories: PlpSeries[];
 }) {
   const [query, setQuery] = useState("");
   /** Debounced mirror of `query` — filtering stays off the critical path while typing. */
   const [debouncedQuery, setDebouncedQuery] = useState("");
+  const [activeDepartment, setActiveDepartment] = useState<string | null>(null);
   const [activeTypes, setActiveTypes] = useState<string[]>(typeCategories.map((c) => c.name));
   const [activeSeries, setActiveSeries] = useState<string[]>(seriesCategories.map((c) => c.name));
   const [materials, setMaterials] = useState<string[]>([]);
@@ -108,8 +123,12 @@ export function CatalogueExplorer({
   }, [query]);
 
   const typeNames = typeCategories.map((c) => c.name);
+  const visibleTypeCategories = activeDepartment
+    ? typeCategories.filter((category) => category.department === activeDepartment)
+    : typeCategories.filter((category) => category.count > 0);
+  const visibleTypeNames = visibleTypeCategories.map((category) => category.name);
   const seriesNames = seriesCategories.map((c) => c.name);
-  const allTypesSelected = activeTypes.length === typeNames.length;
+  const allTypesSelected = visibleTypeNames.every((name) => activeTypes.includes(name));
   const allSeriesSelected = activeSeries.length === seriesNames.length;
 
   const materialFacets = useMemo(
@@ -143,7 +162,17 @@ export function CatalogueExplorer({
       new Map(
         products.map((p) => [
           p.id,
-          [p.name, p.collection, p.materialTag, p.weaveTag, p.productType, p.category, ...p.variants]
+          [
+            p.name,
+            p.department,
+            p.collection,
+            p.materialTag,
+            p.weaveTag,
+            p.productType,
+            p.category,
+            p.tagline,
+            ...p.variants,
+          ]
             .join(" ")
             .toLowerCase(),
         ])
@@ -160,6 +189,7 @@ export function CatalogueExplorer({
   const resetAll = () => {
     setQuery("");
     setDebouncedQuery("");
+    setActiveDepartment(null);
     setActiveTypes(typeNames);
     setActiveSeries(seriesNames);
     setMaterials([]);
@@ -169,8 +199,11 @@ export function CatalogueExplorer({
     setPage(1);
   };
 
-  const selectType = (name: string | null) => {
-    setActiveTypes(name ? [name] : typeNames);
+  const selectDepartment = (name: string | null) => {
+    setActiveDepartment(name);
+    setActiveTypes(name
+      ? typeCategories.filter((category) => category.department === name).map((category) => category.name)
+      : typeNames);
     setPage(1);
     explorerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
@@ -178,6 +211,7 @@ export function CatalogueExplorer({
   const filtered = useMemo(() => {
     const tokens = debouncedQuery.trim().toLowerCase().split(/\s+/).filter(Boolean);
     let list = products.filter((p) => {
+      if (activeDepartment && p.department !== activeDepartment) return false;
       if (!activeTypes.includes(p.productType)) return false;
       if (!activeSeries.includes(p.category)) return false;
       if (materials.length && !materials.includes(p.materialTag)) return false;
@@ -201,7 +235,7 @@ export function CatalogueExplorer({
     else if (sort === "GSM: High to Low") list = [...list].sort((a, b) => byGsm(b, a));
     else list = [...list].sort((a, b) => Number(b.featured) - Number(a.featured));
     return list;
-  }, [products, activeTypes, activeSeries, materials, weaves, gsmFilters, colour, debouncedQuery, sort, haystacks]);
+  }, [products, activeDepartment, activeTypes, activeSeries, materials, weaves, gsmFilters, colour, debouncedQuery, sort, haystacks]);
 
   const pageCount = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
   const safePage = Math.min(page, pageCount);
@@ -209,6 +243,7 @@ export function CatalogueExplorer({
 
   const anyFilterActive =
     query !== "" ||
+    activeDepartment !== null ||
     !allTypesSelected ||
     !allSeriesSelected ||
     materials.length > 0 ||
@@ -221,13 +256,13 @@ export function CatalogueExplorer({
       {/* Product-type strip */}
       <div className="aero-plp__strip-wrap border-y border-hairline bg-linen">
         <div className="mx-auto w-full max-w-[2520px] px-6 md:px-10 lg:px-16">
-          <div className="aero-plp__strip" role="tablist" aria-label="Product types">
+          <div className="aero-plp__strip" role="tablist" aria-label="Product departments">
             <button
               type="button"
               role="tab"
-              aria-selected={allTypesSelected}
+              aria-selected={activeDepartment === null}
               className={`aero-plp__cat aero-plp__cat--all ${allTypesSelected ? "is-active" : ""}`}
-              onClick={() => selectType(null)}
+              onClick={() => selectDepartment(null)}
             >
               <span className="aero-plp__cat-icon" aria-hidden="true">
                 <svg viewBox="0 0 16 16" width="14" height="14">
@@ -239,14 +274,14 @@ export function CatalogueExplorer({
               <span className="aero-plp__cat-name">All Products</span>
               <span className="aero-plp__cat-count">{products.length} Products</span>
             </button>
-            {typeCategories.map((cat) => (
+            {departmentCategories.map((cat) => (
               <button
                 key={cat.name}
                 type="button"
                 role="tab"
-                aria-selected={activeTypes.length === 1 && activeTypes[0] === cat.name}
+                aria-selected={activeDepartment === cat.name}
                 className="aero-plp__cat"
-                onClick={() => selectType(cat.name)}
+                onClick={() => selectDepartment(cat.name)}
               >
                 <span className="aero-plp__cat-thumb">
                   <img src={cat.image} alt="" loading="lazy" />
@@ -315,7 +350,7 @@ export function CatalogueExplorer({
 
           <details className="aero-plp__group" open>
             <summary>
-              Product Type <Chevron open />
+              Product Category <Chevron open />
             </summary>
             <ul className="aero-plp__checks">
               <li>
@@ -324,20 +359,21 @@ export function CatalogueExplorer({
                     type="checkbox"
                     checked={allTypesSelected}
                     onChange={() => {
-                      setActiveTypes(allTypesSelected ? [] : typeNames);
+                      setActiveTypes(allTypesSelected ? [] : visibleTypeNames);
                       setPage(1);
                     }}
                   />
-                  <span>All Types</span>
-                  <small>({products.length})</small>
+                  <span>All Categories</span>
+                  <small>({products.filter((p) => !activeDepartment || p.department === activeDepartment).length})</small>
                 </label>
               </li>
-              {typeCategories.map((cat) => (
+              {visibleTypeCategories.map((cat) => (
                 <li key={cat.name}>
                   <label>
                     <input
                       type="checkbox"
                       checked={activeTypes.includes(cat.name)}
+                      disabled={cat.count === 0}
                       onChange={() => {
                         setActiveTypes((list) => toggle(list, cat.name));
                         setPage(1);
@@ -543,7 +579,9 @@ export function CatalogueExplorer({
                       <img src={p.image} alt={p.name} loading="lazy" />
                     </span>
                     <span className="aero-plp__body">
-                      <span className="aero-plp__eyebrow">{p.productType}</span>
+                      <span className="aero-plp__eyebrow">
+                        {p.productType}{p.model ? " · 3D" : ""}
+                      </span>
                       <span className="aero-plp__name-row">
                         <span className="aero-plp__name">{p.name}</span>
                         <span className="aero-plp__arrow" aria-hidden="true">
@@ -552,7 +590,7 @@ export function CatalogueExplorer({
                           </svg>
                         </span>
                       </span>
-                      <span className="aero-plp__series">{p.category}</span>
+                      <span className="aero-plp__series">{p.department}</span>
                       <span className="aero-plp__spec">{p.spec}</span>
                     </span>
                   </Link>
