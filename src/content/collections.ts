@@ -239,8 +239,10 @@ const lineSheets: Collection[] = [
       //
       // The catalogue's first 3D piece. Unlike every other line-sheet entry the
       // model itself is the asset: buyers rotate the sample in the browser
-      // before a physical swatch is cut. Thumbnail still is rendered from that
-      // model by `scripts/render-mesh-preview.mjs`.
+      // before a physical swatch is cut. The still below is the studio
+      // photograph of the stitched sample, normalised into the card frame by
+      // `scripts/import-product-still.mjs`; the model render it replaced is kept
+      // at `.pdf-work/cotton-tote-bag.model-render.jpg`.
       p({
         id: "beach-cotton-tote-bag",
         slug: "cotton-tote-bag",

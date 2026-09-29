@@ -73,7 +73,7 @@ only the loader, not one component. CMS decision answered by contract, not by pr
 ## Phase 4 — Application Shell, Navigation & Motion
 
 - Header (desktop nav + scroll behavior), MobileNav, Footer
-- **Preloader:** fixed ~0.9 s ceiling, skipped on repeat visits via `sessionStorage` — never gates on anything
+- **Opening curtain:** ~3 s of CSS doors on the home page, skipped on repeat visits via `sessionStorage`; two script timers release scroll and retire the overlay, so it never gates on anything
 - **Page transitions:** ~200 ms fade/rise (client wrapper); the full AERO COTTON mark transition was deliberately *not* applied to every navigation — it compounds into a slow-feeling site. Reserved for hero→collection moments.
 - `Reveal` motion primitives; `prefers-reduced-motion` respected globally
 

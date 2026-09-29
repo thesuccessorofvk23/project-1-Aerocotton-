@@ -50,12 +50,16 @@ Copy `.env.example` to `.env.local` and set:
   Turnstile → Resend email with reply-to. `src/lib/rfq/`.
 - **Motion** — ~450 ms page transitions, one-shot IntersectionObserver reveals,
   all gated on a `.js` class and `prefers-reduced-motion` in `globals.css`.
-- **Preloader** — first-visit-per-session brand moment (~1.5 s + curtain-part
-  exit, `src/components/layout/Preloader.tsx`): staggered serif wordmark,
-  brass thread draw, tagline, origin + eased counter, then the cocoa curtain
-  parts to reveal the page. Repeat visits skip it entirely (head script checks
-  `sessionStorage`); reduced-motion users get a ~120 ms near-instant release.
-  Scroll is locked only while the curtain is up.
+- **Opening curtain** — first-visit-per-session brand moment (~3 s, home page
+  only, `src/components/home/CinematicLoadingScreen.tsx` + the `.cinematic-intro`
+  block in `globals.css`): two grain-textured ivory doors hold a staggered
+  AERO COTTON lockup and a brass-thin seam, then part outward to reveal the
+  page as the lockup halves ride with them. It is CSS-only, driven by the
+  before-paint script in `src/app/layout.tsx` that adds `intro-armed` to
+  `<html>` once `sessionStorage` says the session is new — append `?intro` to
+  the homepage URL to replay it for review. Repeat visits, reduced-motion
+  visitors, other routes and JavaScript-less visitors never see it. The overlay is `pointer-events: none` and scroll is locked only while
+  the doors are shut, so it can never gate the page.
 
 ## Client fact inventory — required before launch
 

@@ -892,6 +892,234 @@ body::after {
 .aero-final__media::after { position: absolute; inset: 0; content: ''; opacity: 0.14; background-image: var(--noise-url); mix-blend-mode: multiply; pointer-events: none; }
 .aero-final__caption { position: absolute; z-index: 1; bottom: 1.1rem; left: 1.2rem; color: var(--color-ivory); font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; text-shadow: 0 1px 10px rgba(23, 22, 20, 0.45); }
 
+/* ── Homepage opening: two ivory doors that part to reveal the page ────── */
+/* Armed by the before-paint script in `src/app/layout.tsx`, which adds
+   `intro-armed` to <html> on the first home-page visit of a session.
+   Three classes, three separate jobs — keeping them apart matters:
+     `intro-armed`  the curtain exists. Set before first paint, cleared only
+                    when the doors have finished sliding.
+     `intro-locked` scroll is held. Cleared the moment the doors start to
+                    move, so the page is live while it is still being revealed.
+     `intro-done`   belt and braces: hides the curtain even if the slide never
+                    ran, so the overlay can never sit over the page.
+   The overlay is `pointer-events: none` throughout, so it can never gate the
+   page even if every timer stalls.
+
+   The `!important` on every animation below is not decoration: the
+   deliberate "Motion is intentionally disabled across the static site"
+   switch earlier in this file silences all animation with `!important`, and
+   only higher specificity outranks it. The opening curtain is the single
+   exception to that switch — nothing else on the site is re-enabled here. */
+.cinematic-intro { display: none; }
+
+html.intro-armed .cinematic-intro { display: block; }
+html.intro-done .cinematic-intro { display: none; }
+
+html.intro-locked { overflow: hidden; }
+
+/* If the host never ticks CSS animations, the component unclamps these and
+   drives the same beats from a plain timer instead (see
+   `CinematicLoadingScreen`). `intro-js` beats the `!important` declarations
+   above on specificity, so the two engines never run at once. */
+html.intro-js .cinematic-intro *,
+html.intro-js [data-intro-stage] {
+  animation: none !important;
+}
+
+.cinematic-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  isolation: isolate;
+  overflow: hidden;
+  background: transparent;
+  pointer-events: none;
+}
+
+.cinematic-intro__doors {
+  position: absolute;
+  inset-block: 0;
+  z-index: 1;
+  width: 50%;
+  background: var(--color-ivory);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.cinematic-intro__doors::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+  background-image: var(--noise-url);
+}
+
+.cinematic-intro__doors-left {
+  left: 0;
+  transform-origin: left center;
+  animation: aero-intro-door-left 0.85s cubic-bezier(0.65, 0, 0.35, 1) 2.15s forwards !important;
+}
+
+.cinematic-intro__doors-right {
+  right: 0;
+  transform-origin: right center;
+  animation: aero-intro-door-right 0.85s cubic-bezier(0.65, 0, 0.35, 1) 2.15s forwards !important;
+}
+
+.cinematic-intro__seam {
+  position: absolute;
+  top: 4.5vh;
+  bottom: 13.1vh;
+  left: 50%;
+  z-index: 1;
+  width: 1px;
+  background: var(--color-ink);
+  opacity: 0;
+  transform: translateX(-50%) scaleY(0);
+  transform-origin: center;
+  will-change: transform, opacity;
+  animation:
+    aero-intro-seam 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.75s both,
+    aero-intro-fade 0.5s ease 2.3s forwards !important;
+}
+
+.cinematic-intro__lockup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  display: grid;
+  gap: clamp(1.8rem, 3.2vw, 3.25rem);
+  width: min(78vw, 61rem);
+  transform: translate(-50%, -50%);
+  animation: aero-intro-fade 0.6s ease 2.15s forwards !important;
+}
+
+.cinematic-intro__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+  align-items: center;
+  column-gap: clamp(1.25rem, 2.6vw, 2.75rem);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.cinematic-intro__part {
+  display: block;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.cinematic-intro__small {
+  color: var(--color-umber);
+  font-family: var(--font-sans);
+  font-size: clamp(0.62rem, 0.75vw, 0.82rem);
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.cinematic-intro__large {
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: clamp(4.5rem, 10.9vw, 11.5rem);
+  font-weight: 800;
+  letter-spacing: -0.085em;
+  line-height: 0.78;
+}
+
+.cinematic-intro__small-left,
+.cinematic-intro__large-left {
+  grid-column: 1;
+  text-align: right;
+}
+
+.cinematic-intro__small-right,
+.cinematic-intro__large-right {
+  grid-column: 3;
+  text-align: left;
+}
+
+.cinematic-intro__small-left {
+  animation:
+    aero-intro-rise 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both,
+    aero-intro-slide-left 0.8s cubic-bezier(0.65, 0, 0.35, 1) 2.15s forwards !important;
+}
+
+.cinematic-intro__small-right {
+  animation:
+    aero-intro-rise 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both,
+    aero-intro-slide-right 0.8s cubic-bezier(0.65, 0, 0.35, 1) 2.15s forwards !important;
+}
+
+.cinematic-intro__large-left {
+  animation:
+    aero-intro-rise 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both,
+    aero-intro-slide-left 0.8s cubic-bezier(0.65, 0, 0.35, 1) 2.15s forwards !important;
+}
+
+.cinematic-intro__large-right {
+  animation:
+    aero-intro-rise 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.55s both,
+    aero-intro-slide-right 0.8s cubic-bezier(0.65, 0, 0.35, 1) 2.15s forwards !important;
+}
+
+/* The hero settles out of its own slight zoom as the doors clear, so the page
+   reads as arriving from the centre rather than being switched on. */
+html.intro-armed [data-intro-stage] {
+  transform-origin: center;
+  animation: aero-intro-stage 0.85s cubic-bezier(0.65, 0, 0.35, 1) 2.15s both !important;
+}
+
+@keyframes aero-intro-rise {
+  from { opacity: 0; transform: translate3d(0, 10px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes aero-intro-stage {
+  from { opacity: 0.72; transform: scale(0.94); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes aero-intro-seam {
+  from { opacity: 0; transform: translateX(-50%) scaleY(0); }
+  to { opacity: 1; transform: translateX(-50%) scaleY(1); }
+}
+
+@keyframes aero-intro-fade {
+  to { opacity: 0; }
+}
+
+@keyframes aero-intro-slide-left {
+  to { transform: translate3d(-100%, 0, 0); }
+}
+
+@keyframes aero-intro-slide-right {
+  to { transform: translate3d(100%, 0, 0); }
+}
+
+@keyframes aero-intro-door-left {
+  to { transform: translate3d(-100%, 0, 0); }
+}
+
+@keyframes aero-intro-door-right {
+  to { transform: translate3d(100%, 0, 0); }
+}
+
+@media (max-width: 640px) {
+  .cinematic-intro__lockup { width: 94vw; gap: 2rem; }
+  .cinematic-intro__row { column-gap: 0.9rem; }
+  .cinematic-intro__large { font-size: clamp(3.25rem, 17vw, 6.5rem); letter-spacing: -0.07em; }
+  .cinematic-intro__seam { top: 4vh; bottom: 9vh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-intro { display: none !important; }
+  html.intro-locked { overflow: auto; }
+  html.intro-armed [data-intro-stage] { animation: none !important; }
+}
+
 /* ── Contact page — split photo/content card (reference: Stahl House contact) ── */
 .aero-contact {
   min-height: 100svh;
@@ -1678,6 +1906,184 @@ body::after {
   .aero-gallery__panel:nth-child(5) { grid-column: 1 / -1; }
   .aero-gallery__media { min-height: 13rem; }
   .aero-gallery__intro { display: none; }
+}
+
+/* ── 04 — Realtime 3D: the modelled pieces, each panel drawn live ─────── */
+.aero-models { border-top: 1px solid var(--color-hairline); }
+
+.aero-models__heading {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 3rem;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.aero-models__title {
+  margin-top: 1.25rem;
+  max-width: 34rem;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: var(--text-display-lg);
+  line-height: var(--text-display-lg--line-height);
+  letter-spacing: -0.03em;
+}
+
+.aero-models__note {
+  margin-top: 1.25rem;
+  max-width: 30rem;
+  color: var(--color-umber);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.aero-models__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  border: 1px solid var(--color-outline);
+  border-radius: 999px;
+  padding: 0.85rem 1.5rem;
+  color: var(--color-ink);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: background 250ms ease, border-color 250ms ease, transform 250ms var(--ease-out-soft);
+}
+
+.aero-models__cta:hover {
+  border-color: var(--color-brass-deep);
+  background: rgba(176, 141, 87, 0.08);
+  transform: translateY(-2px);
+}
+
+.aero-models__grid {
+  display: grid;
+  gap: clamp(1rem, 2.2vw, 2rem);
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  margin-top: clamp(2rem, 4vw, 3.4rem);
+}
+
+.aero-models__piece {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  margin: 0;
+}
+
+/* The house cotton ground matches the studio backing on the stills, so the
+ * handover from photograph to realtime canvas is seamless. */
+.aero-models__media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 1px solid var(--color-hairline);
+  background: var(--color-cotton);
+  isolation: isolate;
+}
+
+.aero-models__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 0.14;
+  background-image: var(--noise-url);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.aero-models__still {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 1000ms var(--ease-out-soft, ease);
+}
+
+/* First frame is on screen — the photograph steps aside. */
+.aero-models__still.is-drawn { opacity: 0; }
+
+.aero-models__canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  touch-action: none;
+}
+
+.aero-models__badge {
+  position: absolute;
+  z-index: 3;
+  top: 0.75rem;
+  left: 0.75rem;
+  border: 1px solid var(--color-ink);
+  background: var(--color-ivory);
+  padding: 0.22rem 0.55rem;
+  color: var(--color-ink);
+  font-size: 0.56rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.aero-models__caption {
+  display: block;
+  padding-top: 0.9rem;
+}
+
+.aero-models__caption h3 {
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.aero-models__caption small {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--color-taupe);
+  font-size: 0.64rem;
+  letter-spacing: 0.06em;
+}
+
+.aero-models__spec {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--color-taupe);
+  font-size: 0.68rem;
+}
+
+.aero-models__link {
+  display: inline-flex;
+  gap: 0.45rem;
+  margin-top: 0.7rem;
+  color: var(--color-brass-deep);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: gap 250ms var(--ease-out-soft);
+}
+
+.aero-models__link:hover { gap: 0.8rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .aero-models__still,
+  .aero-models__link,
+  .aero-models__cta { transition-duration: 1ms; }
+}
+
+@media (max-width: 900px) {
+  .aero-models__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .aero-models__heading { flex-direction: column; align-items: flex-start; }
+  .aero-models__grid { grid-template-columns: 1fr; }
+  .aero-models__media { aspect-ratio: 1 / 1; }
 }
 
 /* ══ Catalogue page (/products) — photo hero + filterable explorer ══ */
