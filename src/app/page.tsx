@@ -15,7 +15,7 @@ export default function HomePage() {
   return (
   <CinematicLoadingScreen>
     <>
-      <section data-luxury-section="hero" className="hero-editorial relative flex min-h-[100svh] overflow-hidden bg-cotton text-ink">
+      <section data-luxury-section="hero" data-intro-stage="hero" className="hero-editorial relative flex min-h-[100svh] overflow-hidden bg-cotton text-ink">
         <video
           className="hero-editorial__video absolute inset-0 h-full w-full object-cover"
           autoPlay
@@ -23,9 +23,9 @@ export default function HomePage() {
           muted
           playsInline
           preload="metadata"
-          aria-label="Cotton textile work in a manufacturing workshop"
+          aria-label="Cotton fields, raw fleece and loom weaving"
         >
-          <source src="/hero/video_watermark_removed.mp4" type="video/mp4" />
+          <source src="/hero/hero-cotton-intro.mp4" type="video/mp4" />
         </video>
         <div className="hero-editorial__grid absolute inset-0" aria-hidden="true" />
 
