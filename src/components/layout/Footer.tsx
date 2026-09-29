@@ -50,7 +50,13 @@ export function Footer() {
         <Reveal>
           <div className="site-footer__top">
             <div className="site-footer__identity">
-              <p className="site-footer__logo">Aero Cotton</p>
+              <img
+                src="/brand/aerocotton-lockup-dark.png"
+                alt="Aero Cotton — Textiles & Home Furnishing"
+                width={295}
+                height={270}
+                className="site-footer__logo"
+              />
               <p className="site-footer__description">{company.tagline}. Woven in Karur, Tamil Nadu.</p>
               <address className="site-footer__address">
                 {company.address.line1}<br />

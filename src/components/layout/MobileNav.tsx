@@ -73,9 +73,13 @@ export function MobileNav() {
         )}
       >
         <div className="flex items-center justify-between px-6 py-4">
-          <span className="font-display text-xl font-semibold uppercase tracking-[0.16em]">
-            Aero Cotton
-          </span>
+          <img
+            src="/brand/aerocotton-mark.png"
+            alt="Aero Cotton"
+            width={295}
+            height={191}
+            className="h-8 w-auto"
+          />
           <button
             type="button"
             onClick={() => setOpen(false)}

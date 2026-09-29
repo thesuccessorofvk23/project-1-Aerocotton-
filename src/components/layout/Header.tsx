@@ -73,12 +73,19 @@ export function Header() {
         <Link
           href="/"
           aria-label="Aero Cotton — home"
-          className={cn(
-            "flex-shrink-0 font-display text-lg font-semibold uppercase tracking-[0.28em] md:text-xl",
-            condensed ? "text-ink" : "text-white"
-          )}
+          className="flex-shrink-0"
         >
-          Aero&nbsp;Cotton
+          {/* Monogram only — the wordmark is illegible at nav scale. */}
+          <img
+            src="/brand/aerocotton-mark.png"
+            alt=""
+            width={295}
+            height={191}
+            className={cn(
+              "h-9 w-auto md:h-10",
+              !condensed && "drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]"
+            )}
+          />
         </Link>
 
         <nav aria-label="Secondary" className="hidden min-w-0 flex-1 items-center justify-end gap-7 lg:flex">
