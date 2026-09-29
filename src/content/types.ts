@@ -22,6 +22,8 @@ export interface Product {
   /** URL segment: /products/[collection]/[slug] */
   slug: string;
   name: string;
+  /** Top-level department from the client product taxonomy. */
+  department?: string;
   /** Product series, e.g. "Cushions & Chair Pads" — mirrors the client's series names. */
   category: string;
   /** Product type from the client's product-types list, e.g. "Cushions" or "Blankets". */
@@ -38,6 +40,12 @@ export interface Product {
   customization: string;
   /** Placeholder-grade image path (public/images/collections/…). */
   image: string;
+  /**
+   * Optional realtime 3D model (public/models/…): a Wavefront `.obj` or a
+   * binary glTF `.glb`. When set, the detail page renders an interactive viewer
+   * over the still image, which stays as the no-WebGL fallback.
+   */
+  model?: string;
   /** Surface on the home page + products index top. */
   featured?: boolean;
 }

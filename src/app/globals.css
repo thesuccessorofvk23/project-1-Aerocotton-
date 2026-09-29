@@ -1554,6 +1554,23 @@ body::after {
   pointer-events: none;
 }
 
+/* Flags the one panel whose media opens a realtime 3D view. */
+.aero-gallery__badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 1;
+  border: 1px solid var(--color-ink);
+  background: var(--color-ivory);
+  padding: 0.22rem 0.55rem;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 0.56rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
 .aero-gallery__media img {
   width: 100%;
   height: 100%;

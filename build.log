@@ -1,0 +1,51 @@
+
+> aerocotton-web@1.0.0 build
+> next build
+
+▲ Next.js 16.3.4 (Turbopack)
+✓ Running next.config.ts took 1080ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 33.5s
+  Running TypeScript ...
+  Finished TypeScript in 9.1s ...
+  Collecting page data using 11 workers ...
+  Generating static pages using 11 workers (0/58) ...
+  Generating static pages using 11 workers (14/58) 
+  Generating static pages using 11 workers (28/58) 
+  Generating static pages using 11 workers (43/58) 
+✓ Generating static pages using 11 workers (58/58) in 6.0s
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ○ /care-guide
+├ ○ /contact
+├ ○ /customer-care
+├ ○ /customer-care/privacy-policy
+├ ○ /customer-care/shipping-returns-policy
+├ ○ /customer-care/terms-conditions
+├ ○ /global-presence
+├ ○ /icon.svg
+├ ○ /opengraph-image
+├ ○ /products
+├   /products/[collection]
+│ ├ ● /products/nature
+│ ├ ● /products/mountain
+│ ├ ● /products/beach
+│ └ ● [+7 more paths]
+├   /products/[collection]/[product]
+│ ├ ● /products/nature/cushion-design-05
+│ ├ ● /products/nature/tp-design-01
+│ ├ ● /products/mountain/apron-design-02
+│ └ ● [+28 more paths]
+├ ○ /robots.txt
+├ ○ /sitemap.xml
+└ ○ /sustainability
+
+
+○  (Static)  prerendered as static content
+●  (SSG)     prerendered as static HTML (uses generateStaticParams)
+

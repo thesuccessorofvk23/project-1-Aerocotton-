@@ -3,12 +3,13 @@ import { pageMeta } from "@/lib/seo";
 import { Container } from "@/components/ui/Container";
 import { CatalogueExplorer } from "@/components/catalogue/CatalogueExplorer";
 import { allProducts, collections } from "@/content/collections";
+import { PRODUCT_TAXONOMY } from "@/content/product-taxonomy";
 import { editorialImage } from "@/lib/editorial";
 
 export const metadata: Metadata = pageMeta({
-  title: "Products — printed kitchen & table textiles from Karur",
+  title: "Products — printed kitchen, table and home textiles from Karur",
   description:
-    "Browse Aerocotton's catalogue of printed aprons, kitchen towel sets and CAD designs, cushions, tablecloths and table presentation linen, made by a family-run manufacturer and exporter in Karur, India.",
+    "Browse Aerocotton's catalogue of printed aprons, kitchen towels, cushions, chair pads, blankets, place mats, table runners and table linen, made by a family-run manufacturer and exporter in Karur, India.",
   path: "/products",
 });
 
@@ -45,6 +46,7 @@ export default function ProductsPage() {
     return {
       id: product.id,
       name: product.name,
+      department: product.department ?? "Miscellaneous",
       category: product.category,
       productType: product.productType,
       collection: product.collectionName,
@@ -53,40 +55,41 @@ export default function ProductsPage() {
       image: product.image.startsWith("/images/products/")
         ? product.image
         : editorialImage(product.collectionName),
+      tagline: product.tagline,
       spec: `${weight ? `${weight.replace(/^~\s*/, "").replace(" GSM", " GSM")} · ` : ""}${product.materials[0] ?? "100% cotton"}`,
       gsm: gsmOf(weight),
       weaveTag: weave,
       materialTag: product.materials[0] ?? "100% cotton",
       featured: Boolean(product.featured),
+      model: Boolean(product.model),
       variants: product.variants,
     };
   });
 
-  /** Product-type strip — ordered to follow the client's own product-types list. */
-  const TYPE_ORDER = [
-    "Printed Table Runners",
-    "Apron with Gloves",
-    "Pillows",
-    "Cloth Materials",
-    "Towels",
-    "Table Top Cover",
-    "Cloth Bags",
-    "Blankets",
-    "Chair Pads",
-    "Cushions",
-  ];
-  const typeNames = [...new Set(products.map((p) => p.productType))].sort(
-    (a, b) => TYPE_ORDER.indexOf(a) - TYPE_ORDER.indexOf(b)
+  const typeCategories = PRODUCT_TAXONOMY.flatMap(({ department, categories }) =>
+    categories.map((name) => {
+      const inType = products.filter((p) => p.productType === name);
+      const realPhoto = inType.find((p) => p.image.startsWith("/images/products/"));
+      return {
+        name,
+        department,
+        count: inType.length,
+        image:
+          realPhoto?.image ??
+          (inType[0] ? editorialImage(inType[0].collection) : "/images/editorial/woven-texture.jpg"),
+      };
+    })
   );
-  const typeCategories = typeNames.map((name) => {
-    const inType = products.filter((p) => p.productType === name);
-    const realPhoto = inType.find((p) => p.image.startsWith("/images/products/"));
+
+  const departmentCategories = PRODUCT_TAXONOMY.map(({ department }) => {
+    const inDepartment = products.filter((p) => p.department === department);
+    const realPhoto = inDepartment.find((p) => p.image.startsWith("/images/products/"));
     return {
-      name,
-      count: inType.length,
+      name: department,
+      count: inDepartment.length,
       image:
         realPhoto?.image ??
-        (inType[0] ? editorialImage(inType[0].collection) : "/images/editorial/woven-texture.jpg"),
+        (inDepartment[0] ? editorialImage(inDepartment[0].collection) : "/images/editorial/woven-texture.jpg"),
     };
   });
 
@@ -95,6 +98,12 @@ export default function ProductsPage() {
     "Kitchen & Table Presentation",
     "Kitchen Towels CAD",
     "Table Presentation",
+    "Autumn Cushions 2026",
+    "Blankets",
+    "Place Mats & Runners",
+    "Cushions & Chair Pads",
+    "Textiles Programme",
+    "Cloth Bags",
   ];
   const seriesNames = [...new Set(products.map((p) => p.category))].sort(
     (a, b) => SERIES_ORDER.indexOf(a) - SERIES_ORDER.indexOf(b)
@@ -118,15 +127,19 @@ export default function ProductsPage() {
           <p className="aero-plp-hero__eyebrow">Product catalogue</p>
           <h1 className="aero-plp-hero__title">Our Collection</h1>
           <p className="aero-plp-hero__lede">
-            Our current catalogue across three series — Kitchen & Table
-            Presentation, Kitchen Towels CAD and Table Presentation — woven,
-            printed and stitched in Karur.
+            The current catalogue across nine programmes — kitchen and table
+            presentation, kitchen towels, cushions and chair pads, blankets,
+            place mats and runners, the textiles programme and cloth bags —
+            woven, printed and stitched in Karur. Three pieces are modelled in
+            three dimensions, so a buyer can turn the sample over before asking
+            for it.
           </p>
         </Container>
       </section>
 
       <CatalogueExplorer
         products={products}
+        departmentCategories={departmentCategories}
         typeCategories={typeCategories}
         seriesCategories={seriesCategories}
       />

@@ -12,6 +12,7 @@ import { company } from "@/content/company";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/motion/Reveal";
+import { ProductModel } from "@/components/three/ProductModel";
 import { editorialImage } from "@/lib/editorial";
 
 /** Pre-render every product page at build time. */
@@ -66,6 +67,12 @@ export default async function ProductPage({
     `${product.name} — ${collection.name} collection`
   )}`;
 
+  // Catalogue photography is real; line-sheet entries without a shot fall back
+  // to the collection's editorial plate.
+  const heroImage = product.image.startsWith("/images/products/")
+    ? product.image
+    : editorialImage(collection.name);
+
   return (
     <div className={collection.dyeClass}>
       <script
@@ -91,16 +98,23 @@ export default async function ProductPage({
           </nav>
 
           <div className="mt-10 grid gap-12 lg:grid-cols-2">
-            <div className="aspect-[4/5] w-full overflow-hidden border border-hairline bg-cotton">
-              <img
-                src={
-                  product.image.startsWith("/images/products/")
-                    ? product.image
-                    : editorialImage(collection.name)
-                }
-                alt={product.name}
-                className="h-full w-full object-cover"
-              />
+            <div>
+              <div className="aspect-[4/5] w-full overflow-hidden border border-hairline bg-cotton">
+                {product.model ? (
+                  <ProductModel
+                    src={product.model}
+                    image={heroImage}
+                    alt={product.name}
+                  />
+                ) : (
+                  <img src={heroImage} alt={product.name} className="h-full w-full object-cover" />
+                )}
+              </div>
+              {product.model && (
+                <p className="mt-3 text-2xs uppercase tracking-[0.2em] text-taupe">
+                  Realtime model of the sample — drag to turn it, or ask for the file
+                </p>
+              )}
             </div>
 
             <div className="flex flex-col justify-center">
@@ -115,7 +129,11 @@ export default async function ProductPage({
                 {product.description}
               </p>
 
-              <dl className="mt-8 grid grid-cols-2 gap-x-8 gap-y-4 border-t border-hairline pt-6">
+              <dl className="mt-8 grid grid-cols-2 gap-x-8 gap-y-4 border-t border-hairline pt-6 md:grid-cols-3">
+                <div>
+                  <dt className="text-2xs uppercase tracking-[0.2em] text-taupe">Department</dt>
+                  <dd className="mt-1 text-sm text-ink">{product.department}</dd>
+                </div>
                 <div>
                   <dt className="text-2xs uppercase tracking-[0.2em] text-taupe">Product Type</dt>
                   <dd className="mt-1 text-sm text-ink">{product.productType}</dd>
@@ -162,18 +180,30 @@ export default async function ProductPage({
             </Reveal>
             <Reveal delay={100}>
               <div>
-                <h2 className="font-display text-2xl text-ink">Available variations</h2>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {product.variants.map((variant) => (
-                    <span
-                      key={variant}
-                      className="border border-outline bg-ivory px-4 py-2 text-2xs font-semibold uppercase tracking-[0.16em] text-umber"
-                    >
-                      {variant}
-                    </span>
-                  ))}
-                </div>
-                <h3 className="font-display mt-8 text-lg text-ink">Customization</h3>
+                {product.variants.length > 0 && (
+                  <>
+                    <h2 className="font-display text-2xl text-ink">Available variations</h2>
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {product.variants.map((variant) => (
+                        <span
+                          key={variant}
+                          className="border border-outline bg-ivory px-4 py-2 text-2xs font-semibold uppercase tracking-[0.16em] text-umber"
+                        >
+                          {variant}
+                        </span>
+                      ))}
+                    </div>
+                  </>
+                )}
+                <h3
+                  className={
+                    product.variants.length > 0
+                      ? "font-display mt-8 text-lg text-ink"
+                      : "font-display text-lg text-ink"
+                  }
+                >
+                  Customization
+                </h3>
                 <p className="mt-3 text-sm/relaxed text-umber">{product.customization}</p>
               </div>
             </Reveal>
