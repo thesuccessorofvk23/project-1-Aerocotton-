@@ -76,7 +76,7 @@ collected and swapped in:
 | Export market list | Global Presence page | Marked `[ pending client confirmation ]` |
 | Machinery / capacity figures | Manufacturing page | Omitted; "shared on request" |
 | Timeline milestones between 2015 and today | `journey` in `company.ts` | One `[CLIENT]` slot reserved |
-| Brand assets (logo, packaging, product photography) | Tokens + imagery | Product photography now real (157 deck images + 31 line-sheet images); editorial plates remain for facility/campaign imagery |
+| Brand assets (logo, packaging, product photography) | Tokens + imagery | Product photography now real (157 deck images + 31 line-sheet images); editorial plates remain for facility/campaign imagery. Logo artwork supplied and in place in the header, mobile menu and footer (`public/brand/`); vector source still worth requesting |
 | 3D samples (cloth bag, block-printed runner) | `public/models/`, both product entries | Buyer-supplied scans; the still on each product page and its card thumbnail are rendered from the model. Confirm the pieces may be shown, whether dimensions may be published, and that the block-printed runner is filed under the right product type |
 | Registrations (IEC / GSTIN) | Footer / schema | Not rendered |
 
@@ -134,6 +134,23 @@ node scripts/build-catalogue-images.mjs           # writes public/images/product
 ```
 
 `scripts/montage.mjs` builds labelled review sheets from any image folder.
+
+### The brand lockup
+
+The client's logo export is a flattened RGB file on a light studio plate, so it
+cannot sit on the cocoa footer or over the hero film as delivered.
+`scripts/import-brand-logo.mjs` keys the plate out to real alpha — alpha from
+plate deviation, then unpremultiplied so anti-aliased edges keep their colour —
+and writes the two files the site ships:
+
+- `public/brand/aerocotton-mark.png` — the monogram, used in the header and the
+  mobile menu (the wordmark is illegible at nav scale)
+- `public/brand/aerocotton-lockup-dark.png` — the full lockup with its strap-line
+  re-inked light, used in the footer
+
+```bash
+node scripts/import-brand-logo.mjs "<LOGO.png>"
+```
 
 ### The modelled pieces
 

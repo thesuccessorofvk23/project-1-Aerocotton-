@@ -165,7 +165,7 @@ only the loader, not one component. CMS decision answered by contract, not by pr
 | 7 | GSTIN / IEC / legal copy (privacy, terms) | Footer, legal pages |
 | 8 | SPF / DKIM / DMARC records on aerocotton.in | Enquiry deliverability |
 | 9 | Analytics + RFQ conversion events | Measurement from day one |
-| 10 | Final logo / brand assets | Header, OG image, favicon |
+| 10 | Final logo / brand assets | ✅ Header, mobile menu and footer ship the client logo (`public/brand/`); OG image and favicon still generated |
 
 ## Launch Checklist
 
