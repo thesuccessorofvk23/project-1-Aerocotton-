@@ -152,6 +152,26 @@ and writes the two files the site ships:
 node scripts/import-brand-logo.mjs "<LOGO.png>"
 ```
 
+### The hero film
+
+The home page's `<video>` plays `public/hero/hero-cotton-intro.mp4`. Masters
+arrive straight out of an editor — 1080p at ~22 Mbps — which is ten to twenty
+times the bitrate the page can justify: GitHub warns above 50 MiB per file and
+rejects anything over 100 MiB, so a raw master cannot be pushed at all.
+`scripts/import-hero-video.mjs` re-encodes it to CRF 22 (measured SSIM ~0.985
+against the master — under 1% mean pixel difference), which lands around 4 Mbps
+at 1080p:
+
+```bash
+node scripts/import-hero-video.mjs "<master.mp4>"
+```
+
+ffmpeg is not a project dependency; the script uses `$FFMPEG`, then `ffmpeg` on
+`PATH`, then a scratch install at `.pdf-work/tools/` (`npm install ffmpeg-static@5`).
+Editor exports also tend to carry zero-duration duplicate frames in their `stts`
+table, which the encode drops on the way to a clean 30 fps timeline — see the
+header of the script before changing its flags.
+
 ### The modelled pieces
 
 Two products carry a `model` field — `Cotton Tote Bag` (Beach, an untextured
