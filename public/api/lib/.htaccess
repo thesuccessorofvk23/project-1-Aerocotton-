@@ -1,0 +1,11 @@
+# The endpoint library is only ever reached by require from submit.php or
+# health.php. Every file here also refuses to run on its own, so this is a
+# second lock rather than the only one — and unlike a path rule it keeps working
+# if the site is ever installed in a subdirectory.
+<IfModule mod_authz_core.c>
+  Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+  Order allow,deny
+  Deny from all
+</IfModule>

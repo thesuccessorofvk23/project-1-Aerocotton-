@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { NAV_ITEMS, CONTACT_HREF } from "@/lib/site";
+import { NAV_ITEMS, CONTACT_HREF, SUPPORT_HREF } from "@/lib/site";
 import { cn } from "@/lib/cn";
 
 export function MobileNav() {
@@ -42,7 +42,11 @@ export function MobileNav() {
     };
   }, [open]);
 
-  const items = [...NAV_ITEMS, { href: CONTACT_HREF, label: "Contact" }] as const;
+  const items = [
+    ...NAV_ITEMS,
+    { href: CONTACT_HREF, label: "Contact" },
+    { href: SUPPORT_HREF, label: "Request support" },
+  ] as const;
 
   return (
     <>

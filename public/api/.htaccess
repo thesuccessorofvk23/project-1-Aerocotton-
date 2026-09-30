@@ -1,0 +1,52 @@
+# Aero Cotton — mail endpoint.
+#
+# Apache 2.4 (BigRock runs LiteSpeed/Apache with .htaccess enabled).
+# Nothing in this directory is meant to be browsed: only submit.php and
+# health.php are public entry points.
+
+# 1. No directory listings, and hide the .htaccess files themselves.
+Options -Indexes
+<FilesMatch "^\.ht">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# 2. The library, the credentials file and everything they write are private.
+#    (The runtime data/ and logs/ directories also write their own .htaccess,
+#    so they stay private even if this file is ever lost.)
+RedirectMatch 404 ^/api/lib/
+RedirectMatch 404 ^/api/config\.php$
+RedirectMatch 404 ^/api/data/
+RedirectMatch 404 ^/api/logs/
+
+<IfModule mod_authz_core.c>
+  <FilesMatch "^(config\.php|config\.example\.php)$">
+    Require all denied
+  </FilesMatch>
+</IfModule>
+
+# 3. Only the two entry points may be executed; anything else in here is inert.
+<FilesMatch "\.php$">
+  <IfModule mod_authz_core.c>
+    Require all granted
+  </IfModule>
+</FilesMatch>
+
+# 4. Send nothing that hints at the stack.
+<IfModule mod_headers.c>
+  Header always unset X-Powered-By
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# 5. Never cache a submission response.
+<IfModule mod_headers.c>
+  <FilesMatch "\.php$">
+    Header set Cache-Control "no-store, max-age=0"
+  </FilesMatch>
+</IfModule>
