@@ -3,7 +3,7 @@
  * Derives the brand lockup assets used by the site header and footer from a
  * single flattened supplier artwork, and writes them into `public/brand/`.
  *
- *   node scripts/import-brand-logo.mjs "<source.png>"
+ *   node scripts/import-brand-logo.mjs "<source.png>" [--only mark|lockup] [--max-width N]
  *
  * The supplied LOGO.png is a flattened RGB export on a light studio plate, so
  * it cannot be dropped onto the cocoa footer or over the hero film as-is. This
@@ -14,14 +14,31 @@
  *   public/brand/aerocotton-lockup-dark.png full lockup, transparent, with the
  *                                           dark strap-line re-inked light so
  *                                           it survives on the cocoa footer
+ *
+ * `--only` limits the run to one of the two assets, so a newer lockup artwork
+ * can be imported without touching the header mark. `--max-width N` downscales
+ * the outputs to N px wide (they are displayed at ~14rem, so 720 is plenty).
  */
 import fs from "node:fs";
 import path from "node:path";
 import sharp from "sharp";
 
-const src = process.argv[2];
+const argv = process.argv.slice(2);
+const src = argv[0];
+const onlyIndex = argv.indexOf("--only");
+const ONLY = onlyIndex >= 0 ? argv[onlyIndex + 1] : undefined;
+const maxWidthIndex = argv.indexOf("--max-width");
+const MAX_WIDTH = maxWidthIndex >= 0 ? Number(argv[maxWidthIndex + 1]) : 0;
 if (!src) {
-  console.error('usage: node scripts/import-brand-logo.mjs "<source.png>"');
+  console.error('usage: node scripts/import-brand-logo.mjs "<source.png>" [--only mark|lockup] [--max-width N]');
+  process.exit(1);
+}
+if (ONLY && ONLY !== "mark" && ONLY !== "lockup") {
+  console.error(`--only must be "mark" or "lockup", got "${ONLY}"`);
+  process.exit(1);
+}
+if (!Number.isFinite(MAX_WIDTH) || MAX_WIDTH < 0) {
+  console.error("--max-width must be a non-negative number (0 keeps native size)");
   process.exit(1);
 }
 if (!fs.existsSync(src)) {
@@ -85,7 +102,11 @@ async function write(dest, fromY, toY, transform) {
     }
   }
   fs.mkdirSync(OUT, { recursive: true });
-  await sharp(out, { raw: { width: w, height: h, channels: 4 } })
+  let pipeline = sharp(out, { raw: { width: w, height: h, channels: 4 } });
+  if (MAX_WIDTH > 0 && w > MAX_WIDTH) {
+    pipeline = pipeline.resize({ width: MAX_WIDTH, kernel: "lanczos3" });
+  }
+  await pipeline
     .png({ compressionLevel: 9, palette: false })
     .toFile(dest);
   const { size } = fs.statSync(dest);
@@ -104,5 +125,5 @@ function rein(light) {
   };
 }
 
-await write(`${OUT}/aerocotton-mark.png`, 0, monoEnd);
-await write(`${OUT}/aerocotton-lockup-dark.png`, 0, H - 1, rein());
+if (ONLY !== "lockup") await write(`${OUT}/aerocotton-mark.png`, 0, monoEnd);
+if (ONLY !== "mark") await write(`${OUT}/aerocotton-lockup-dark.png`, 0, H - 1, rein());
