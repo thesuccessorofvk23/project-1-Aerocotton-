@@ -143,21 +143,6 @@ export default function ProductsPage() {
         typeCategories={typeCategories}
         seriesCategories={seriesCategories}
       />
-
-      {/* Custom manufacturing CTA — kept from the previous page */}
-      <section className="aero-plp__custom bg-ink py-20 text-ivory">
-        <Container>
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="eyebrow justify-center !text-fog">Custom manufacturing</p>
-            <h2 className="font-display mt-5 text-display-md text-ivory">
-              Don&apos;t see it? It&apos;s probably a programme we already run.
-            </h2>
-            <p className="mx-auto mt-6 max-w-xl text-base/loose text-fog">              Buyer palettes, private-label weaving, custom sizes, packaging —
-              the catalogue is the starting point, not the limit.
-            </p>
-          </div>
-        </Container>
-      </section>
     </>
   );
 }
