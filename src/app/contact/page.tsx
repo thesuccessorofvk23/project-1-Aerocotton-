@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 import { company } from "@/content/company";
-import { RfqForm } from "@/components/rfq/RfqForm";
+import { EnquiryForm } from "@/components/forms/EnquiryForm";
 
 export const metadata: Metadata = pageMeta({
   title: "Contact — request a quote",
@@ -21,9 +21,13 @@ export default function ContactPage() {
             alt="Airy interior styled with Aerocotton textiles"
           />
           <div className="aero-contact__visual-veil" aria-hidden="true" />
-          <p className="aero-contact__wordmark">
-            <span>Aero&nbsp;Cotton</span>
-          </p>
+          <img
+            src="/brand/aerocotton-lockup-dark.png"
+            alt="Aero Cotton — Textiles & Home Furnishing"
+            width={720}
+            height={659}
+            className="aero-contact__wordmark"
+          />
           <p className="aero-contact__visual-caption">
             Karur / Tamil Nadu · Since {company.founded}
           </p>
@@ -35,8 +39,9 @@ export default function ContactPage() {
             <h1 className="aero-contact__title">Contact</h1>
             <p className="aero-contact__lede">
               Quotations, sample boxes and custom programmes — one enquiry
-              reaches the right people at the mill. We reply within two
-              business days.
+              reaches the right people at the mill. Every enquiry is
+              acknowledged by email with a reference number, and we reply within
+              two business days.
             </p>
           </div>
 
@@ -90,7 +95,7 @@ export default function ContactPage() {
             {/* Enquiry form */}
             <div className="aero-contact__form">
               <h2>Trade enquiries</h2>
-              <RfqForm variant="compact" />
+              <EnquiryForm />
             </div>
           </div>
         </div>

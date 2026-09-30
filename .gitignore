@@ -21,6 +21,12 @@ yarn-error.log*
 .env
 .env*.local
 
+# mail endpoint — real credentials and runtime state never enter the repo
+/public/api/config.php
+/public/api/lib/config.php
+/public/api/data/
+/public/api/logs/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

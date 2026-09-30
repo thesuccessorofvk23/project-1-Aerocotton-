@@ -12,6 +12,9 @@ export const NAV_ITEMS = [
 
 export const CONTACT_HREF = "/contact";
 
+/** The Request Support form — order, delivery, quality and aftercare. */
+export const SUPPORT_HREF = "/support";
+
 export const COLLECTIONS = [
   "nature",
   "mountain",

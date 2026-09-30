@@ -128,6 +128,27 @@ only the loader, not one component. CMS decision answered by contract, not by pr
 **Exit criteria:** no client-exposed secrets; all spam surfaces closed.
 **Status:** ✅ (Turnstile + analytics pending client accounts)
 
+### Phase 8b — Contact & Request Support (live email) ✅
+
+- `public/api/submit.php` on the PHP host the site actually runs on: validation,
+  sanitising, origin allow-list, per-IP rate limit, daily cap, honeypot, timing
+  check, optional Turnstile, attachment typing by magic bytes, credential masking
+- SMTP delivery through the domain mailbox; success is reported to the browser
+  only after the mail server accepts the message — a failure shows an error and
+  keeps the form filled, and logs the submission in full so no enquiry is lost
+- Reference numbers (`AH-2026-000123`), notification with `Reply-To`, and an
+  acknowledgement email quoting the same reference
+- `/support` page with the Request Support form; `/contact` now posts for real
+  instead of opening a `mailto:` draft
+- Secrets only in `public/api/config.php` (git-ignored); `health.php` gives the
+  host a token-gated self-check
+
+**Exit criteria:** both forms deliver real email end to end; no credential in
+client code. **Status:** ✅ verified against a local PHP server and SMTP sink —
+60 endpoint assertions plus a browser run of both forms, including the
+delivery-failure and retry paths. Still open: the client's real mailbox
+credentials and the destination inbox.
+
 ---
 
 ## Phase 9 — SEO, Metadata & Performance

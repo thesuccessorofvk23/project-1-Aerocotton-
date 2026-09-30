@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CONTACT_HREF, SITE_URL } from "@/lib/site";
+import { CONTACT_HREF, SITE_URL, SUPPORT_HREF } from "@/lib/site";
 import { company } from "@/content/company";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
@@ -19,6 +19,7 @@ const collectionLinks = [
 const connectLinks = [
   ["Contact", CONTACT_HREF],
   ["Request a quote", CONTACT_HREF],
+  ["Request support", SUPPORT_HREF],
   ["404 / Lost", "/404"],
   ["Shipping & returns", "/customer-care/shipping-returns-policy"],
 ] as const;
@@ -53,8 +54,8 @@ export function Footer() {
               <img
                 src="/brand/aerocotton-lockup-dark.png"
                 alt="Aero Cotton — Textiles & Home Furnishing"
-                width={295}
-                height={270}
+                width={720}
+                height={659}
                 className="site-footer__logo"
               />
               <p className="site-footer__description">{company.tagline}. Woven in Karur, Tamil Nadu.</p>
