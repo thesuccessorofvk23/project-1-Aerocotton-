@@ -11,8 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/`, changeFrequency: "monthly" as const, priority: 1 },
     { url: `${SITE_URL}/about`, changeFrequency: "monthly" as const, priority: 0.8 },
     { url: `${SITE_URL}/products`, changeFrequency: "weekly" as const, priority: 0.9 },
-    { url: `${SITE_URL}/sustainability`, changeFrequency: "monthly" as const, priority: 0.6 },
-    { url: `${SITE_URL}/global-presence`, changeFrequency: "monthly" as const, priority: 0.7 },
     { url: `${SITE_URL}/contact`, changeFrequency: "yearly" as const, priority: 0.9 },
     { url: `${SITE_URL}/support`, changeFrequency: "yearly" as const, priority: 0.7 },
   ].map((entry) => ({ ...entry, lastModified: now }));
