@@ -886,7 +886,10 @@ body::after {
 .aero-final__cta { display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 2.2rem; border-bottom: 1px solid var(--color-brass-deep); padding-bottom: 0.35rem; color: var(--color-ink); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; transition: color 250ms ease, gap 250ms var(--ease-out-soft); }
 .aero-final__cta:hover { color: var(--color-brass-deep); gap: 1rem; }
 .aero-final__media { position: relative; min-height: clamp(30rem, 48vw, 44rem); overflow: hidden; background: var(--color-cotton); }
-.aero-final__media img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.75) contrast(1.03); }
+/* The frame, not the still, sets the panel's shape: the image is taken out of
+   flow so a portrait source is cropped to the band instead of stretching the
+   section to its own aspect. */
+.aero-final__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(0.75) contrast(1.03); }
 .aero-final__media::after { position: absolute; inset: 0; content: ''; opacity: 0.14; background-image: var(--noise-url); mix-blend-mode: multiply; pointer-events: none; }
 .aero-final__caption { position: absolute; z-index: 1; bottom: 1.1rem; left: 1.2rem; color: var(--color-ivory); font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; text-shadow: 0 1px 10px rgba(23, 22, 20, 0.45); }
 
@@ -1175,23 +1178,19 @@ html.intro-armed [data-intro-stage] {
   pointer-events: none;
 }
 
-.aero-contact__wordmark {
+/* Wordmark on the contact photo panel — the full brand lockup, keyed to
+   transparency so the photo shows around it. Weighted above the panel's own
+   `.aero-contact__visual > img` full-bleed photo rule (higher specificity),
+   which would otherwise stretch it across the whole panel. */
+.aero-contact__visual > img.aero-contact__wordmark {
   position: absolute;
   z-index: 2;
   top: 1.5rem;
   left: 1.5rem;
-}
-
-.aero-contact__wordmark span {
-  display: inline-block;
-  border: 1px solid rgba(244, 240, 232, 0.85);
-  padding: 0.55rem 0.9rem;
-  color: var(--color-ivory);
-  font-family: var(--font-sans);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
+  width: clamp(7.5rem, 10vw, 9.5rem);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 12px rgba(23, 22, 20, 0.35));
 }
 
 .aero-contact__visual-caption {
