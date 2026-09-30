@@ -36,9 +36,6 @@ export function PolicyPage({
               <nav aria-label="Customer care pages" className="mt-6 border-l border-hairline pl-5">
                 <ul className="space-y-3 text-sm">
                   <li><Link className="text-umber hover:text-brass-deep" href="/customer-care">Customer care</Link></li>
-                  <li><Link className="text-umber hover:text-brass-deep" href="/care-guide">Care guide</Link></li>
-                  <li><Link className="text-umber hover:text-brass-deep" href="/customer-care/shipping-returns-policy">Shipping &amp; returns</Link></li>
-                  <li><Link className="text-umber hover:text-brass-deep" href="/customer-care/terms-conditions">Terms &amp; conditions</Link></li>
                   <li><Link className="text-umber hover:text-brass-deep" href="/customer-care/privacy-policy">Privacy policy</Link></li>
                 </ul>
               </nav>

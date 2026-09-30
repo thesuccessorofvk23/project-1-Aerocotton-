@@ -6,8 +6,6 @@ export const SITE_URL =
 export const NAV_ITEMS = [
   { href: "/about", label: "About" },
   { href: "/products", label: "Catalogue" },
-  { href: "/sustainability", label: "Sustainability" },
-  { href: "/global-presence", label: "Global" },
 ] as const;
 
 export const CONTACT_HREF = "/contact";

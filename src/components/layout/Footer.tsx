@@ -6,22 +6,17 @@ import { Reveal } from "@/components/motion/Reveal";
 
 const companyLinks = [
   ["About", "/about"],
-  ["Sustainability", "/sustainability"],
 ] as const;
 
 const collectionLinks = [
   ["Collections", "/products"],
-  ["Global presence", "/global-presence"],
   ["Customer care", "/customer-care"],
-  ["Care guide", "/care-guide"],
 ] as const;
 
 const connectLinks = [
   ["Contact", CONTACT_HREF],
   ["Request a quote", CONTACT_HREF],
   ["Request support", SUPPORT_HREF],
-  ["404 / Lost", "/404"],
-  ["Shipping & returns", "/customer-care/shipping-returns-policy"],
 ] as const;
 
 function FooterLink({ label, href }: { label: string; href: string }) {
@@ -81,8 +76,6 @@ export function Footer() {
         <div className="site-footer__bottom">
           <div className="site-footer__legal">
             <Link href="/customer-care/privacy-policy">Privacy policy</Link>
-            <Link href="/customer-care/terms-conditions">Terms &amp; conditions</Link>
-            <Link href="/customer-care/shipping-returns-policy">Shipping &amp; returns</Link>
           </div>
           <div className="site-footer__copyright">
             <a href={SITE_URL}>aerocotton.in</a>
