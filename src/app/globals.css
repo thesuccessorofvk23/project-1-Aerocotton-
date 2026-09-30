@@ -2083,7 +2083,8 @@ html.intro-armed [data-intro-stage] {
   .aero-models__media { aspect-ratio: 1 / 1; }
 }
 
-/* ── 10 — Location: the Karur address beside the client's Google map ──── */
+/* ── Location — the Karur address beside the client's Google map.
+   Lives on the contact page, below the enquiry form. ─────────────────── */
 .aero-location { border-top: 1px solid var(--color-hairline); }
 
 .aero-location__grid {
@@ -2603,8 +2604,6 @@ html.intro-armed [data-intro-stage] {
   background: var(--color-ink);
   color: var(--color-ivory);
 }
-
-.aero-plp__custom { margin-top: 1rem; }
 
 @media (max-width: 1100px) {
   .aero-plp__layout { grid-template-columns: 1fr; gap: 2rem; }
