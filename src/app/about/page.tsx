@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/motion/Reveal";
 import {
   company,
-  journey,
   values,
   aboutStory,
-  aboutCapabilities,
   aboutQuote,
   aboutLetter,
   productRange,
@@ -21,25 +18,6 @@ export const metadata: Metadata = pageMeta({
     "Aerocotton is a manufacturer and exporter of home textiles based in Karur, Tamil Nadu, India — with its own weaving and stitching units, a network of printing, and over 15 years of textile export experience.",
   path: "/about",
 });
-
-/** Line icons for the three principle cards (stroke style, rendered white). */
-const principleIcons = [
-  // Weave — own weaving & stitching
-  <svg key="weave" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" aria-hidden="true">
-    <path d="M3 6h14M3 10h14M3 14h14M6 3v14M10 3v14M14 3v14" opacity="0.9" />
-  </svg>,
-  // Print roller — network of printing
-  <svg key="print" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <rect x="3" y="4" width="14" height="5" rx="1.5" />
-    <path d="M6 9v3a2 2 0 0 0 2 2h4" />
-    <path d="M10 14v3" />
-  </svg>,
-  // Pen & rule — bespoke developments
-  <svg key="bespoke" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M12.5 3.5l4 4L7 17H3v-4l9.5-9.5z" />
-    <path d="M10.5 5.5l4 4" />
-  </svg>,
-] as const;
 
 /** Team floor cards — activities named in the facility copy, real photography. */
 const teamFloors = [
@@ -57,45 +35,30 @@ export default function AboutPage() {
           <Reveal>
             <div className="aero-about-hero">
               <img
-                src="/images/editorial/workshop-detail.jpg"
+                src="/images/editorial/batik-linen-swirl.jpg"
                 alt=""
                 aria-hidden="true"
                 className="aero-about-hero__img"
               />
               <span className="aero-about-hero__brand">AERO&nbsp;COTTON</span>
               <h1 className="aero-about-hero__title">About Us</h1>
-              <p className="aero-about-hero__sub">
-                A family, a town, and one fibre &mdash; {company.city},{" "}
-                {company.region}
-              </p>
             </div>
           </Reveal>
         </Container>
       </section>
 
-      {/* Principles — light rounded panel with statement + three cards */}
-      <section className="aero-about-panel-wrap">
+      {/* Word from the managing director — sits directly below the banner */}
+      <section className="aero-about-quote">
         <Container>
           <Reveal>
-            <div className="aero-about-panel">
-              <span className="aero-about-pill">Principles</span>
-              <p className="aero-about-statement">
-                Aerocotton is built on a simple idea:{" "}
-                <span>quality should be specified, never claimed.</span> We
-                focus on how real cloth is made.
+            <blockquote className="mx-auto max-w-4xl text-center">
+              <p className="font-display text-display-md text-ink">
+                &ldquo;{aboutQuote.text}&rdquo;
               </p>
-              <div className="aero-about-cards">
-                {aboutCapabilities.map((capability, i) => (
-                  <article key={capability.title} className="aero-about-card">
-                    <span className="aero-about-card__icon" aria-hidden="true">
-                      {principleIcons[i]}
-                    </span>
-                    <h3>{capability.title}</h3>
-                    <p>{capability.body}</p>
-                  </article>
-                ))}
-              </div>
-            </div>
+              <footer className="mt-8 text-2xs uppercase tracking-[0.24em] text-taupe">
+                &mdash; {aboutQuote.author}, {aboutQuote.role}
+              </footer>
+            </blockquote>
           </Reveal>
         </Container>
       </section>
@@ -194,48 +157,6 @@ export default function AboutPage() {
               on very large hook designs, and finished with lurex products,
               fancy fringes and beads.
             </p>
-          </Reveal>
-        </Container>
-      </section>
-
-      {/* Journey timeline */}
-      <section className="bg-cocoa py-24 text-ivory md:py-32">
-        <Container>
-          <Reveal>
-            <SectionHeading
-              eyebrow="Our journey"
-              title="Milestones, honestly kept."
-              tone="ivory"
-            />
-          </Reveal>
-          <ol className="mt-16 grid gap-10 md:grid-cols-4">
-            {journey.map((item, i) => (
-              <Reveal key={item.title} delay={i * 100}>
-                <li className="border-t-2 border-brass/60 pt-6">
-                  <p className="font-display text-3xl text-brass">{item.year}</p>
-                  <h3 className="mt-3 text-sm font-semibold uppercase tracking-[0.18em] text-ivory">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 text-sm/relaxed text-fog">{item.body}</p>
-                </li>
-              </Reveal>
-            ))}
-          </ol>
-        </Container>
-      </section>
-
-      {/* Quote — from the company profile letter */}
-      <section className="bg-ivory py-24 md:py-32">
-        <Container>
-          <Reveal>
-            <blockquote className="mx-auto max-w-4xl text-center">
-              <p className="font-display text-display-md text-ink">
-                &ldquo;{aboutQuote.text}&rdquo;
-              </p>
-              <footer className="mt-8 text-2xs uppercase tracking-[0.24em] text-taupe">
-                &mdash; {aboutQuote.author}, {aboutQuote.role}
-              </footer>
-            </blockquote>
           </Reveal>
         </Container>
       </section>

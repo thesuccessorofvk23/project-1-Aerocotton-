@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { pageMeta } from "@/lib/seo";
 import { CinematicLoadingScreen } from "@/components/home/CinematicLoadingScreen";
+import { HeroVideo } from "@/components/home/HeroVideo";
 import { HomeBelowHero } from "@/components/home/HomeBelowHero";
 
 export const metadata: Metadata = pageMeta({
@@ -16,17 +17,7 @@ export default function HomePage() {
   <CinematicLoadingScreen>
     <>
       <section data-luxury-section="hero" data-intro-stage="hero" className="hero-editorial relative flex min-h-[100svh] overflow-hidden bg-cotton text-ink">
-        <video
-          className="hero-editorial__video absolute inset-0 h-full w-full object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          aria-label="Cotton fields, raw fleece and loom weaving"
-        >
-          <source src="/hero/hero-cotton-intro.mp4" type="video/mp4" />
-        </video>
+        <HeroVideo />
         <div className="hero-editorial__grid absolute inset-0" aria-hidden="true" />
 
         <div className="relative z-10 flex min-h-[100svh] w-full flex-col px-6 pb-8 pt-28 md:px-10 md:pb-10 md:pt-32">
