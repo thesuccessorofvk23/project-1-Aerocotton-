@@ -2,20 +2,26 @@ import Link from "next/link";
 import { collections } from "@/content/collections";
 
 /**
- * Section 03 — "New collection" — a five-panel curved hover gallery.
+ * The "New collection" row — a five-panel curved hover gallery.
  *
  * Five equal vertical panels on a subtle upward arch; hovering (or keyboard
  * focusing) a panel expands it while the others contract. Pure CSS flex-grow
  * transition — no client JS, no layout shift outside the row.
+ *
+ * Each panel is a way into the catalogue rather than a single sample: it
+ * shows the category (the collection's own name and how many designs sit in
+ * it) and links to that collection's page.
  */
 
-export type GalleryProduct = {
+export type GalleryPanel = {
   image: string;
+  /** The category this panel stands for. */
   name: string;
-  price: string;
+  /** Category-level line — how many designs the collection holds. */
+  count: string;
   intro: string;
   href: string;
-  /** Corner flag on the media — set for the 3D piece. */
+  /** Corner flag on the media — set where the category holds a modelled piece. */
   badge?: string;
   ariaLabel: string;
 };
@@ -30,68 +36,43 @@ const PANEL_IMAGES: Record<string, string> = {
   lake: "/images/editorial/textile-interior.jpg",
 };
 
-/**
- * The centre panel is the row's focal point, so it carries the catalogue's 3D
- * piece and links straight to that product's page — where the sample can be
- * turned over — rather than to its collection.
- */
-const FEATURED = { collection: "beach", product: "cotton-tote-bag" } as const;
-
-/** Exactly five panels — the first five mapped collections' lead products. */
-const products: GalleryProduct[] = collections
+/** Exactly five panels — the first five mapped collections, as categories. */
+const panels: GalleryPanel[] = collections
   .filter((collection) => PANEL_IMAGES[collection.slug])
   .slice(0, 5)
   .map((collection) => {
-    const featured =
-      collection.slug === FEATURED.collection
-        ? collection.products.find((item) => item.slug === FEATURED.product)
-        : undefined;
-
-    if (featured) {
-      return {
-        image: featured.image,
-        name: `${collection.name} — ${featured.name}`,
-        price: "Realtime 3D",
-        intro: featured.tagline,
-        href: `/products/${collection.slug}/${featured.slug}`,
-        badge: "3D",
-        ariaLabel: `${featured.name} — open the 3D product page`,
-      };
-    }
-
+    const pieces = collection.products.length;
     return {
       image: PANEL_IMAGES[collection.slug],
-      name: `${collection.name} — ${collection.products[0].name}`,
-      price: `From ${
-        collection.products[0].specs.find((spec) => spec.label === "Weight")?.value ??
-        "made to order"
-      }`,
+      name: collection.name,
+      count: `${pieces} ${pieces === 1 ? "design" : "designs"}`,
       intro: collection.intro,
       href: `/products/${collection.slug}`,
-      ariaLabel: `${collection.name} — view the collection`,
+      badge: collection.products.some((product) => product.model) ? "3D" : undefined,
+      ariaLabel: `${collection.name} collection — view all ${pieces} designs`,
     };
   });
 
 export function CollectionGallery() {
   return (
-    <div className="aero-gallery__row" role="list" aria-label="New collection highlights">
-      {products.map((product, index) => (
-        <div key={product.href} role="listitem" className="aero-gallery__panel">
-          <Link href={product.href} className="aero-gallery__link" aria-label={product.ariaLabel}>
+    <div className="aero-gallery__row" role="list" aria-label="New collection categories">
+      {panels.map((panel, index) => (
+        <div key={panel.href} role="listitem" className="aero-gallery__panel">
+          <Link href={panel.href} className="aero-gallery__link" aria-label={panel.ariaLabel}>
             <span className="aero-gallery__media">
               <img
-                src={product.image}
-                alt={product.name}
+                src={panel.image}
+                alt={`${panel.name} collection`}
                 loading={index === 0 ? "eager" : "lazy"}
                 draggable={false}
               />
-              {product.badge && <span className="aero-gallery__badge">{product.badge}</span>}
+              {panel.badge && <span className="aero-gallery__badge">{panel.badge}</span>}
             </span>
             <span className="aero-gallery__info">
-              <strong>{product.name}</strong>
-              <small>{product.price}</small>
+              <strong>{panel.name}</strong>
+              <small>{panel.count}</small>
               <span className="aero-gallery__intro" aria-hidden="true">
-                {product.intro}
+                {panel.intro}
               </span>
             </span>
           </Link>
