@@ -174,209 +174,219 @@ body::after {
   }
 }
 
+/* ── Site footer — reference: dark charcoal-brown bar. Brand lockup left
+   (AC mark + two-tone AEROCOTTON wordmark + tagline), horizontal nav centre,
+   vertical rule + social icons right, legal row below a hairline. ── */
 .site-footer {
-  position: relative;
-  overflow: hidden;
-  background: var(--color-cocoa);
-  color: #eef0e8;
-  isolation: isolate;
-}
-
-.site-footer::before {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  content: "";
-  opacity: 0.3;
-  background:
-    radial-gradient(circle at 15% 0%, rgba(134, 155, 111, 0.18), transparent 34%),
-    var(--noise-url);
-  pointer-events: none;
+  background: linear-gradient(160deg, #241d18 0%, #1d1713 58%, #1b1511 100%);
+  color: #f4f0e8;
 }
 
 .site-footer__inner {
-  position: relative;
-  padding-top: clamp(4rem, 9vw, 8rem);
+  width: 100%;
+  max-width: 97rem;
+  margin-inline: auto;
+  padding: clamp(4.5rem, 7vw, 6.75rem) clamp(1.5rem, 6vw, 6rem) clamp(3rem, 4.5vw, 4.5rem);
 }
 
+/* Upper row — three zones: identity · nav · social rail. */
 .site-footer__top {
   display: grid;
-  grid-template-columns: minmax(15rem, 0.9fr) minmax(0, 1.5fr);
-  gap: clamp(3rem, 10vw, 10rem);
+  grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
+  align-items: center;
+  gap: clamp(2.5rem, 5vw, 5rem);
 }
 
 .site-footer__identity {
-  max-width: 20rem;
+  min-width: 0;
 }
 
-/* Brand lockup, keyed off its plate so the cocoa ground shows through. */
+/* AC mark, then the two-tone wordmark and uppercase tagline beneath. */
 .site-footer__logo {
   display: block;
-  width: clamp(11rem, 15vw, 14rem);
+  width: clamp(4.25rem, 6vw, 6rem);
   height: auto;
 }
 
-.site-footer__description,
-.site-footer__address {
-  color: rgba(220, 227, 213, 0.68);
-  font-size: 0.875rem;
-  line-height: 1.7;
+.site-footer__brandword {
+  margin-top: 0.4rem;
+  font-size: clamp(0.95rem, 1.1vw, 1.15rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1;
 }
 
-.site-footer__description {
-  margin-top: 1.5rem;
-  max-width: 17rem;
-}
+.site-footer__brandword-aero { color: #00b4ff; }
+.site-footer__brandword-cotton { color: #feb93e; }
 
-.site-footer__address {
-  margin-top: 2rem;
-  font-style: normal;
-}
-
-.site-footer__contact {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-top: 2rem;
-  color: #f3f1e9;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  transition: color 220ms ease;
-}
-
-.site-footer__contact span,
-.site-footer__arrow {
-  transition: transform 220ms ease;
-}
-
-.site-footer__contact:hover {
-  color: #b9c5aa;
-}
-
-.site-footer__contact:hover span {
-  transform: translate(3px, -3px);
-}
-
-.site-footer__navigation {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1.5rem, 4vw, 4rem);
-}
-
-.site-footer__label {
-  color: rgba(185, 197, 170, 0.7);
-  font-size: 0.6875rem;
-  font-weight: 600;
+.site-footer__tagline {
+  margin-top: 0.55rem;
+  color: rgba(244, 240, 232, 0.78);
+  font-size: clamp(0.58rem, 0.75vw, 0.68rem);
+  font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-}
-
-.site-footer__links {
-  margin-top: 1.25rem;
-}
-
-.site-footer__links li {
-  border-bottom: 1px solid rgba(221, 229, 213, 0.14);
-}
-
-.site-footer__link {
-  display: flex;
-  min-height: 3.25rem;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  color: rgba(239, 241, 232, 0.82);
-  font-size: 0.875rem;
-  transition: color 220ms ease, padding 220ms ease;
-}
-
-.site-footer__arrow {
-  color: rgba(185, 197, 170, 0.72);
-  font-size: 1rem;
-}
-
-.site-footer__link:hover {
-  padding-inline: 0.3rem;
-  color: #ffffff;
-}
-
-.site-footer__link:hover .site-footer__arrow {
-  transform: translate(3px, -2px);
-}
-
-.site-footer__wordmark {
-  position: relative;
-  left: 50%;
-  width: max-content;
-  margin-top: clamp(4rem, 11vw, 10rem);
-  color: rgba(185, 197, 170, 0.18);
-  font-family: var(--font-sans);
-  font-size: clamp(5rem, 18vw, 18rem);
-  font-weight: 600;
-  letter-spacing: -0.09em;
-  line-height: 0.68;
-  transform: translateX(-50%);
-  user-select: none;
   white-space: nowrap;
 }
 
-.site-footer__bottom {
+.site-footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem clamp(1.5rem, 3vw, 3.1rem);
+}
+
+.site-footer__navlink {
+  border-bottom: 2px solid transparent;
+  color: rgba(238, 233, 226, 0.6);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  padding-bottom: 0.4rem;
+  text-transform: uppercase;
+  transition: color 220ms ease, border-color 220ms ease;
+  white-space: nowrap;
+}
+
+.site-footer__navlink:hover {
+  color: #ffffff;
+}
+
+/* The reference marks the current page with a short white underline. */
+.site-footer__navlink[aria-current="page"] {
+  border-bottom-color: #ffffff;
+  color: #ffffff;
+}
+
+/* Vertical rule, then the four social icons. */
+.site-footer__social {
   display: flex;
   align-items: center;
+  gap: clamp(1.75rem, 3vw, 3rem);
+}
+
+.site-footer__social-rule {
+  background: rgba(244, 240, 232, 0.24);
+  height: clamp(3.25rem, 4.5vw, 4.25rem);
+  width: 1px;
+}
+
+.site-footer__social-list {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.4rem, 2.4vw, 2.5rem);
+}
+
+.site-footer__social-link {
+  color: rgba(244, 240, 232, 0.85);
+  display: grid;
+  place-items: center;
+  transition: color 220ms ease, transform 220ms ease;
+}
+
+.site-footer__social-link svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.site-footer__social-link:hover {
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Placeholder handles render inert until the client confirms URLs. */
+.site-footer__social-link--pending {
+  opacity: 0.35;
+}
+
+/* Lower row — copyright left, legal links right, hairline above. */
+.site-footer__bottom {
+  border-top: 1px solid rgba(244, 240, 232, 0.16);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
-  padding: 1.5rem 0 1.75rem;
-  border-top: 1px solid rgba(221, 229, 213, 0.14);
-  color: rgba(185, 197, 170, 0.68);
-  font-size: 0.6875rem;
-  letter-spacing: 0.12em;
-  line-height: 1.6;
+  gap: 1.25rem 2rem;
+  margin-top: clamp(3rem, 4.5vw, 4.25rem);
+  padding-top: clamp(1.75rem, 2.75vw, 2.5rem);
+}
+
+.site-footer__copyright {
+  color: rgba(244, 240, 232, 0.55);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
-.site-footer__legal,
-.site-footer__copyright {
+.site-footer__legal {
+  align-items: center;
+  color: rgba(244, 240, 232, 0.55);
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.25rem;
+  font-size: 0.68rem;
+  font-weight: 500;
+  gap: 1rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
-.site-footer__legal a,
-.site-footer__copyright a {
+.site-footer__legal a {
   transition: color 220ms ease;
 }
 
-.site-footer__legal a:hover,
-.site-footer__copyright a:hover {
-  color: #f3f1e9;
+.site-footer__legal a:hover {
+  color: #ffffff;
 }
 
-@media (max-width: 800px) {
+.site-footer__legal-sep {
+  opacity: 0.45;
+}
+
+/* Tablet — stack the three zones, left-aligned. */
+@media (max-width: 1000px) {
   .site-footer__top {
     grid-template-columns: 1fr;
-    gap: 4rem;
+    gap: 2.75rem;
+    justify-items: start;
   }
 
-  .site-footer__identity {
-    max-width: 24rem;
+  .site-footer__nav {
+    justify-content: flex-start;
+  }
+
+  .site-footer__social-rule {
+    display: none;
   }
 }
 
+/* Phone — tighter type, stacked legal row. */
 @media (max-width: 560px) {
-  .site-footer__navigation {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
+  .site-footer__inner {
+    padding-inline: 1.25rem;
+  }
+
+  .site-footer__nav {
+    gap: 0.9rem 1.4rem;
+  }
+
+  .site-footer__navlink {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+  }
+
+  .site-footer__social-list {
+    gap: 1.6rem;
+  }
+
+  .site-footer__tagline {
+    white-space: normal;
   }
 
   .site-footer__bottom {
     align-items: flex-start;
     flex-direction: column;
-  }
-
-  .site-footer__wordmark {
-    font-size: 26vw;
+    gap: 1.1rem;
   }
 }
 
