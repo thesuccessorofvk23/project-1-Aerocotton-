@@ -2691,21 +2691,8 @@ html.intro-armed [data-intro-stage] {
   line-height: 1;
 }
 
-.aero-about-hero__sub {
-  margin-top: 0.9rem;
-  max-width: 30rem;
-  color: rgba(244, 240, 232, 0.78);
-  font-size: 0.9rem;
-  line-height: 1.6;
-}
-
-.aero-about-panel-wrap { background: var(--color-ivory); padding: 1.2rem 0 0; }
-
-.aero-about-panel {
-  border-radius: 1.4rem;
-  background: var(--color-linen);
-  padding: clamp(2rem, 4vw, 3.6rem);
-}
+/* Managing director's word — reads as a caption under the banner card. */
+.aero-about-quote { background: var(--color-ivory); padding: clamp(2.6rem, 5vw, 4rem) 0 0; }
 
 .aero-about-pill {
   display: inline-flex;
@@ -2716,19 +2703,6 @@ html.intro-armed [data-intro-stage] {
   font-size: 0.66rem;
   font-weight: 500;
 }
-
-.aero-about-statement {
-  margin-top: 2rem;
-  max-width: 44rem;
-  color: var(--color-ink);
-  font-family: var(--font-sans);
-  font-size: clamp(1.5rem, 2.6vw, 2.15rem);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.25;
-}
-
-.aero-about-statement span { color: var(--color-taupe); }
 
 .aero-about-cards {
   display: grid;
