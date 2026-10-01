@@ -1441,6 +1441,8 @@ html.intro-armed [data-intro-stage] {
 .aero-campaign--primary .aero-campaign-card__actions span:first-child { padding: 0.42rem 0.62rem; letter-spacing: 0.04em; }
 .aero-campaign-followup__grid { display: grid; gap: 2rem; grid-template-columns: 1fr minmax(15rem, 0.8fr) auto; align-items: center; }
 .aero-proof-collage__visual { position: relative; grid-column: span 6; aspect-ratio: 0.95; overflow: hidden; background: var(--color-cocoa); }
+/* The handloom frame is 16:9 inside a near-square box; hold the crop on the weaver. */
+.aero-proof-collage__visual--loom img { object-position: 32% 50%; }
 .aero-proof-collage__copy { grid-column: span 5 / -1; }
 .aero-proof-collage__stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 2rem; border-top: 1px solid var(--color-outline); }
 .aero-proof-collage__stats div { display: grid; gap: 0.35rem; min-height: 6rem; align-content: center; border-bottom: 1px solid var(--color-outline); }
