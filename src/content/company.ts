@@ -43,6 +43,18 @@ export const company = {
     /** WhatsApp Business deep link target — number required before launch. */
     whatsapp: null as string | null,
   },
+  /**
+   * PLACEHOLDER social channels — the footer design shows WhatsApp,
+   * Instagram, LinkedIn and YouTube icons. No verified public profiles
+   * exist yet (aerocotton.in links to none). Set each URL once confirmed;
+   * until then the icons render inert instead of as dead links.
+   */
+  socials: {
+    whatsapp: null as string | null,
+    instagram: null as string | null,
+    linkedin: null as string | null,
+    youtube: null as string | null,
+  },
 } as const;
 
 /** Facts rendered as narrative stats (home, about). CONFIRMED only. */
