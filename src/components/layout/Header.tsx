@@ -49,7 +49,7 @@ export function Header() {
           : "border-b border-white/15 bg-transparent"
       )}
     >
-      <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-4 px-4 py-4 md:px-8 lg:px-10">
+      <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-4 px-4 py-5 md:px-8 lg:px-10">
         <nav aria-label="Primary" className="hidden min-w-0 flex-1 items-center justify-start gap-7 lg:flex">
           {leftNav.map((item) => (
             <Link
@@ -57,7 +57,7 @@ export function Header() {
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
               className={cn(
-                "text-[0.84rem] font-bold uppercase tracking-[0.17em] transition-colors duration-300",
+                "text-[0.95rem] font-bold uppercase tracking-[0.17em] transition-colors duration-300",
                 !condensed
                   ? "text-white/90 hover:text-white"
                   : isActive(item.href)
@@ -82,7 +82,7 @@ export function Header() {
             width={295}
             height={191}
             className={cn(
-              "h-9 w-auto md:h-10",
+              "h-11 w-auto md:h-12",
               !condensed && "drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]"
             )}
           />
@@ -95,11 +95,11 @@ export function Header() {
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
               className={cn(
-                "text-[0.84rem] font-bold uppercase tracking-[0.17em] transition-colors duration-300",
+                "text-[0.95rem] font-bold uppercase tracking-[0.17em] transition-colors duration-300",
                 item.label === "Request a Quote"
                   ? condensed
-                    ? "border border-outline px-5 py-2.5 text-brass-deep hover:border-ink hover:text-ink"
-                    : "border border-white/60 px-5 py-2.5 text-white hover:border-white hover:bg-white hover:text-ink"
+                    ? "border border-outline px-6 py-3 text-brass-deep hover:border-ink hover:text-ink"
+                    : "border border-white/60 px-6 py-3 text-white hover:border-white hover:bg-white hover:text-ink"
                   : !condensed
                     ? "text-white/90 hover:text-white"
                     : isActive(item.href)
