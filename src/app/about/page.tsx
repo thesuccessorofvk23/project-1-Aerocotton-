@@ -19,11 +19,15 @@ export const metadata: Metadata = pageMeta({
   path: "/about",
 });
 
-/** Team floor cards — activities named in the facility copy, real photography. */
+/**
+ * Team floor cards — activities named in the facility copy, real photography.
+ * Each card is a wide, short crop of a landscape photograph, so `focus` keeps
+ * the crop window on the person in frame rather than on the frame's centre.
+ */
 const teamFloors = [
-  { caption: "Weaving floor", image: "/images/editorial/workshop-detail.jpg", alt: "Textile work on the weaving floor" },
-  { caption: "Stitching lines", image: "/images/editorial/textile-interior.jpg", alt: "Stitched textiles in an airy interior" },
-  { caption: "Checking & packing", image: "/images/editorial/woven-texture.jpg", alt: "Close view of woven cotton being checked" },
+  { caption: "Weaving floor", image: "/images/editorial/weaving-floor.jpg", alt: "A weaver working the warp on the weaving floor", focus: "50% 44%" },
+  { caption: "Stitching lines", image: "/images/editorial/textile-interior.jpg", alt: "Stitched textiles in an airy interior", focus: "50% 50%" },
+  { caption: "Checking & packing", image: "/images/editorial/checking-packing.jpg", alt: "Folding checked cotton into a carton at the packing table", focus: "50% 42%" },
 ] as const;
 
 export default function AboutPage() {
@@ -76,7 +80,12 @@ export default function AboutPage() {
             {teamFloors.map((floor, i) => (
               <Reveal key={floor.caption} delay={i * 80}>
                 <figure className="aero-about-team__card">
-                  <img src={floor.image} alt={floor.alt} loading="lazy" />
+                  <img
+                    src={floor.image}
+                    alt={floor.alt}
+                    style={{ objectPosition: floor.focus }}
+                    loading="lazy"
+                  />
                   <figcaption>{floor.caption}</figcaption>
                 </figure>
               </Reveal>
