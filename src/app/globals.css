@@ -201,23 +201,15 @@ body::after {
   min-width: 0;
 }
 
-/* AC mark, then the two-tone wordmark and uppercase tagline beneath. */
+/* The whole brand lockup — mark, wordmark and descriptor in one transparent
+   PNG, keyed for this dark bar. One width carries it: the tablet rule below
+   grows it once the footer's three columns have stacked. */
 .site-footer__logo {
   display: block;
-  width: clamp(4.25rem, 6vw, 6rem);
   height: auto;
+  max-width: 100%;
+  width: clamp(10rem, 15vw, 14.5rem);
 }
-
-.site-footer__brandword {
-  margin-top: 0.4rem;
-  font-size: clamp(0.95rem, 1.1vw, 1.15rem);
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  line-height: 1;
-}
-
-.site-footer__brandword-aero { color: #00b4ff; }
-.site-footer__brandword-cotton { color: #feb93e; }
 
 .site-footer__tagline {
   margin-top: 0.55rem;
@@ -357,6 +349,10 @@ body::after {
 
   .site-footer__social-rule {
     display: none;
+  }
+
+  .site-footer__logo {
+    width: clamp(12.5rem, 26vw, 15rem);
   }
 }
 

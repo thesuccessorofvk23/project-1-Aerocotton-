@@ -72,16 +72,12 @@ export function Footer() {
         <div className="site-footer__top">
           <div className="site-footer__identity">
             <img
-              src="/brand/aerocotton-mark.png"
-              alt="Aero Cotton"
-              width={295}
-              height={191}
+              src="/brand/aerocotton-lockup-footer.png"
+              alt="Aerocotton — Textiles & Home Furnishing"
+              width={760}
+              height={487}
               className="site-footer__logo"
             />
-            <p className="site-footer__brandword" aria-hidden="true">
-              <span className="site-footer__brandword-aero">AERO</span>
-              <span className="site-footer__brandword-cotton">COTTON</span>
-            </p>
             <p className="site-footer__tagline">Textiles for a brighter tomorrow</p>
           </div>
 
