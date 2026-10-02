@@ -31,33 +31,68 @@ export const viewport: Viewport = {
  * already closed when the hero would otherwise flash (see
  * `CinematicLoadingScreen` and the `.cinematic-intro` block in globals.css).
  *
+ * It arms on every full load of the homepage. The curtain is the brand's front
+ * door, and a reload that skipped it read as a broken page, so the once-per-
+ * session gate it used to carry is gone: `?intro=0` is the escape hatch, and a
+ * client-side navigation back to `/` never re-runs this script anyway.
+ *
  * Three class hand-offs drive it, on two timers that cannot be blocked by a
  * dropped frame: `intro-locked` is released the moment the doors start to
- * move (20 ms of slack before the 2.15 s slide) while `intro-armed` keeps the
+ * move (50 ms of slack before the 2.15 s slide) while `intro-armed` keeps the
  * curtain on screen for the whole slide, and `intro-done` retires it once the
- * doors have finished. Nothing here can hold the page hostage — a visitor
- * without JavaScript, with reduced motion, or arriving on any other route
- * simply never gets the classes and never sees the overlay.
+ * doors have finished. Visitors who have asked for no motion get a still
+ * splash instead (`intro-static`), held briefly and retired by the same kind
+ * of timer.
+ *
+ * Nothing here can hold the page hostage — a visitor without JavaScript, or
+ * arriving on any other route, simply never gets the classes and never sees
+ * the overlay. The timers hang off `window.__aeroIntro` so the component can
+ * cancel them when it has to drive the same beats itself on a host whose
+ * animation clock never ticks.
  */
 const introArmer = `(function () {
   var root = document.documentElement;
-  var key = "aero-cotton-intro-seen";
-  var motionOK = !window.matchMedia || !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var path = window.location.pathname.replace(/index\\.html?$/i, "");
-  var home = path === "/" || path === "";
-  var forced = /[?&]intro(=|&|$)/.test(window.location.search);  // ?intro replays it for review
-  if (!home || !motionOK) return;
+  if (path !== "/" && path !== "") return;
+  if (/[?&]intro=(0|off|false)(&|$)/.test(window.location.search)) return;
+
+  var reduced = false;
   try {
-    if (!forced && window.sessionStorage.getItem(key) === "1") return;
-    window.sessionStorage.setItem(key, "1");
+    reduced = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   } catch (error) {}
+
+  var start = window.performance && window.performance.now ? window.performance.now() : Date.now();
+  // The animated opening, or a still splash held for the reduced-motion case.
+  var release = reduced ? 900 : 2200;
+  var hold = reduced ? 900 : 3100;
+
+  var intro = {
+    start: start,
+    reduced: reduced,
+    retired: false,
+    releaseTimer: 0,
+    retireTimer: 0,
+    retire: function () {
+      if (intro.retired) return;
+      intro.retired = true;
+      root.classList.remove("intro-armed", "intro-locked");
+      root.classList.add("intro-done");
+    },
+    /** The component is driving the beats now and owns the ending; the scroll
+     *  lock is released on the original schedule either way. */
+    handOff: function () {
+      window.clearTimeout(intro.retireTimer);
+      intro.retireTimer = 0;
+    },
+  };
+  window.__aeroIntro = intro;
+
   root.classList.add("intro-armed", "intro-locked");
-  root.dataset.introStart = String(window.performance ? performance.now() : Date.now());
-  window.setTimeout(function () { root.classList.remove("intro-locked"); }, 2200);
-  window.setTimeout(function () {
-    root.classList.remove("intro-armed");
-    root.classList.add("intro-done");
-  }, 3100);
+  if (reduced) root.classList.add("intro-static");
+  root.dataset.introStart = String(start);
+
+  intro.releaseTimer = window.setTimeout(function () { root.classList.remove("intro-locked"); }, release);
+  intro.retireTimer = window.setTimeout(intro.retire, hold);
 })();`;
 
 export default function RootLayout({
