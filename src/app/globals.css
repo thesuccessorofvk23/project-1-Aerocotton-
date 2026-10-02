@@ -887,14 +887,16 @@ body::after {
 
 /* ── Homepage opening: two ivory doors that part to reveal the page ────── */
 /* Armed by the before-paint script in `src/app/layout.tsx`, which adds
-   `intro-armed` to <html> on the first home-page visit of a session.
-   Three classes, three separate jobs — keeping them apart matters:
+   `intro-armed` to <html> on every full load of the homepage.
+   Four classes, four separate jobs — keeping them apart matters:
      `intro-armed`  the curtain exists. Set before first paint, cleared only
                     when the doors have finished sliding.
      `intro-locked` scroll is held. Cleared the moment the doors start to
                     move, so the page is live while it is still being revealed.
      `intro-done`   belt and braces: hides the curtain even if the slide never
                     ran, so the overlay can never sit over the page.
+     `intro-static` no motion was asked for: the same curtain, held still for
+                    a moment instead of slid open.
    The overlay is `pointer-events: none` throughout, so it can never gate the
    page even if every timer stalls.
 
@@ -1108,8 +1110,15 @@ html.intro-armed [data-intro-stage] {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cinematic-intro { display: none !important; }
-  html.intro-locked { overflow: auto; }
+  /* A still splash rather than no splash: the brand lockup on the closed
+     doors, with every beat silenced. Scoped to `intro-armed` so `intro-done`
+     can still take it away. */
+  html.intro-armed.intro-static .cinematic-intro { display: block !important; }
+  html.intro-static .cinematic-intro__doors,
+  html.intro-static .cinematic-intro__lockup,
+  html.intro-static .cinematic-intro__part,
+  html.intro-static .cinematic-intro__seam { animation: none !important; }
+  html.intro-static .cinematic-intro__seam { opacity: 0 !important; }
   html.intro-armed [data-intro-stage] { animation: none !important; }
 }
 

@@ -26,7 +26,7 @@ export const metadata: Metadata = pageMeta({
  */
 const teamFloors = [
   { caption: "Weaving floor", image: "/images/editorial/weaving-floor.jpg", alt: "A weaver working the warp on the weaving floor", focus: "50% 44%" },
-  { caption: "Stitching lines", image: "/images/editorial/textile-interior.jpg", alt: "Stitched textiles in an airy interior", focus: "50% 50%" },
+  { caption: "Stitching lines", image: "/images/editorial/stitching-floor.jpg", alt: "Operators at JUKI machines stitching hems on the stitching floor", focus: "48% 58%" },
   { caption: "Checking & packing", image: "/images/editorial/checking-packing.jpg", alt: "Folding checked cotton into a carton at the packing table", focus: "50% 42%" },
 ] as const;
 

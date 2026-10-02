@@ -15,8 +15,12 @@ const SEAM_FADE = { at: 2300, dur: 500 };
 const LOCKUP_FADE = { at: 2150, dur: 600 };
 const PART = { at: 2150, dur: 850 };
 const END = PART.at + PART.dur;
-/** How long to wait before deciding the host cannot tick CSS animations. */
-const STALL_CHECK = 320;
+/** How long to wait before looking at the host's animation clock, and how long
+ * to watch it for before deciding it is not going to move. */
+const STALL_PROBE = 420;
+const STALL_GAP = 220;
+/** Last resort: the curtain never outlives this, whatever else happens. */
+const RETIRE_GRACE = 400;
 
 const clamp01 = (n: number) => (n < 0 ? 0 : n > 1 ? 1 : n);
 const easeOut = (n: number) => 1 - Math.pow(1 - clamp01(n), 3);
@@ -29,6 +33,9 @@ const eased = (t: number, beat: { at: number; dur: number }) =>
 
 type Beat = { at: number; dur: number };
 
+/** The hand-off the before-paint armer in `layout.tsx` leaves on `window`. */
+type AeroIntro = { handOff?: () => void; retire?: () => void };
+
 /**
  * The homepage opening: two grain-textured ivory doors hold the Aero Cotton
  * lockup, then part from the centre to reveal the hero.
@@ -39,6 +46,18 @@ type Beat = { at: number; dur: number };
  * (headless or software-rendered viewports do this), where keyframes would
  * leave the doors frozen shut. If the doors have not moved shortly after
  * arming, it drives the identical beats from a plain timer instead.
+ *
+ * Two rules keep that rescue from becoming the bug it is there to fix:
+ *
+ *  - It only takes over when the clock has demonstrably *not* moved (sampled
+ *    twice), so a working CSS opening is never cut off mid-slide.
+ *  - It only takes over while there is still an opening left to show. Past
+ *    `END` it retires the curtain instead of replaying — a late rescue must
+ *    never blank the page.
+ *
+ * Every timer below is bounded, every host API is guarded, and the armer's own
+ * fallback timers are cancelled on hand-off, so the overlay is always retired
+ * and never stuck.
  */
 export function CinematicLoadingScreen({
   children,
@@ -49,9 +68,11 @@ export function CinematicLoadingScreen({
 
   useEffect(() => {
     const root = document.documentElement;
-    if (!root.classList.contains("intro-armed")) return;
     const curtain = curtainRef.current;
-    if (!curtain) return;
+    if (!curtain || !root.classList.contains("intro-armed")) return;
+    // A visitor who asked for no motion gets the still splash, which needs
+    // nothing driven; the armer's own timer retires it.
+    if (root.classList.contains("intro-static")) return;
 
     const armer = Number(root.dataset.introStart);
     const start = Number.isFinite(armer) && armer > 0 ? armer : performance.now();
@@ -104,9 +125,18 @@ export function CinematicLoadingScreen({
       }
     };
 
+    let frame = 0;
+    let driving = false;
+    const timers: number[] = [];
+    const later = (fn: () => void, ms: number) => {
+      timers.push(window.setTimeout(fn, ms));
+    };
+
     /** Hand every element back to its unanimated state and retire the curtain. */
     const finish = () => {
-      root.classList.remove("intro-armed");
+      const api = (window as unknown as { __aeroIntro?: AeroIntro }).__aeroIntro;
+      if (api && typeof api.handOff === "function") api.handOff();
+      root.classList.remove("intro-armed", "intro-locked");
       root.classList.add("intro-done");
       [doorLeft, doorRight, seam, lockup, smallLeft, smallRight, largeLeft, largeRight]
         .forEach((el) => el?.removeAttribute("style"));
@@ -116,11 +146,11 @@ export function CinematicLoadingScreen({
       }
     };
 
-    let frame = 0;
-    let driving = false;
     const drive = () => {
       if (driving) return;
       driving = true;
+      const api = (window as unknown as { __aeroIntro?: AeroIntro }).__aeroIntro;
+      if (api && typeof api.handOff === "function") api.handOff();
       root.classList.add("intro-js");
       const step = () => {
         const t = performance.now() - start;
@@ -134,17 +164,49 @@ export function CinematicLoadingScreen({
       step();
     };
 
-    // A running animation has moved off 0 by now; a frozen clock never will.
-    const stallCheck = window.setTimeout(() => {
-      if (typeof document.getAnimations !== "function") return;
-      const door = document
-        .getAnimations()
-        .find((a) => (a as CSSAnimation).animationName === "aero-intro-door-left");
-      if (!door || !door.currentTime) drive();
-    }, STALL_CHECK);
+    /**
+     * How far the CSS door animation has run: `-1` when the host reports no
+     * such animation at all, `null` when it cannot tell us either way.
+     */
+    const doorProgress = (): number | null => {
+      try {
+        if (typeof document.getAnimations !== "function") return null;
+        const door = document
+          .getAnimations()
+          .find((a) => (a as Animation & { animationName?: string }).animationName === "aero-intro-door-left");
+        if (!door) return -1;
+        return typeof door.currentTime === "number" ? door.currentTime : -1;
+      } catch {
+        return null;
+      }
+    };
+
+    // The CSS clock is the primary engine; a working animation has moved off 0
+    // well before this fires. Only a clock that fails to advance over the
+    // sample window is treated as frozen.
+    later(() => {
+      const first = doorProgress();
+      if (first === null) return; // cannot tell — leave the CSS in charge
+      later(() => {
+        if (!root.classList.contains("intro-armed")) return;
+        const second = doorProgress();
+        if (second !== null && second > first) return; // it is moving: CSS wins
+        if (performance.now() - start >= END) {
+          finish(); // too late to replay the opening; just clear the overlay
+          return;
+        }
+        drive();
+      }, STALL_GAP);
+    }, STALL_PROBE);
+
+    // Whatever happened in between — a slow hydration, a throttled tab, a host
+    // that never ticked — the curtain comes down on time.
+    later(() => {
+      if (root.classList.contains("intro-armed")) finish();
+    }, Math.max(0, start + END + RETIRE_GRACE - performance.now()));
 
     return () => {
-      window.clearTimeout(stallCheck);
+      timers.forEach((id) => window.clearTimeout(id));
       window.clearTimeout(frame);
     };
   }, []);
