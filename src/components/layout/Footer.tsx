@@ -78,7 +78,6 @@ export function Footer() {
               height={487}
               className="site-footer__logo"
             />
-            <p className="site-footer__tagline">Textiles for a brighter tomorrow</p>
           </div>
 
           <nav aria-label="Footer" className="site-footer__nav">

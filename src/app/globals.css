@@ -174,9 +174,9 @@ body::after {
   }
 }
 
-/* ── Site footer — reference: dark charcoal-brown bar. Brand lockup left
-   (AC mark + two-tone AEROCOTTON wordmark + tagline), horizontal nav centre,
-   vertical rule + social icons right, legal row below a hairline. ── */
+/* ── Site footer — reference: dark charcoal-brown bar. Brand lockup left,
+   horizontal nav centre, vertical rule + social icons right, legal row below
+   a hairline. ── */
 .site-footer {
   background: linear-gradient(160deg, #241d18 0%, #1d1713 58%, #1b1511 100%);
   color: #f4f0e8;
@@ -209,16 +209,6 @@ body::after {
   height: auto;
   max-width: 100%;
   width: clamp(10rem, 15vw, 14.5rem);
-}
-
-.site-footer__tagline {
-  margin-top: 0.55rem;
-  color: rgba(244, 240, 232, 0.78);
-  font-size: clamp(0.58rem, 0.75vw, 0.68rem);
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  white-space: nowrap;
 }
 
 .site-footer__nav {
@@ -373,10 +363,6 @@ body::after {
 
   .site-footer__social-list {
     gap: 1.6rem;
-  }
-
-  .site-footer__tagline {
-    white-space: normal;
   }
 
   .site-footer__bottom {
