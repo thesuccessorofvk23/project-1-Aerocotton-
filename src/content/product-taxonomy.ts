@@ -56,21 +56,6 @@ export const PRODUCT_TAXONOMY = [
     ],
   },
   {
-    department: "Bath Linen Indoor / Outdoor",
-    categories: [
-      "Bath Ropes",
-      "Bath Towel",
-      "Fouta Towel",
-      "Bath Sheets",
-      "Bath Mats",
-      "Hand Towels",
-      "Face Towels",
-      "Beach Towels",
-      "Shower Curtains",
-      "Hammocks",
-    ],
-  },
-  {
     department: "Functional Fibres Articles",
     categories: [
       "Linen Tablecloth",
@@ -79,21 +64,6 @@ export const PRODUCT_TAXONOMY = [
       "Linen / Cotton Kitchen Cloths",
       "Organic Cotton",
       "Textile Swatches",
-    ],
-  },
-  {
-    department: "Kids Articles",
-    categories: [
-      "Kids Apron",
-      "Muslin Blankets",
-      "Baby Sleeping Bags",
-      "Crib Bumpers",
-      "Carry Nests",
-      "Flannel Blankets",
-      "Baby Nests",
-      "Bumpers",
-      "Baby Diapers",
-      "Baby Beds",
     ],
   },
   {

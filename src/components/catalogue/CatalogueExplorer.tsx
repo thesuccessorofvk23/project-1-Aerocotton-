@@ -257,23 +257,6 @@ export function CatalogueExplorer({
       <div className="aero-plp__strip-wrap border-y border-hairline bg-linen">
         <div className="mx-auto w-full max-w-[2520px] px-6 md:px-10 lg:px-16">
           <div className="aero-plp__strip" role="tablist" aria-label="Product departments">
-            <button
-              type="button"
-              role="tab"
-              aria-selected={activeDepartment === null}
-              className={`aero-plp__cat aero-plp__cat--all ${allTypesSelected ? "is-active" : ""}`}
-              onClick={() => selectDepartment(null)}
-            >
-              <span className="aero-plp__cat-icon" aria-hidden="true">
-                <svg viewBox="0 0 16 16" width="14" height="14">
-                  {[2, 7, 12].flatMap((y) =>
-                    [2, 7, 12].map((x) => <rect key={`${x}-${y}`} x={x} y={y} width="2.4" height="2.4" fill="currentColor" />)
-                  )}
-                </svg>
-              </span>
-              <span className="aero-plp__cat-name">All Products</span>
-              <span className="aero-plp__cat-count">{products.length} Products</span>
-            </button>
             {departmentCategories.map((cat) => (
               <button
                 key={cat.name}

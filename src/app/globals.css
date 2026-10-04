@@ -1453,20 +1453,6 @@ html.intro-armed [data-intro-stage] {
 .aero-process-panel__frame li > span { color: var(--color-brass); font-family: var(--font-sans); font-size: 1.1rem; }
 .aero-process-panel__frame li strong { display: block; margin-top: 0.7rem; color: var(--color-ivory); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; }
 .aero-process-panel__frame li p { margin-top: 0.45rem; color: var(--color-fog); font-size: 0.64rem; line-height: 1.4; }
-.aero-insights__grid { display: grid; gap: clamp(3rem, 9vw, 9rem); grid-template-columns: minmax(15rem, 0.65fr) minmax(0, 1fr); align-items: start; }
-.aero-insights__intro { padding-top: 0.5rem; }
-.aero-insights__list { display: grid; gap: 1rem; }
-.aero-insight-row { display: grid; min-height: 8.5rem; grid-template-columns: minmax(9rem, 0.72fr) minmax(0, 1fr); overflow: hidden; border: 1px solid rgba(77, 95, 82, 0.08); border-radius: 0.5rem; background: #e9ecdf; color: var(--color-ink); transition: transform 320ms var(--ease-out-soft), box-shadow 320ms ease; }
-.aero-insight-row:hover { transform: translateY(-0.2rem); box-shadow: 0 1rem 2rem rgba(42, 33, 28, 0.1); }
-.aero-insight-row__image { position: relative; min-height: 8.5rem; overflow: hidden; background: var(--color-cotton); }
-.aero-insight-row__image::after { position: absolute; inset: 0; content: ""; background: rgba(42, 33, 28, 0.1); }
-.aero-insight-row__image img { display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(0.62) contrast(1.04); transition: transform 500ms var(--ease-out-soft); }
-.aero-insight-row:hover .aero-insight-row__image img { transform: scale(1.04); }
-.aero-insight-row__content { position: relative; display: flex; flex-direction: column; justify-content: center; min-width: 0; padding: 1.25rem 3.5rem 1.25rem 1.4rem; }
-.aero-insight-row__content small { color: var(--color-taupe); font-size: 0.58rem; font-weight: 600; letter-spacing: 0.18em; }
-.aero-insight-row__content h3 { max-width: 24ch; margin-top: 0.65rem; font-family: var(--font-sans); font-size: clamp(0.95rem, 1.5vw, 1.2rem); font-weight: 500; line-height: 1.16; }
-.aero-insight-row__content > span { position: absolute; right: 1.25rem; bottom: 1.1rem; color: var(--color-moss-deep); font-size: 1.1rem; transition: transform 250ms ease; }
-.aero-insight-row:hover .aero-insight-row__content > span { transform: translateX(0.25rem); }
 /* 01 — About Aero Cotton: centered bracket label, drop line, uppercase statement. */
 .aero-origin { text-align: center; }
 .aero-origin__inner { display: flex; flex-direction: column; align-items: center; }
@@ -1529,7 +1515,6 @@ html.intro-armed [data-intro-stage] {
   .aero-catalogue-row__copy { grid-column: auto !important; grid-row: auto !important; height: auto; min-height: 15rem; }
   .aero-catalogue-row__copy { padding: 1.4rem 0 1.4rem 1.4rem; }
   .aero-guide__heading { flex-direction: column; align-items: flex-start; }
-  .aero-insights__grid { grid-template-columns: 1fr; }
   .aero-intro-band__copy, .aero-statement__visual, .aero-statement__copy, .aero-proof__heading, .aero-making__copy, .aero-making__visual { grid-column: 1 / -1; }
   .aero-product-still, .aero-proof__stats { grid-column: 2 / -1; }
   .aero-collection-band, .aero-collection-band--reverse { flex-direction: column; align-items: stretch; }
@@ -1581,13 +1566,8 @@ html.intro-armed [data-intro-stage] {
   .aero-faq__grid > :first-child, .aero-faq__grid > :last-child { grid-column: 1 / -1; }
   .aero-product-line { align-items: flex-start; flex-direction: column; gap: 0.45rem; }
   .aero-process__material { min-height: 16rem; }
-  .aero-insights__grid { gap: 2.5rem; }
-  .aero-insight-row { grid-template-columns: 7rem minmax(0, 1fr); }
-  .aero-insight-row__image { min-height: 7.5rem; }
   .aero-why__cards { grid-template-columns: 1fr; }
   .aero-why-card { min-height: 0; padding: 1.25rem; }
-  .aero-insight-row__content { padding: 0.9rem 2.5rem 0.9rem 0.85rem; }
-  .aero-insight-row__content h3 { font-size: 0.86rem; }
 }
 
 @media (max-width: 900px) {
@@ -2233,27 +2213,6 @@ html.intro-armed [data-intro-stage] {
 
 .aero-plp__cat:hover { border-color: var(--color-ink); transform: translateY(-2px); }
 
-.aero-plp__cat.is-active,
-.aero-plp__cat--all.is-active {
-  border-color: var(--color-ink);
-  background: var(--color-ink);
-}
-
-.aero-plp__cat.is-active .aero-plp__cat-name,
-.aero-plp__cat--all.is-active .aero-plp__cat-name { color: var(--color-ivory); }
-.aero-plp__cat.is-active .aero-plp__cat-count,
-.aero-plp__cat--all.is-active .aero-plp__cat-count { color: rgba(244, 240, 232, 0.6); }
-.aero-plp__cat.is-active .aero-plp__cat-icon { color: var(--color-ivory); }
-
-.aero-plp__cat-icon {
-  display: grid;
-  place-items: center;
-  flex: 1 0 auto;
-  min-height: 5.2rem;
-  color: var(--color-ink);
-  background: var(--color-cotton);
-}
-
 .aero-plp__cat-thumb {
   display: block;
   flex: 1 0 auto;
@@ -2622,7 +2581,6 @@ html.intro-armed [data-intro-stage] {
 
 @media (max-width: 760px) {
   .aero-plp__strip { grid-auto-flow: row; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-columns: auto; display: grid; overflow: visible; }
-  .aero-plp__cat--all { display: none; }
   .aero-plp__sidebar { grid-template-columns: 1fr; }
   .aero-plp__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.6rem 0.9rem; }
   .aero-plp__grid--list .aero-plp__card { grid-template-columns: 5.5rem minmax(0, 1fr); gap: 1rem; }
