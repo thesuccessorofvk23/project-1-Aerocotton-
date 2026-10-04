@@ -118,7 +118,7 @@ export default function ProductsPage() {
       {/* Photo hero band */}
       <section className="aero-plp-hero">
         <img
-          src="/images/editorial/woven-texture.jpg"
+          src="/images/editorial/collection-banner.jpg"
           alt=""
           className="aero-plp-hero__img"
           aria-hidden="true"
