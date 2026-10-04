@@ -76,6 +76,19 @@ const GSM_RANGES = [
 
 const PER_PAGE = 8;
 
+function paginationRange(current: number, total: number): (number | "gap")[] {
+  const wanted = new Set<number>([1, total, current - 1, current, current + 1]);
+  const pages = [...wanted].filter((n) => n >= 1 && n <= total).sort((a, b) => a - b);
+  const out: (number | "gap")[] = [];
+  let prev = 0;
+  for (const n of pages) {
+    if (n - prev > 1) out.push("gap");
+    out.push(n);
+    prev = n;
+  }
+  return out;
+}
+
 function Chevron({ open }: { open: boolean }) {
   return (
     <svg
@@ -592,17 +605,23 @@ export function CatalogueExplorer({
               >
                 ←
               </button>
-              {Array.from({ length: pageCount }, (_, i) => i + 1).map((n) => (
-                <button
-                  key={n}
-                  type="button"
-                  aria-current={n === safePage ? "page" : undefined}
-                  className={n === safePage ? "is-active" : ""}
-                  onClick={() => setPage(n)}
-                >
-                  {n}
-                </button>
-              ))}
+              {paginationRange(safePage, pageCount).map((item, i) =>
+                item === "gap" ? (
+                  <span key={`gap-${i}`} className="aero-plp__pag-gap" aria-hidden="true">
+                    …
+                  </span>
+                ) : (
+                  <button
+                    key={item}
+                    type="button"
+                    aria-current={item === safePage ? "page" : undefined}
+                    className={item === safePage ? "is-active" : ""}
+                    onClick={() => setPage(item)}
+                  >
+                    {item}
+                  </button>
+                ),
+              )}
               <button
                 type="button"
                 aria-label="Next page"
