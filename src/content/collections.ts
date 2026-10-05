@@ -50,13 +50,12 @@ const lineSheets: Collection[] = [
         name: "Cushion Design-05",
         category: "Kitchen & Table Presentation",
         productType: "Cushions",
-        tagline: "40 × 40 print, Design-05.",
+        tagline: "Design-05 print.",
         description:
-          "A 40 × 40 cm printed cushion from the Kitchen & Table Presentation catalogue, Design-05. Printed cotton cover with a concealed closure; the series runs from Design-05 through Design-09 for a coordinated retail wall.",
+          "A printed cushion from the Kitchen & Table Presentation catalogue, Design-05. Printed cotton cover with a concealed closure; the series runs from Design-05 through Design-09 for a coordinated retail wall.",
         materials: ["100% cotton", "Pigment print"],
         applications: ["Living rooms", "Retail", "Gifting"],
         specs: [
-          { label: "Size", value: "40 × 40 cm" },
           { label: "Design", value: "Design-05" },
           { label: "Series", value: "Kitchen & Table Presentation" },
         ],
@@ -82,7 +81,7 @@ const lineSheets: Collection[] = [
         ],
         variants: [],
         customization:
-          "Sizes, prints and hem finishes to programme; napery sets matched on request.",
+          "Prints and hem finishes to programme; napery sets matched on request.",
         image: "/images/products/tp-design-01.jpg",
       }),
     ],
@@ -106,11 +105,10 @@ const lineSheets: Collection[] = [
         productType: "Apron with Gloves",
         tagline: "Design-02 from the Kitchen & Table Presentation catalogue.",
         description:
-          "Design-02 of the 70 × 90 cm apron programme: the same working cut as Design-01 with its own printed artwork. Built from our own weaving and stitching units for retail shelves and promotional programmes.",
+          "Design-02 of the apron programme: the same working cut as Design-01 with its own printed artwork. Built from our own weaving and stitching units for retail shelves and promotional programmes.",
         materials: ["100% cotton", "Pigment print"],
         applications: ["Kitchen linens", "Retail", "Gifting"],
         specs: [
-          { label: "Size", value: "70 × 90 cm" },
           { label: "Design", value: "Design-02" },
           { label: "Series", value: "Kitchen & Table Presentation" },
         ],
@@ -125,13 +123,12 @@ const lineSheets: Collection[] = [
         name: "Kitchen Towel CAD Design-01",
         category: "Kitchen Towels CAD",
         productType: "Towels",
-        tagline: "CAD print, 50 × 70 cm, Design-01.",
+        tagline: "CAD print, Design-01.",
         description:
-          "Design-01 from the Kitchen Towels CAD series: a 50 × 70 cm kitchen towel carrying CAD-printed artwork on an absorbent cotton ground. One of nine printed designs developed for retail and promotional programmes.",
+          "Design-01 from the Kitchen Towels CAD series: a kitchen towel carrying CAD-printed artwork on an absorbent cotton ground. One of nine printed designs developed for retail and promotional programmes.",
         materials: ["100% cotton", "Pigment print"],
         applications: ["Kitchen linens", "Retail", "Promotional"],
         specs: [
-          { label: "Size", value: "50 × 70 cm" },
           { label: "Design", value: "Design-01" },
           { label: "Series", value: "Kitchen Towels CAD" },
         ],
@@ -157,7 +154,7 @@ const lineSheets: Collection[] = [
         ],
         variants: [],
         customization:
-          "Sizes, prints and hem finishes to programme; napery sets matched on request.",
+          "Prints and hem finishes to programme; napery sets matched on request.",
         image: "/images/products/tp-design-02.jpg",
       }),
     ],
@@ -179,13 +176,12 @@ const lineSheets: Collection[] = [
         name: "Kitchen Towel Set Design-04",
         category: "Kitchen & Table Presentation",
         productType: "Towels",
-        tagline: "S/2 print set, 50 × 70 cm, Design-04.",
+        tagline: "S/2 print set, Design-04.",
         description:
-          "Design-04 of the S/2 kitchen towel programme: two 50 × 70 cm towels to a set with its own printed artwork. Absorbent cotton ground, colours matched across repeat runs for programme continuity.",
+          "Design-04 of the S/2 kitchen towel programme: two towels to a set with its own printed artwork. Absorbent cotton ground, colours matched across repeat runs for programme continuity.",
         materials: ["100% cotton", "Pigment print"],
         applications: ["Kitchen linens", "Retail", "Gifting"],
         specs: [
-          { label: "Size", value: "50 × 70 cm each" },
           { label: "Pieces", value: "Set of 2 (S/2)" },
           { label: "Design", value: "Design-04" },
           { label: "Series", value: "Kitchen & Table Presentation" },
@@ -201,13 +197,12 @@ const lineSheets: Collection[] = [
         name: "Kitchen Towel CAD Design-02",
         category: "Kitchen Towels CAD",
         productType: "Towels",
-        tagline: "CAD print, 50 × 70 cm, Design-02.",
+        tagline: "CAD print, Design-02.",
         description:
-          "Design-02 from the Kitchen Towels CAD series: a 50 × 70 cm kitchen towel carrying CAD-printed artwork on an absorbent cotton ground. Colours matched across repeat runs for programme continuity.",
+          "Design-02 from the Kitchen Towels CAD series: a kitchen towel carrying CAD-printed artwork on an absorbent cotton ground. Colours matched across repeat runs for programme continuity.",
         materials: ["100% cotton", "Pigment print"],
         applications: ["Kitchen linens", "Retail", "Promotional"],
         specs: [
-          { label: "Size", value: "50 × 70 cm" },
           { label: "Design", value: "Design-02" },
           { label: "Series", value: "Kitchen Towels CAD" },
         ],
@@ -233,7 +228,7 @@ const lineSheets: Collection[] = [
         ],
         variants: [],
         customization:
-          "Sizes, prints and hem finishes to programme; napery sets matched on request.",
+          "Prints and hem finishes to programme; napery sets matched on request.",
         image: "/images/products/tp-design-03.jpg",
       }),
       //
@@ -262,7 +257,7 @@ const lineSheets: Collection[] = [
         ],
         variants: [],
         customization:
-          "Sizes, gusset depth, handle drop and print artwork to programme; the 3D file is supplied on request for buyer-side visualisation.",
+          "Gusset depth, handle drop and print artwork to programme; the 3D file is supplied on request for buyer-side visualisation.",
         model: "/models/cotton-tote-bag.obj",
         image: "/images/products/cloth-bags/cotton-tote-bag.jpg",
         featured: true,
@@ -288,11 +283,10 @@ const lineSheets: Collection[] = [
         productType: "Apron with Gloves",
         tagline: "Design-01 from the Kitchen & Table Presentation catalogue.",
         description:
-          "A 70 × 90 cm printed cotton apron from our Kitchen & Table Presentation catalogue, Design-01. Stone-toned artwork on a mid-weight cotton ground, with a generous bib and waist ties cut for a working kitchen.",
+          "A printed cotton apron from our Kitchen & Table Presentation catalogue, Design-01. Stone-toned artwork on a mid-weight cotton ground, with a generous bib and waist ties cut for a working kitchen.",
         materials: ["100% cotton", "Pigment print"],
         applications: ["Kitchen linens", "Retail", "Promotional"],
         specs: [
-          { label: "Size", value: "70 × 90 cm" },
           { label: "Design", value: "Design-01" },
           { label: "Series", value: "Kitchen & Table Presentation" },
         ],
@@ -307,13 +301,12 @@ const lineSheets: Collection[] = [
         name: "Kitchen Towel CAD Design-03",
         category: "Kitchen Towels CAD",
         productType: "Towels",
-        tagline: "CAD print, 50 × 70 cm, Design-03.",
+        tagline: "CAD print, Design-03.",
         description:
-          "Design-03 from the Kitchen Towels CAD series: a 50 × 70 cm kitchen towel carrying CAD-printed artwork on an absorbent cotton ground. Woven and printed under our own roof in Karur.",
+          "Design-03 from the Kitchen Towels CAD series: a kitchen towel carrying CAD-printed artwork on an absorbent cotton ground. Woven and printed under our own roof in Karur.",
         materials: ["100% cotton", "Pigment print"],
         applications: ["Kitchen linens", "Retail", "Promotional"],
         specs: [
-          { label: "Size", value: "50 × 70 cm" },
           { label: "Design", value: "Design-03" },
           { label: "Series", value: "Kitchen Towels CAD" },
         ],
@@ -339,7 +332,7 @@ const lineSheets: Collection[] = [
         ],
         variants: [],
         customization:
-          "Sizes, prints and hem finishes to programme; napery sets matched on request.",
+          "Prints and hem finishes to programme; napery sets matched on request.",
         image: "/images/products/tp-design-04.jpg",
       }),
     ],
@@ -361,19 +354,18 @@ const lineSheets: Collection[] = [
         name: "Tablecloth — Cocoa Print",
         category: "Kitchen & Table Presentation",
         productType: "Table Top Cover",
-        tagline: "100 × 100 print in warm cocoa tones.",
+        tagline: "Printed tablecloth in warm cocoa tones.",
         description:
-          "A 100 × 100 cm printed tablecloth from the Kitchen & Table Presentation catalogue, in warm cocoa tones. Printed on our own ground cloth and finished with a neat hem; an easy companion to the cushion designs in the same series.",
+          "A printed tablecloth from the Kitchen & Table Presentation catalogue, in warm cocoa tones. Printed on our own ground cloth and finished with a neat hem; an easy companion to the cushion designs in the same series.",
         materials: ["100% cotton", "Pigment print"],
         applications: ["Table linen", "Retail", "Gifting"],
         specs: [
-          { label: "Size", value: "100 × 100 cm" },
           { label: "Colourway", value: "Cocoa" },
           { label: "Series", value: "Kitchen & Table Presentation" },
         ],
         variants: [],
         customization:
-          "Square and rectangular sizes, prints and hem finishes to programme; napery sets matched on request.",
+          "Prints and hem finishes to programme; napery sets matched on request.",
         image: "/images/products/tablecloth-cocoa.jpg",
       }),
       p({
@@ -382,13 +374,12 @@ const lineSheets: Collection[] = [
         name: "Kitchen Towel CAD Design-04",
         category: "Kitchen Towels CAD",
         productType: "Towels",
-        tagline: "CAD print, 50 × 70 cm, Design-04.",
+        tagline: "CAD print, Design-04.",
         description:
-          "Design-04 from the Kitchen Towels CAD series: a 50 × 70 cm kitchen towel carrying CAD-printed artwork on an absorbent cotton ground. Woven and printed under our own roof in Karur.",
+          "Design-04 from the Kitchen Towels CAD series: a kitchen towel carrying CAD-printed artwork on an absorbent cotton ground. Woven and printed under our own roof in Karur.",
         materials: ["100% cotton", "Pigment print"],
         applications: ["Kitchen linens", "Retail", "Promotional"],
         specs: [
-          { label: "Size", value: "50 × 70 cm" },
           { label: "Design", value: "Design-04" },
           { label: "Series", value: "Kitchen Towels CAD" },
         ],
@@ -414,7 +405,7 @@ const lineSheets: Collection[] = [
         ],
         variants: [],
         customization:
-          "Sizes, prints and hem finishes to programme; napery sets matched on request.",
+          "Prints and hem finishes to programme; napery sets matched on request.",
         image: "/images/products/tp-design-05.jpg",
       }),
     ],
@@ -436,13 +427,12 @@ const lineSheets: Collection[] = [
         name: "Kitchen Towel Set Design-03",
         category: "Kitchen & Table Presentation",
         productType: "Towels",
-        tagline: "S/2 print set, 50 × 70 cm, Design-03.",
+        tagline: "S/2 print set, Design-03.",
         description:
-          "A two-piece kitchen towel set from the Kitchen & Table Presentation catalogue — Design-03, 50 × 70 cm each. One striped towel and one printed towel to the set, woven and printed under our own roof.",
+          "A two-piece kitchen towel set from the Kitchen & Table Presentation catalogue — Design-03. One striped towel and one printed towel to the set, woven and printed under our own roof.",
         materials: ["100% cotton", "Pigment print"],
         applications: ["Kitchen linens", "Retail", "Promotional"],
         specs: [
-          { label: "Size", value: "50 × 70 cm each" },
           { label: "Pieces", value: "Set of 2 (S/2)" },
           { label: "Design", value: "Design-03" },
           { label: "Series", value: "Kitchen & Table Presentation" },
@@ -458,13 +448,12 @@ const lineSheets: Collection[] = [
         name: "Kitchen Towel CAD Design-05",
         category: "Kitchen Towels CAD",
         productType: "Towels",
-        tagline: "CAD print, 50 × 70 cm, Design-05.",
+        tagline: "CAD print, Design-05.",
         description:
-          "Design-05 from the Kitchen Towels CAD series: a 50 × 70 cm kitchen towel carrying CAD-printed artwork on an absorbent cotton ground. High absorbency, low lint, colours matched across runs.",
+          "Design-05 from the Kitchen Towels CAD series: a kitchen towel carrying CAD-printed artwork on an absorbent cotton ground. High absorbency, low lint, colours matched across runs.",
         materials: ["100% cotton", "Pigment print"],
         applications: ["Kitchen linens", "Retail", "Promotional"],
         specs: [
-          { label: "Size", value: "50 × 70 cm" },
           { label: "Design", value: "Design-05" },
           { label: "Series", value: "Kitchen Towels CAD" },
         ],
@@ -490,7 +479,7 @@ const lineSheets: Collection[] = [
         ],
         variants: [],
         customization:
-          "Sizes, prints and hem finishes to programme; napery sets matched on request.",
+          "Prints and hem finishes to programme; napery sets matched on request.",
         image: "/images/products/tp-design-06.jpg",
       }),
       //
@@ -517,7 +506,7 @@ const lineSheets: Collection[] = [
         ],
         variants: [],
         customization:
-          "Length, width and print scale to programme; fringe or hemmed ends, and the 3D file is supplied on request for buyer-side visualisation.",
+          "Print scale to programme; fringe or hemmed ends, and the 3D file is supplied on request for buyer-side visualisation.",
         model: "/models/block-printed-runner.glb",
         image: "/images/products/fringed-runner/block-printed-runner.jpg",
       }),
@@ -540,13 +529,12 @@ const lineSheets: Collection[] = [
         name: "Cushion Design-07",
         category: "Kitchen & Table Presentation",
         productType: "Cushions",
-        tagline: "40 × 40 print, Design-07.",
+        tagline: "Design-07 print.",
         description:
-          "Design-07 of the 40 × 40 cm cushion programme, in warm sand tones. Printed on our own ground cloth in Karur and finished with a clean hidden closure.",
+          "Design-07 of the cushion programme, in warm sand tones. Printed on our own ground cloth in Karur and finished with a clean hidden closure.",
         materials: ["100% cotton", "Pigment print"],
         applications: ["Living rooms", "Retail", "Gifting"],
         specs: [
-          { label: "Size", value: "40 × 40 cm" },
           { label: "Design", value: "Design-07" },
           { label: "Series", value: "Kitchen & Table Presentation" },
         ],
@@ -561,19 +549,18 @@ const lineSheets: Collection[] = [
         name: "Tablecloth — Clay Print",
         category: "Kitchen & Table Presentation",
         productType: "Table Top Cover",
-        tagline: "100 × 100 print in baked clay tones.",
+        tagline: "Printed tablecloth in baked clay tones.",
         description:
-          "The warmest print in the Kitchen & Table Presentation tablecloth programme: 100 × 100 cm, printed in baked clay tones on cotton ground. Sets a table with the Design-05–09 cushions from the same series.",
+          "The warmest print in the Kitchen & Table Presentation tablecloth programme: printed in baked clay tones on cotton ground. Sets a table with the Design-05–09 cushions from the same series.",
         materials: ["100% cotton", "Pigment print"],
         applications: ["Table linen", "Retail", "Gifting"],
         specs: [
-          { label: "Size", value: "100 × 100 cm" },
           { label: "Colourway", value: "Clay" },
           { label: "Series", value: "Kitchen & Table Presentation" },
         ],
         variants: [],
         customization:
-          "Square and rectangular sizes, prints and hem finishes to programme; napery sets matched on request.",
+          "Prints and hem finishes to programme; napery sets matched on request.",
         image: "/images/products/tablecloth-clay.jpg",
       }),
       //
@@ -592,18 +579,17 @@ const lineSheets: Collection[] = [
         productType: "Cushions",
         tagline: "Orange autumn print on white — turn the sample over.",
         description:
-          "A 40 × 40 cm printed cushion cover in an autumn print — scattered orange leaf and bloom motifs with fine dark accents on a white ground. Modelled here from a scan of the sample itself, so the print can be inspected from every side before a swatch is cut; the realtime viewer keeps the sample's own colour texture.",
+          "A printed cushion cover in an autumn print — scattered orange leaf and bloom motifs with fine dark accents on a white ground. Modelled here from a scan of the sample itself, so the print can be inspected from every side before a swatch is cut; the realtime viewer keeps the sample's own colour texture.",
         materials: ["100% cotton", "Pigment print"],
         applications: ["Living rooms", "Retail", "Gifting"],
         specs: [
-          { label: "Size", value: "40 × 40 cm" },
           { label: "Colourway", value: "Orange on white" },
           { label: "Series", value: "Autumn Cushions 2026" },
           { label: "3D model", value: "Realtime GLB — 66,882 faces, textured" },
         ],
         variants: ["Tangerine", "White"],
         customization:
-          "Cover-only or with inserts; print recolours, sizes and coordinated sets to programme; the 3D file is supplied on request for buyer-side visualisation.",
+          "Cover-only or with inserts; print recolours and coordinated sets to programme; the 3D file is supplied on request for buyer-side visualisation.",
         model: "/models/autumn-print-cushion.glb",
         image: "/images/products/cushions-chair-pads/autumn-print-cushion.jpg",
       }),
@@ -613,13 +599,12 @@ const lineSheets: Collection[] = [
         name: "Kitchen Towel CAD Design-06",
         category: "Kitchen Towels CAD",
         productType: "Towels",
-        tagline: "CAD print, 50 × 70 cm, Design-06.",
+        tagline: "CAD print, Design-06.",
         description:
-          "Design-06 from the Kitchen Towels CAD series: a 50 × 70 cm kitchen towel carrying CAD-printed artwork on an absorbent cotton ground. Woven and printed under our own roof in Karur.",
+          "Design-06 from the Kitchen Towels CAD series: a kitchen towel carrying CAD-printed artwork on an absorbent cotton ground. Woven and printed under our own roof in Karur.",
         materials: ["100% cotton", "Pigment print"],
         applications: ["Kitchen linens", "Retail", "Promotional"],
         specs: [
-          { label: "Size", value: "50 × 70 cm" },
           { label: "Design", value: "Design-06" },
           { label: "Series", value: "Kitchen Towels CAD" },
         ],
@@ -645,7 +630,7 @@ const lineSheets: Collection[] = [
         ],
         variants: [],
         customization:
-          "Sizes, prints and hem finishes to programme; napery sets matched on request.",
+          "Prints and hem finishes to programme; napery sets matched on request.",
         image: "/images/products/tp-design-07.jpg",
       }),
     ],
@@ -667,13 +652,12 @@ const lineSheets: Collection[] = [
         name: "Cushion Design-06",
         category: "Kitchen & Table Presentation",
         productType: "Cushions",
-        tagline: "40 × 40 print, Design-06.",
+        tagline: "Design-06 print.",
         description:
-          "Design-06 of the 40 × 40 cm cushion programme, in a soft cream print. Part of the Kitchen & Table Presentation catalogue; covers sold singly or as coordinated sets with the series tablecloths.",
+          "Design-06 of the cushion programme, in a soft cream print. Part of the Kitchen & Table Presentation catalogue; covers sold singly or as coordinated sets with the series tablecloths.",
         materials: ["100% cotton", "Pigment print"],
         applications: ["Living rooms", "Retail", "Gifting"],
         specs: [
-          { label: "Size", value: "40 × 40 cm" },
           { label: "Design", value: "Design-06" },
           { label: "Series", value: "Kitchen & Table Presentation" },
         ],
@@ -688,13 +672,12 @@ const lineSheets: Collection[] = [
         name: "Kitchen Towel CAD Design-07",
         category: "Kitchen Towels CAD",
         productType: "Towels",
-        tagline: "CAD print, 50 × 70 cm, Design-07.",
+        tagline: "CAD print, Design-07.",
         description:
-          "Design-07 from the Kitchen Towels CAD series: a 50 × 70 cm kitchen towel carrying CAD-printed artwork on an absorbent cotton ground. Woven and printed under our own roof in Karur.",
+          "Design-07 from the Kitchen Towels CAD series: a kitchen towel carrying CAD-printed artwork on an absorbent cotton ground. Woven and printed under our own roof in Karur.",
         materials: ["100% cotton", "Pigment print"],
         applications: ["Kitchen linens", "Retail", "Promotional"],
         specs: [
-          { label: "Size", value: "50 × 70 cm" },
           { label: "Design", value: "Design-07" },
           { label: "Series", value: "Kitchen Towels CAD" },
         ],
@@ -720,7 +703,7 @@ const lineSheets: Collection[] = [
         ],
         variants: [],
         customization:
-          "Sizes, prints and hem finishes to programme; napery sets matched on request.",
+          "Prints and hem finishes to programme; napery sets matched on request.",
         image: "/images/products/tp-design-08.jpg",
       }),
     ],
@@ -742,19 +725,18 @@ const lineSheets: Collection[] = [
         name: "Tablecloth — Natural Print",
         category: "Kitchen & Table Presentation",
         productType: "Table Top Cover",
-        tagline: "100 × 100 print on a quiet natural ground.",
+        tagline: "Printed tablecloth on a quiet natural ground.",
         description:
-          "The quietest print in the Kitchen & Table Presentation tablecloth programme: 100 × 100 cm on a natural-toned cotton ground. Printed and stitched under our own roof for retail and hospitality programmes.",
+          "The quietest print in the Kitchen & Table Presentation tablecloth programme, printed on a natural-toned cotton ground. Printed and stitched under our own roof for retail and hospitality programmes.",
         materials: ["100% cotton", "Pigment print"],
         applications: ["Table linen", "Retail", "Hospitality"],
         specs: [
-          { label: "Size", value: "100 × 100 cm" },
           { label: "Colourway", value: "Natural" },
           { label: "Series", value: "Kitchen & Table Presentation" },
         ],
         variants: [],
         customization:
-          "Square and rectangular sizes, prints and hem finishes to programme; napery sets matched on request.",
+          "Prints and hem finishes to programme; napery sets matched on request.",
         image: "/images/products/tablecloth-natural.jpg",
       }),
       p({
@@ -774,7 +756,7 @@ const lineSheets: Collection[] = [
         ],
         variants: [],
         customization:
-          "Sizes, prints and hem finishes to programme; napery sets matched on request.",
+          "Prints and hem finishes to programme; napery sets matched on request.",
         image: "/images/products/tp-design-09.jpg",
       }),
     ],
@@ -796,13 +778,12 @@ const lineSheets: Collection[] = [
         name: "Cushion Design-08",
         category: "Kitchen & Table Presentation",
         productType: "Cushions",
-        tagline: "40 × 40 print, Design-08.",
+        tagline: "Design-08 print.",
         description:
-          "Design-08 of the 40 × 40 cm cushion programme, in muted khaki tones. Shown in the Kitchen & Table Presentation catalogue alongside the cocoa tablecloth; the pair makes a ready-made gifting story.",
+          "Design-08 of the cushion programme, in muted khaki tones. Shown in the Kitchen & Table Presentation catalogue alongside the cocoa tablecloth; the pair makes a ready-made gifting story.",
         materials: ["100% cotton", "Pigment print"],
         applications: ["Living rooms", "Retail", "Gifting"],
         specs: [
-          { label: "Size", value: "40 × 40 cm" },
           { label: "Design", value: "Design-08" },
           { label: "Series", value: "Kitchen & Table Presentation" },
         ],
@@ -817,13 +798,12 @@ const lineSheets: Collection[] = [
         name: "Cushion Design-09",
         category: "Kitchen & Table Presentation",
         productType: "Cushions",
-        tagline: "40 × 40 print, Design-09.",
+        tagline: "Design-09 print.",
         description:
           "Design-09 closes the cushion run of the Kitchen & Table Presentation catalogue in deep clay tones. Pairs naturally with the clay tablecloth; both are printed in Karur on our own ground cloth.",
         materials: ["100% cotton", "Pigment print"],
         applications: ["Living rooms", "Retail", "Gifting"],
         specs: [
-          { label: "Size", value: "40 × 40 cm" },
           { label: "Design", value: "Design-09" },
           { label: "Series", value: "Kitchen & Table Presentation" },
         ],
@@ -838,13 +818,12 @@ const lineSheets: Collection[] = [
         name: "Kitchen Towel CAD Design-08",
         category: "Kitchen Towels CAD",
         productType: "Towels",
-        tagline: "CAD print, 50 × 70 cm, Design-08.",
+        tagline: "CAD print, Design-08.",
         description:
-          "Design-08 from the Kitchen Towels CAD series: a 50 × 70 cm kitchen towel carrying CAD-printed artwork on an absorbent cotton ground. Woven and printed under our own roof in Karur.",
+          "Design-08 from the Kitchen Towels CAD series: a kitchen towel carrying CAD-printed artwork on an absorbent cotton ground. Woven and printed under our own roof in Karur.",
         materials: ["100% cotton", "Pigment print"],
         applications: ["Kitchen linens", "Retail", "Promotional"],
         specs: [
-          { label: "Size", value: "50 × 70 cm" },
           { label: "Design", value: "Design-08" },
           { label: "Series", value: "Kitchen Towels CAD" },
         ],
@@ -859,13 +838,12 @@ const lineSheets: Collection[] = [
         name: "Kitchen Towel CAD Design-09",
         category: "Kitchen Towels CAD",
         productType: "Towels",
-        tagline: "CAD print, 50 × 70 cm, Design-09.",
+        tagline: "CAD print, Design-09.",
         description:
-          "Design-09 closes the Kitchen Towels CAD run: a 50 × 70 cm kitchen towel carrying CAD-printed artwork on an absorbent cotton ground, printed in Karur.",
+          "Design-09 closes the Kitchen Towels CAD run: a kitchen towel carrying CAD-printed artwork on an absorbent cotton ground, printed in Karur.",
         materials: ["100% cotton", "Pigment print"],
         applications: ["Kitchen linens", "Retail", "Promotional"],
         specs: [
-          { label: "Size", value: "50 × 70 cm" },
           { label: "Design", value: "Design-09" },
           { label: "Series", value: "Kitchen Towels CAD" },
         ],
@@ -891,7 +869,7 @@ const lineSheets: Collection[] = [
         ],
         variants: [],
         customization:
-          "Sizes, prints and hem finishes to programme; napery sets matched on request.",
+          "Prints and hem finishes to programme; napery sets matched on request.",
         image: "/images/products/tp-design-10.jpg",
       }),
     ],

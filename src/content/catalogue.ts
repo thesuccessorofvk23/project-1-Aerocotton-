@@ -70,7 +70,6 @@ interface Deck {
 interface TypeCopy {
   lead: string;
   close: string;
-  size: string;
   weave: string;
   applications: string[];
   materials: string[];
@@ -81,17 +80,15 @@ const TYPE_COPY: Record<string, TypeCopy> = {
   Cushions: {
     lead: "A printed cotton cushion cover with a concealed closure and a soft, mid-weight hand.",
     close: "Cover-only or with inserts, in coordinated sets for retail, hospitality and gifting.",
-    size: "40 × 40 cm",
     weave: "Percale",
     applications: ["Living rooms", "Retail", "Gifting"],
     materials: ["100% cotton", "Pigment print"],
     customization:
-      "Cover-only or with inserts; print recolours, sizes and coordinated sets to programme.",
+      "Cover-only or with inserts; print recolours and coordinated sets to programme.",
   },
   "Chair Pads": {
     lead: "A tufted seat pad with tie-on tapes, cut and stitched to sit square on a dining chair.",
     close: "Sold singly or as colour-coordinated sets for retail and contract tables.",
-    size: "40 × 40 cm, tie-on",
     weave: "Quilted",
     applications: ["Dining chairs", "Hospitality", "Retail"],
     materials: ["100% cotton", "Quilted wadding"],
@@ -101,7 +98,6 @@ const TYPE_COPY: Record<string, TypeCopy> = {
   Blankets: {
     lead: "A fringed cotton throw, woven on our own looms and finished by hand.",
     close: "Colour-matched across repeat runs so a programme reads as one family on the shelf.",
-    size: "130 × 170 cm",
     weave: "Flatweave",
     applications: ["Living rooms", "Bedrooms", "Gifting"],
     materials: ["100% cotton", "Woven"],
@@ -111,27 +107,24 @@ const TYPE_COPY: Record<string, TypeCopy> = {
   "Printed Table Runners": {
     lead: "A table runner printed on our own cotton ground and finished with a neat hem.",
     close: "Cut for hospitality and retail tables; napery sets matched on request.",
-    size: "33 × 180 cm",
     weave: "Dobby",
     applications: ["Table linen", "Hospitality", "Retail"],
     materials: ["100% cotton", "Pigment print"],
     customization:
-      "Lengths, widths, prints and hem finishes to programme; coordinating napery on request.",
+      "Prints and hem finishes to programme; coordinating napery on request.",
   },
   "Place Mats": {
     lead: "A table mat printed on our own cotton ground with a clean, hard-wearing finish.",
     close: "Sold singly or as coordinated sets with the runners from the same programme.",
-    size: "33 × 45 cm",
     weave: "Dobby",
     applications: ["Table linen", "Retail", "Gifting"],
     materials: ["100% cotton", "Pigment print"],
     customization:
-      "Sizes, corner shapes, prints and hem finishes to programme; sets matched on request.",
+      "Corner shapes, prints and hem finishes to programme; sets matched on request.",
   },
   Towels: {
     lead: "A cotton kitchen towel with a dense, absorbent ground built for daily use.",
     close: "Woven and printed under our own roof in Karur, colour-matched across repeats.",
-    size: "50 × 70 cm",
     weave: "Waffle",
     applications: ["Kitchen linens", "Retail", "Promotional"],
     materials: ["100% cotton", "Pigment print"],
@@ -141,39 +134,35 @@ const TYPE_COPY: Record<string, TypeCopy> = {
   Napkins: {
     lead: "A cotton napkin, dyed and finished for restaurant and retail table settings.",
     close: "Sold by the set, in stock and buyer colourways, with matching napery on request.",
-    size: "45 × 45 cm",
     weave: "Percale",
     applications: ["Table linen", "Hospitality", "Retail"],
     materials: ["100% cotton", "Piece dyed"],
-    customization: "Dyed colourways, sizes, hem styles and monogram weaves to programme.",
+    customization: "Dyed colourways, hem styles and monogram weaves to programme.",
   },
   "Cloth Materials": {
     lead: "A woven cotton cloth presented as a material sample rather than a finished article.",
     close: "Used for development, sampling and private-label programmes before bulk.",
-    size: "Sample yardage",
     weave: "Structure weave",
     applications: ["Product development", "Sampling", "Private label"],
     materials: ["100% cotton", "Woven"],
     customization:
-      "Construction, count, width and finish specified to the buyer's end product.",
+      "Construction, count and finish specified to the buyer's end product.",
   },
   "Hang Tags": {
     lead: "A kraft paper hang tag, part of the private-label finishing we run alongside the textiles.",
     close: "Printed and strung to buyer artwork for retail programmes.",
-    size: "Standard hang tag",
     weave: "Woven",
     applications: ["Private label", "Packaging", "Retail"],
     materials: ["Kraft board", "Cotton string"],
-    customization: "Artwork, size, board weight and string to programme.",
+    customization: "Artwork, board weight and string to programme.",
   },
   Pillows: {
     lead: "A filled pillow with a soft cotton shell, built for bed and sofa programmes.",
-    close: "Made to size and firmness specifications for retail and contract.",
-    size: "45 × 45 cm",
+    close: "Made to firmness specifications for retail and contract.",
     weave: "Percale",
     applications: ["Bedrooms", "Hospitality", "Retail"],
     materials: ["100% cotton", "Filled"],
-    customization: "Shell fabric, fill weight, size and packaging to programme.",
+    customization: "Shell fabric, fill weight and packaging to programme.",
   },
 };
 
@@ -459,7 +448,6 @@ const decks: Deck[] = [
 
 function specsFor(entry: DeckEntry, deck: Deck, copy: TypeCopy, code: string): ProductSpec[] {
   return [
-    { label: "Size", value: copy.size },
     { label: "Design", value: code },
     { label: "Series", value: deck.series },
     { label: "Deck", value: deck.source },
