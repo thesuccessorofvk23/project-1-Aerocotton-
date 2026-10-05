@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import {
   PRODUCT_OPTIONS,
-  QUANTITY_OPTIONS,
   rfqSchema,
   type RfqInput,
 } from "@/lib/rfq/schema";
@@ -20,7 +19,6 @@ const EMPTY: RfqInput = {
   phone: "",
   country: "",
   product: "",
-  quantity: "",
   customization: "",
   message: "",
   website: "",
@@ -136,7 +134,6 @@ export function RfqForm({
       `Phone / WhatsApp: ${parsed.data.phone || "Not provided"}`,
       `Country: ${parsed.data.country}`,
       `Product / collection: ${parsed.data.product}`,
-      `Estimated quantity: ${parsed.data.quantity}`,
       `Customization: ${parsed.data.customization || "Not provided"}`,
       "",
       parsed.data.message,
@@ -320,18 +317,6 @@ export function RfqForm({
             ))}
           </select>
           {err("product")}
-        </div>
-        <div>
-          <label htmlFor="rfq-quantity" className={labelClass}>Estimated quantity *</label>
-          <select id="rfq-quantity" required className={inputClass} value={values.quantity}
-            onChange={set("quantity")}
-            aria-invalid={!!errors.quantity} aria-describedby={errors.quantity ? "quantity-error" : undefined}>
-            <option value="" disabled>Select…</option>
-            {QUANTITY_OPTIONS.map((opt) => (
-              <option key={opt} value={opt}>{opt}</option>
-            ))}
-          </select>
-          {err("quantity")}
         </div>
         <div className="md:col-span-2">
           <label htmlFor="rfq-customization" className={labelClass}>

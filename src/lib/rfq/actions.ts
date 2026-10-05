@@ -84,7 +84,6 @@ export async function submitRfq(input: RfqInput): Promise<RfqActionResult> {
     phone: data.phone || undefined,
     country: data.country,
     product: data.product,
-    quantity: data.quantity,
     customization: data.customization || undefined,
     message: data.message,
   });

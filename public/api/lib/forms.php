@@ -33,14 +33,6 @@ const AERO_INTEREST_OPTIONS = [
     'Other',
 ];
 
-const AERO_QUANTITY_OPTIONS = [
-    'Sample / swatch request',
-    'Under 500 units',
-    '500 – 2,000 units',
-    '2,000 – 10,000 units',
-    '10,000+ units',
-];
-
 const AERO_CATEGORY_OPTIONS = [
     'Order status / tracking',
     'Delivery or shipment',
@@ -72,7 +64,6 @@ function aero_form_specs(): array
                 'phone' => ['label' => 'Phone', 'type' => 'text', 'required' => false, 'max' => 32],
                 'country' => ['label' => 'Country', 'type' => 'text', 'required' => true, 'min' => 2, 'max' => 80],
                 'interest' => ['label' => 'Product / Service Interest', 'type' => 'select', 'required' => true, 'options' => AERO_INTEREST_OPTIONS],
-                'quantity' => ['label' => 'Estimated Quantity', 'type' => 'select', 'required' => true, 'options' => AERO_QUANTITY_OPTIONS],
                 'message' => ['label' => 'Message', 'type' => 'multiline', 'required' => true, 'min' => 20, 'max' => 5000],
             ],
         ],
@@ -213,7 +204,6 @@ function aero_build_confirmation(string $form, array $data, array $now, string $
         $summaryLines[] = ['Priority', (string) ($data['priority'] ?? '')];
     } else {
         $summaryLines[] = ['Product / Service Interest', (string) ($data['interest'] ?? '')];
-        $summaryLines[] = ['Estimated Quantity', (string) ($data['quantity'] ?? '')];
     }
 
     $rows = aero_mail_row('Reference', $reference);

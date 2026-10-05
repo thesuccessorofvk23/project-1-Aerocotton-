@@ -211,14 +211,17 @@ export default async function ProductPage({
               <div>
                 <h2 className="font-display text-2xl text-ink">Specifications</h2>
                 <dl className="mt-5 divide-y divide-hairline border-y border-hairline">
-                  {product.specs.map((spec) => (
-                    <div key={spec.label} className="flex justify-between gap-6 py-3">
-                      <dt className="text-2xs uppercase tracking-[0.16em] text-taupe">
-                        {spec.label}
-                      </dt>
-                      <dd className="text-right text-sm text-ink">{spec.value}</dd>
-                    </div>
-                  ))}
+                  {/* Product size is deliberately kept off the public pages. */}
+                  {product.specs
+                    .filter((spec) => spec.label !== "Size")
+                    .map((spec) => (
+                      <div key={spec.label} className="flex justify-between gap-6 py-3">
+                        <dt className="text-2xs uppercase tracking-[0.16em] text-taupe">
+                          {spec.label}
+                        </dt>
+                        <dd className="text-right text-sm text-ink">{spec.value}</dd>
+                      </div>
+                    ))}
                 </dl>
               </div>
             </Reveal>

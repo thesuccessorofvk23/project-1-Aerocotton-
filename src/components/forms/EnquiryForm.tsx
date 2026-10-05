@@ -13,7 +13,7 @@ import {
 import { FormError, FormReceipt } from "@/components/forms/FormReceipt";
 import { TURNSTILE_SITE_KEY, TurnstileField } from "@/components/forms/TurnstileField";
 import { useSubmission } from "@/components/forms/use-submission";
-import { INTEREST_OPTIONS, QUANTITY_OPTIONS } from "@/lib/forms/options";
+import { INTEREST_OPTIONS } from "@/lib/forms/options";
 import {
   EMPTY_ENQUIRY,
   enquirySchema,
@@ -169,34 +169,6 @@ export function EnquiryForm() {
               Select…
             </option>
             {INTEREST_OPTIONS.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </Field>
-
-        <Field
-          id="enquiry-quantity"
-          label="Estimated quantity"
-          required
-          error={err("quantity")}
-          className="md:col-span-2"
-        >
-          <select
-            id="enquiry-quantity"
-            name="quantity"
-            required
-            disabled={status === "sending"}
-            className={inputClass}
-            value={values.quantity}
-            onChange={set("quantity")}
-            {...fieldAria("enquiry-quantity", err("quantity"))}
-          >
-            <option value="" disabled>
-              Select…
-            </option>
-            {QUANTITY_OPTIONS.map((option) => (
               <option key={option} value={option}>
                 {option}
               </option>

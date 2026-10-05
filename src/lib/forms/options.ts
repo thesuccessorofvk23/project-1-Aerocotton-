@@ -25,14 +25,6 @@ export const INTEREST_OPTIONS = [
   "Other",
 ] as const;
 
-export const QUANTITY_OPTIONS = [
-  "Sample / swatch request",
-  "Under 500 units",
-  "500 – 2,000 units",
-  "2,000 – 10,000 units",
-  "10,000+ units",
-] as const;
-
 export const CATEGORY_OPTIONS = [
   "Order status / tracking",
   "Delivery or shipment",
@@ -46,7 +38,6 @@ export const CATEGORY_OPTIONS = [
 export const PRIORITY_OPTIONS = ["Low", "Normal", "High", "Urgent"] as const;
 
 export type Interest = (typeof INTEREST_OPTIONS)[number];
-export type Quantity = (typeof QUANTITY_OPTIONS)[number];
 export type SupportCategory = (typeof CATEGORY_OPTIONS)[number];
 export type Priority = (typeof PRIORITY_OPTIONS)[number];
 

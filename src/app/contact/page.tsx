@@ -14,7 +14,7 @@ const mapDirectionsHref = `https://www.google.com/maps/search/?api=1&query=${enc
 export const metadata: Metadata = pageMeta({
   title: "Contact — request a quote",
   description:
-    "Request a quotation from Aerocotton: product, estimated quantity, customization requirements. We reply within two business days.",
+    "Request a quotation from Aerocotton: product interest, customization requirements and delivery timelines. We reply within two business days.",
   path: "/contact",
 });
 
@@ -29,13 +29,6 @@ export default function ContactPage() {
             alt="Airy interior styled with Aerocotton textiles"
           />
           <div className="aero-contact__visual-veil" aria-hidden="true" />
-          <img
-            src="/brand/aerocotton-lockup-dark.png"
-            alt="Aero Cotton — Textiles & Home Furnishing"
-            width={720}
-            height={659}
-            className="aero-contact__wordmark"
-          />
           <p className="aero-contact__visual-caption">
             Karur / Tamil Nadu · Since {company.founded}
           </p>

@@ -7,7 +7,6 @@ interface RfqEmail {
   phone?: string;
   country: string;
   product: string;
-  quantity: string;
   customization?: string;
   message: string;
 }
@@ -37,7 +36,6 @@ export function buildRfqEmail(data: RfqEmail): string {
     data.phone ? row("Phone", data.phone) : "",
     row("Country", data.country),
     row("Product / Collection", data.product),
-    row("Estimated quantity", data.quantity),
     data.customization ? row("Customization", data.customization) : "",
   ].join("");
 
@@ -81,7 +79,6 @@ export async function sendRfqEmail(data: RfqEmail): Promise<SendResult> {
     console.info("[rfq] RESEND not configured — logging enquiry instead:", {
       from: data.email,
       product: data.product,
-      quantity: data.quantity,
     });
     return { ok: true, simulated: true };
   }

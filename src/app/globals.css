@@ -1179,21 +1179,6 @@ html.intro-armed [data-intro-stage] {
   pointer-events: none;
 }
 
-/* Wordmark on the contact photo panel — the full brand lockup, keyed to
-   transparency so the photo shows around it. Weighted above the panel's own
-   `.aero-contact__visual > img` full-bleed photo rule (higher specificity),
-   which would otherwise stretch it across the whole panel. */
-.aero-contact__visual > img.aero-contact__wordmark {
-  position: absolute;
-  z-index: 2;
-  top: 1.5rem;
-  left: 1.5rem;
-  width: clamp(7.5rem, 10vw, 9.5rem);
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 1px 12px rgba(23, 22, 20, 0.35));
-}
-
 .aero-contact__visual-caption {
   position: absolute;
   z-index: 2;

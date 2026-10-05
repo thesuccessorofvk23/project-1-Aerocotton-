@@ -203,7 +203,6 @@ export function buildMailtoFallback(
       `Phone: ${values.phone || "Not provided"}`,
       `Country: ${values.country || ""}`,
       `Product / Service Interest: ${values.interest || ""}`,
-      `Estimated Quantity: ${values.quantity || ""}`,
       "",
       "Message:",
       values.message || ""

@@ -3,7 +3,6 @@ import {
   CATEGORY_OPTIONS,
   INTEREST_OPTIONS,
   PRIORITY_OPTIONS,
-  QUANTITY_OPTIONS,
 } from "./options";
 
 /**
@@ -50,7 +49,6 @@ export const enquirySchema = z.object({
     .min(2, "Please enter your country.")
     .max(80, "That country name is longer than we can store."),
   interest: select(INTEREST_OPTIONS, "Please choose what you are interested in."),
-  quantity: select(QUANTITY_OPTIONS, "Please choose an estimated quantity."),
   message: z
     .string()
     .trim()
@@ -96,7 +94,6 @@ export const EMPTY_ENQUIRY: EnquiryInput = {
   phone: "",
   country: "",
   interest: "",
-  quantity: "",
   message: "",
   website: "",
   turnstileToken: "",
