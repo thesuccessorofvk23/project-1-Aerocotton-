@@ -25,8 +25,8 @@ export default function ContactPage() {
         {/* Photo panel */}
         <div className="aero-contact__visual">
           <img
-            src="/images/editorial/textile-interior.jpg"
-            alt="Airy interior styled with Aerocotton textiles"
+            src="/images/editorial/cotton-field-handshake.jpg"
+            alt="A handshake between partners over a cotton field, with rolls and folds of finished textiles"
           />
           <div className="aero-contact__visual-veil" aria-hidden="true" />
           <p className="aero-contact__visual-caption">
