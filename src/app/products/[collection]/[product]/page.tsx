@@ -12,7 +12,6 @@ import { company } from "@/content/company";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/motion/Reveal";
-import { ProductModel } from "@/components/three/ProductModel";
 import { editorialImage } from "@/lib/editorial";
 
 /** Pre-render every product page at build time. */
@@ -100,21 +99,8 @@ export default async function ProductPage({
           <div className="mt-10 grid gap-12 lg:grid-cols-2">
             <div>
               <div className="aspect-[4/5] w-full overflow-hidden border border-hairline bg-cotton">
-                {product.model ? (
-                  <ProductModel
-                    src={product.model}
-                    image={heroImage}
-                    alt={product.name}
-                  />
-                ) : (
-                  <img src={heroImage} alt={product.name} className="h-full w-full object-cover" />
-                )}
+                <img src={heroImage} alt={product.name} className="h-full w-full object-cover" />
               </div>
-              {product.model && (
-                <p className="mt-3 text-2xs uppercase tracking-[0.2em] text-taupe">
-                  Realtime model of the sample — drag to turn it, or ask for the file
-                </p>
-              )}
             </div>
 
             <div className="flex flex-col justify-center">

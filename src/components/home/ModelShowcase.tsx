@@ -1,14 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
-
-const ModelCanvas = dynamic(
-  () => import("@/components/three/ModelCanvas").then((m) => m.ModelCanvas),
-  { ssr: false }
-);
 
 export type ShowcasePiece = {
   /** Product page for the piece — the caption links there. */
@@ -18,19 +12,13 @@ export type ShowcasePiece = {
   /** Still shot: paints immediately, and holds the panel on devices without WebGL. */
   image: string;
   model: string;
-  /** Line-sheet fact, e.g. "Realtime OBJ — 4,706 faces". */
+  /** Line-sheet fact, e.g. "Realtime OBJ — 4,706 faces" — for the spec rail only. */
   spec: string;
 };
 
-/**
- * Section 04 — "Realtime 3D" — every modelled piece in the catalogue in one
- * row, each drawn live from its own file.
- *
- * A row of three carries megabytes of geometry, so the viewers are mounted when
- * the row is still a screen away rather than with the page: until then each
- * panel is its still shot, which is also what a visitor with no WebGL keeps.
- * Dragging the media turns that piece, and the link lives in the caption — so a
- * drag never fights a navigation.
+/** Section 04 — modelled pieces: one per catalogue item that ships a model.
+ * Each panel shows its still shot and links to the product page; the viewers
+ * are not mounted, so no WebGL geometry loads here.
  */
 export function ModelShowcase({ pieces }: { pieces: ShowcasePiece[] }) {
   const row = useRef<HTMLDivElement>(null);
@@ -52,10 +40,6 @@ export function ModelShowcase({ pieces }: { pieces: ShowcasePiece[] }) {
       window.removeEventListener("resize", check);
     };
 
-    // IntersectionObserver is the cheap trigger, but its notifications ride
-    // along with a rendered frame: a host that produces none (an embedded or
-    // offscreen webview) would leave the viewers unmounted for good. The plain
-    // geometry check on scroll/resize backs it up — both paths land in `open`.
     const check = () => {
       const margin = window.innerHeight * 0.6;
       const rect = el.getBoundingClientRect();
@@ -93,10 +77,7 @@ export function ModelShowcase({ pieces }: { pieces: ShowcasePiece[] }) {
 }
 
 function Piece({ piece, live }: { piece: ShowcasePiece; live: boolean }) {
-  // The still fades out over the canvas only once the model's first frame is
-  // drawn — the same handover the product page hero makes.
-  const [ready, setReady] = useState(false);
-
+  // The still shows directly — no WebGL viewer is mounted on the showcase.
   return (
     <figure role="listitem" className="aero-models__piece">
       <div className="aero-models__media">
@@ -105,16 +86,8 @@ function Piece({ piece, live }: { piece: ShowcasePiece; live: boolean }) {
           alt={`${piece.name} — ${piece.collectionName} collection`}
           loading="lazy"
           draggable={false}
-          className={cn("aero-models__still", ready && "is-drawn")}
+          className="aero-models__still"
         />
-        {live && (
-          <ModelCanvas
-            src={piece.model}
-            onReady={() => setReady(true)}
-            className="aero-models__canvas"
-          />
-        )}
-        <span className="aero-models__badge">3D</span>
       </div>
       <figcaption className="aero-models__caption">
         <h3>{piece.name}</h3>
