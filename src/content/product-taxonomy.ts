@@ -67,7 +67,7 @@ export const PRODUCT_TAXONOMY = [
     ],
   },
   {
-    department: "Miscellaneous",
+    department: "Bags",
     categories: [
       "Scarf",
       "Wool Items",
@@ -93,10 +93,10 @@ const SOURCE_TYPE_MAP: Record<string, { department: ProductDepartment; productTy
   "Apron with Gloves": { department: "Kitchen & Dining", productType: "Aprons" },
   Blankets: { department: "Table", productType: "Blankets" },
   "Chair Pads": { department: "Table", productType: "Chair Pad" },
-  "Cloth Bags": { department: "Miscellaneous", productType: "Tote Bag" },
+  "Cloth Bags": { department: "Bags", productType: "Tote Bag" },
   "Cloth Materials": { department: "Functional Fibres Articles", productType: "Textile Swatches" },
   Cushions: { department: "Beddings", productType: "Cushions and Covers" },
-  "Hang Tags": { department: "Miscellaneous", productType: "Hang Tags" },
+  "Hang Tags": { department: "Bags", productType: "Hang Tags" },
   Napkins: { department: "Table", productType: "Napkins" },
   Pillows: { department: "Beddings", productType: "Pillow Cover" },
   "Place Mats": { department: "Table", productType: "Placemats" },

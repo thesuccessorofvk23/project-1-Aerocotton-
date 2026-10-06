@@ -46,7 +46,7 @@ export default function ProductsPage() {
     return {
       id: product.id,
       name: product.name,
-      department: product.department ?? "Miscellaneous",
+      department: product.department ?? "Bags",
       category: product.category,
       productType: product.productType,
       collection: product.collectionName,
@@ -81,6 +81,14 @@ export default function ProductsPage() {
     })
   );
 
+  /** Pinned department thumbnails — the tile that best represents each shelf. */
+  const DEPARTMENT_THUMBNAILS: Record<string, string> = {
+    Table: "/images/products/tablecloth-clay.jpg",
+    "Kitchen & Dining": "/images/products/kitchen-set-striped.jpg",
+    Beddings: "/images/products/cushion-palm-gold.jpg",
+    Bags: "/images/products/cloth-bags/cotton-tote-bag.jpg",
+  };
+
   const departmentCategories = PRODUCT_TAXONOMY.map(({ department }) => {
     const inDepartment = products.filter((p) => p.department === department);
     const realPhoto = inDepartment.find((p) => p.image.startsWith("/images/products/"));
@@ -88,6 +96,7 @@ export default function ProductsPage() {
       name: department,
       count: inDepartment.length,
       image:
+        DEPARTMENT_THUMBNAILS[department] ??
         realPhoto?.image ??
         (inDepartment[0] ? editorialImage(inDepartment[0].collection) : "/images/editorial/woven-texture.jpg"),
     };

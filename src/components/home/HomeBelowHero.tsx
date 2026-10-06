@@ -6,9 +6,9 @@ import { Reveal } from "@/components/motion/Reveal";
 import { Container } from "@/components/ui/Container";
 
 const catalogueRows = [
-  { product: allProducts.find((prod) => prod.slug === "apron-design-01"), title: "Printed aprons", meta: "Apron with Gloves", image: "/images/products/apron-design-01.jpg", alt: "Apron Design-01 from the Kitchen & Table Presentation catalogue", layout: "photo-first" },
-  { product: allProducts.find((prod) => prod.slug === "kitchen-towel-set-03"), title: "Kitchen towel sets", meta: "Towels", image: "/images/products/kitchen-towel-design-03.jpg", alt: "Kitchen Towel Set Design-03 with striped and printed towels", layout: "copy-first" },
-  { product: allProducts.find((prod) => prod.slug === "cushion-design-05"), title: "Printed cushions", meta: "Cushions", image: "/images/products/cushion-design-05.jpg", alt: "Cushion Design-05 from the Kitchen & Table Presentation catalogue", layout: "photo-first" },
+  { product: allProducts.find((prod) => prod.slug === "apron-design-01"), title: "Printed aprons", meta: "Apron with Gloves", image: "/images/products/apron-doodle-print.jpg", alt: "Printed cotton apron with a black doodle-animal print and contrast pocket on a cream ground", layout: "photo-first" },
+  { product: allProducts.find((prod) => prod.slug === "kitchen-towel-set-03"), title: "Kitchen towel sets", meta: "Towels", image: "/images/products/kitchen-set-striped.jpg", alt: "Striped cotton apron with matching oven mitts, pot holders, double oven glove and folded kitchen towels", layout: "copy-first" },
+  { product: allProducts.find((prod) => prod.slug === "cushion-design-05"), title: "Printed cushions", meta: "Cushions", image: "/images/products/cushion-palm-gold.jpg", alt: "Printed cushion with black palm-leaf and gold-leaf artwork on a white ground", layout: "photo-first" },
   { product: allProducts.find((prod) => prod.slug === "tablecloth-natural"), title: "Printed tablecloths", meta: "Table Top Cover", image: "/images/products/tablecloth-natural.jpg", alt: "Natural print tablecloth from the Kitchen & Table Presentation catalogue", layout: "copy-first" },
 ] as const;
 export function HomeBelowHero() {
