@@ -11,7 +11,6 @@ import {
 import { company } from "@/content/company";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
-import { Reveal } from "@/components/motion/Reveal";
 import { editorialImage } from "@/lib/editorial";
 
 /** Pre-render every product page at build time. */
@@ -128,10 +127,6 @@ export default async function ProductPage({
                   <dt className="text-2xs uppercase tracking-[0.2em] text-taupe">Series</dt>
                   <dd className="mt-1 text-sm text-ink">{product.category}</dd>
                 </div>
-                <div>
-                  <dt className="text-2xs uppercase tracking-[0.2em] text-taupe">Materials</dt>
-                  <dd className="mt-1 text-sm text-ink">{product.materials.join(" · ")}</dd>
-                </div>
               </dl>
 
               <div className="mt-10 flex flex-wrap gap-4">
@@ -143,74 +138,6 @@ export default async function ProductPage({
                 </ButtonLink>
               </div>
             </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Details */}
-      <section className="bg-linen py-20">
-        <Container>
-          <div className="grid gap-12 lg:grid-cols-3">
-            <Reveal>
-              <div>
-                <h2 className="font-display text-2xl text-ink">Applications</h2>
-                <ul className="mt-5 space-y-2">
-                  {product.applications.map((a) => (
-                    <li key={a} className="flex items-start gap-3 text-sm/relaxed text-umber">
-                      <span className="mt-2 h-px w-4 flex-none bg-brass" aria-hidden />
-                      {a}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-            <Reveal delay={100}>
-              <div>
-                {product.variants.length > 0 && (
-                  <>
-                    <h2 className="font-display text-2xl text-ink">Available variations</h2>
-                    <div className="mt-5 flex flex-wrap gap-2">
-                      {product.variants.map((variant) => (
-                        <span
-                          key={variant}
-                          className="border border-outline bg-ivory px-4 py-2 text-2xs font-semibold uppercase tracking-[0.16em] text-umber"
-                        >
-                          {variant}
-                        </span>
-                      ))}
-                    </div>
-                  </>
-                )}
-                <h3
-                  className={
-                    product.variants.length > 0
-                      ? "font-display mt-8 text-lg text-ink"
-                      : "font-display text-lg text-ink"
-                  }
-                >
-                  Customization
-                </h3>
-                <p className="mt-3 text-sm/relaxed text-umber">{product.customization}</p>
-              </div>
-            </Reveal>
-            <Reveal delay={200}>
-              <div>
-                <h2 className="font-display text-2xl text-ink">Specifications</h2>
-                <dl className="mt-5 divide-y divide-hairline border-y border-hairline">
-                  {/* Product size is deliberately kept off the public pages. */}
-                  {product.specs
-                    .filter((spec) => spec.label !== "Size")
-                    .map((spec) => (
-                      <div key={spec.label} className="flex justify-between gap-6 py-3">
-                        <dt className="text-2xs uppercase tracking-[0.16em] text-taupe">
-                          {spec.label}
-                        </dt>
-                        <dd className="text-right text-sm text-ink">{spec.value}</dd>
-                      </div>
-                    ))}
-                </dl>
-              </div>
-            </Reveal>
           </div>
         </Container>
       </section>

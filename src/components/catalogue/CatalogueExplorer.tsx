@@ -576,7 +576,7 @@ export function CatalogueExplorer({
                     </span>
                     <span className="aero-plp__body">
                       <span className="aero-plp__eyebrow">
-                        {p.productType}{p.model ? " · 3D" : ""}
+                        {p.productType}
                       </span>
                       <span className="aero-plp__name-row">
                         <span className="aero-plp__name">{p.name}</span>

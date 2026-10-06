@@ -244,9 +244,9 @@ const lineSheets: Collection[] = [
         name: "Cotton Tote Bag",
         category: "Cloth Bags",
         productType: "Cloth Bags",
-        tagline: "Turn the sample over in realtime.",
+        tagline: "Natural cotton tote with a flat gusset.",
         description:
-          "A stitched cotton tote cut with a flat gusset and twin self-fabric handles, finished in Karur. This is the first piece in the catalogue modelled in three dimensions — the view above is the sample itself, drawn realtime in the browser, so a buyer can check the gusset depth, the handle drop and the fall of the cloth before asking for anything to be couriered.",
+          "A stitched cotton tote cut with a flat gusset and twin self-fabric handles, finished in Karur.",
         materials: ["100% cotton"],
         applications: ["Retail totes", "Gifting", "Promotional"],
         specs: [
@@ -579,7 +579,7 @@ const lineSheets: Collection[] = [
         productType: "Cushions",
         tagline: "Orange autumn print on white.",
         description:
-          "A printed cushion cover in an autumn print — scattered orange leaf and bloom motifs with fine dark accents on a white ground. The print is inspected from every side before a swatch is cut, and the sample's own colour texture is kept.",
+          "A printed cushion cover in an autumn print — scattered orange leaf and bloom motifs with fine dark accents on a white ground.",
         materials: ["100% cotton", "Pigment print"],
         applications: ["Living rooms", "Retail", "Gifting"],
         specs: [

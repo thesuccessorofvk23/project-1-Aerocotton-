@@ -130,9 +130,7 @@ export default function ProductsPage() {
             The current catalogue across six programmes — kitchen and table
             presentation, table presentation, kitchen towels CAD, place mats
             and runners, autumn cushions 2026 and cloth bags — woven, printed
-            and stitched in Karur. Three pieces are modelled in three
-            dimensions, so a buyer can turn the sample over before asking for
-            it.
+            and stitched in Karur.
           </p>
         </Container>
       </section>
