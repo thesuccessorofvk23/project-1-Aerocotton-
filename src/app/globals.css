@@ -211,6 +211,63 @@ body::after {
   width: clamp(10rem, 15vw, 14.5rem);
 }
 
+/* Client contact block under the lockup — address, then labelled lines for
+   the phone/fax, mobile & WhatsApp, website and the three mailtos. */
+.site-footer__contact {
+  margin-top: clamp(1.25rem, 2vw, 1.75rem);
+  font-style: normal;
+}
+
+.site-footer__contact-address {
+  font-size: 0.8rem;
+  line-height: 1.65;
+  color: rgba(244, 240, 232, 0.72);
+}
+
+.site-footer__contact-list {
+  margin: 1rem 0 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.site-footer__contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 0.75rem;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.site-footer__contact-row dt {
+  flex: 0 0 auto;
+  min-width: 7.5rem;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(244, 240, 232, 0.45);
+}
+
+.site-footer__contact-row dd {
+  margin: 0;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.1rem 0.9rem;
+}
+
+.site-footer__contact-row a {
+  color: rgba(244, 240, 232, 0.86);
+  text-decoration: none;
+  transition: color 300ms var(--ease-out-soft);
+}
+
+.site-footer__contact-row a:hover {
+  color: #f4f0e8;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
 .site-footer__nav {
   display: flex;
   flex-wrap: wrap;

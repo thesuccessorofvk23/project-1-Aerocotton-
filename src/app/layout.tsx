@@ -31,10 +31,11 @@ export const viewport: Viewport = {
  * already closed when the hero would otherwise flash (see
  * `CinematicLoadingScreen` and the `.cinematic-intro` block in globals.css).
  *
- * It arms on every full load of the homepage. The curtain is the brand's front
- * door, and a reload that skipped it read as a broken page, so the once-per-
- * session gate it used to carry is gone: `?intro=0` is the escape hatch, and a
- * client-side navigation back to `/` never re-runs this script anyway.
+ * It arms once per tab session: the first full load of the homepage raises
+ * the curtain and drops a `sessionStorage` flag, so every reload or refresh
+ * in that tab lands straight on the hero with no replay. `?intro` replays the
+ * opening for review, `?intro=0` always skips it, and a client-side
+ * navigation back to `/` never re-runs this script anyway.
  *
  * Three class hand-offs drive it, on two timers that cannot be blocked by a
  * dropped frame: `intro-locked` is released the moment the doors start to
@@ -54,7 +55,11 @@ const introArmer = `(function () {
   var root = document.documentElement;
   var path = window.location.pathname.replace(/index\\.html?$/i, "");
   if (path !== "/" && path !== "") return;
+  var replay = /[?&]intro(=|&|$)/.test(window.location.search);
   if (/[?&]intro=(0|off|false)(&|$)/.test(window.location.search)) return;
+  try {
+    if (!replay && window.sessionStorage.getItem("aero-cotton-intro-seen")) return;
+  } catch (error) {}
 
   var reduced = false;
   try {
@@ -90,6 +95,9 @@ const introArmer = `(function () {
   root.classList.add("intro-armed", "intro-locked");
   if (reduced) root.classList.add("intro-static");
   root.dataset.introStart = String(start);
+  try {
+    window.sessionStorage.setItem("aero-cotton-intro-seen", "1");
+  } catch (error) {}
 
   intro.releaseTimer = window.setTimeout(function () { root.classList.remove("intro-locked"); }, release);
   intro.retireTimer = window.setTimeout(intro.retire, hold);

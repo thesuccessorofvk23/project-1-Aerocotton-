@@ -10,7 +10,7 @@
  *   PENDING: export country list                        → Global Presence
  *   PENDING: machinery / capacity figures               → (Manufacturing page removed)
  *   PENDING: product categories per collection          → Products copy
- *   PENDING: phone, email, registrations (IEC/GSTIN)    → Contact, Footer
+ *   PENDING: registrations (IEC/GSTIN)                  → Contact page
  */
 
 export const company = {
@@ -33,15 +33,18 @@ export const company = {
     region: "Tamil Nadu",
     country: "India",
   },
-  /**
-   * PLACEHOLDER contact routes — replace with confirmed details before launch.
-   * The site renders gracefully without them (form + WhatsApp only).
-   */
+  /** CONFIRMED by the client (Oct 2026) — rendered in the footer contact block. */
   contact: {
-    email: null as string | null,
-    phone: null as string | null,
-    /** WhatsApp Business deep link target — number required before launch. */
-    whatsapp: null as string | null,
+    /** Tele/Fax line. */
+    phone: "+91 4324 220 013",
+    /** Mobile — also the WhatsApp number. */
+    mobile: "+91 9042620013",
+    website: "www.aerocotton.in",
+    emails: [
+      "export@aerocotton.in",
+      "admin@aerocotton.in",
+      "marketing@aerocotton.in",
+    ],
   },
   /**
    * PLACEHOLDER social channels — the footer design shows WhatsApp,

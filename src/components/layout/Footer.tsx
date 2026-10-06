@@ -78,6 +78,56 @@ export function Footer() {
               height={487}
               className="site-footer__logo"
             />
+
+            {/* Client contact block — address, lines and mailtos under the lockup. */}
+            <address className="site-footer__contact">
+              <p className="site-footer__contact-address">
+                {company.address.line1},<br />
+                {company.address.line2},<br />
+                {company.address.city},<br />
+                {company.address.region}, {company.address.country}
+              </p>
+              <dl className="site-footer__contact-list">
+                <div className="site-footer__contact-row">
+                  <dt>Tele / Fax</dt>
+                  <dd>
+                    <a href={`tel:${company.contact.phone.replace(/[^+\d]/g, "")}`}>
+                      {company.contact.phone}
+                    </a>
+                  </dd>
+                </div>
+                <div className="site-footer__contact-row">
+                  <dt>Mobile &amp; WhatsApp</dt>
+                  <dd>
+                    <a
+                      href={`https://wa.me/${company.contact.mobile.replace(/\D/g, "")}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {company.contact.mobile}
+                    </a>
+                  </dd>
+                </div>
+                <div className="site-footer__contact-row">
+                  <dt>Web</dt>
+                  <dd>
+                    <a href="https://aerocotton.in" target="_blank" rel="noopener noreferrer">
+                      {company.contact.website}
+                    </a>
+                  </dd>
+                </div>
+                <div className="site-footer__contact-row">
+                  <dt>Email</dt>
+                  <dd>
+                    {company.contact.emails.map((email) => (
+                      <a key={email} href={`mailto:${email}`}>
+                        {email}
+                      </a>
+                    ))}
+                  </dd>
+                </div>
+              </dl>
+            </address>
           </div>
 
           <nav aria-label="Footer" className="site-footer__nav">
