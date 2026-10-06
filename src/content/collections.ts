@@ -878,7 +878,7 @@ const lineSheets: Collection[] = [
 
 /**
  * The ten landscape collections, each one carrying its hand-written line-sheet
- * items plus the slice of the catalogue decks assigned to it.
+ * items (the catalogue-deck slice is empty — deck designs are not imported).
  */
 export const collections: Collection[] = lineSheets.map((collection) => ({
   ...collection,

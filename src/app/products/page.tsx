@@ -9,7 +9,7 @@ import { editorialImage } from "@/lib/editorial";
 export const metadata: Metadata = pageMeta({
   title: "Products — printed kitchen, table and home textiles from Karur",
   description:
-    "Browse Aerocotton's catalogue of printed aprons, kitchen towels, cushions, chair pads, blankets, place mats, table runners and table linen, made by a family-run manufacturer and exporter in Karur, India.",
+    "Browse Aerocotton's catalogue of printed aprons, kitchen towels, cushions, table runners and table linen, made by a family-run manufacturer and exporter in Karur, India.",
   path: "/products",
 });
 
@@ -91,7 +91,7 @@ export default function ProductsPage() {
         realPhoto?.image ??
         (inDepartment[0] ? editorialImage(inDepartment[0].collection) : "/images/editorial/woven-texture.jpg"),
     };
-  });
+  }).filter((cat) => cat.count > 0);
 
   /** Series facet — the client's line-sheet series, kept in sheet order. */
   const SERIES_ORDER = [
@@ -127,12 +127,12 @@ export default function ProductsPage() {
           <p className="aero-plp-hero__eyebrow">Product catalogue</p>
           <h1 className="aero-plp-hero__title">Our Collection</h1>
           <p className="aero-plp-hero__lede">
-            The current catalogue across nine programmes — kitchen and table
-            presentation, kitchen towels, cushions and chair pads, blankets,
-            place mats and runners, the textiles programme and cloth bags —
-            woven, printed and stitched in Karur. Three pieces are modelled in
-            three dimensions, so a buyer can turn the sample over before asking
-            for it.
+            The current catalogue across six programmes — kitchen and table
+            presentation, table presentation, kitchen towels CAD, place mats
+            and runners, autumn cushions 2026 and cloth bags — woven, printed
+            and stitched in Karur. Three pieces are modelled in three
+            dimensions, so a buyer can turn the sample over before asking for
+            it.
           </p>
         </Container>
       </section>
