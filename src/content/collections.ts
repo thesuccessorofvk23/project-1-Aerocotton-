@@ -253,11 +253,11 @@ const lineSheets: Collection[] = [
           { label: "Construction", value: "Flat gusset, twin self-fabric handles" },
           { label: "Colour", value: "Natural cotton, print to buyer artwork" },
           { label: "Series", value: "Cloth Bags" },
-          { label: "3D model", value: "Realtime OBJ — 4,706 faces" },
+
         ],
         variants: [],
         customization:
-          "Gusset depth, handle drop and print artwork to programme; the 3D file is supplied on request for buyer-side visualisation.",
+          "Gusset depth, handle drop and print artwork to programme.",
         model: "/models/cotton-tote-bag.obj",
         image: "/images/products/cloth-bags/cotton-tote-bag.jpg",
         featured: true,
@@ -493,7 +493,7 @@ const lineSheets: Collection[] = [
         name: "Block-Printed Fringed Runner",
         category: "Place Mats & Runners",
         productType: "Printed Table Runners",
-        tagline: "Indigo block print, knotted fringe — turn it over.",
+        tagline: "Indigo block print, knotted fringe.",
         description:
           "A printed cotton runner in a dense indigo block-print check, with a knotted fringe closing both ends. It is modelled here folded over a display rail, exactly as the sample reaches a buyer, so the print reads at true scale and the fringe can be inspected before a swatch is cut. The indigo came out of the vat deeper than the sheet shows — the model keeps the sample's own texture.",
         materials: ["100% cotton", "Block print"],
@@ -502,11 +502,11 @@ const lineSheets: Collection[] = [
           { label: "Print", value: "Indigo block check, cream ground" },
           { label: "Finish", value: "Knotted fringe, both ends" },
           { label: "Series", value: "Place Mats & Runners" },
-          { label: "3D model", value: "Realtime GLB — 4,814 faces, textured" },
+
         ],
         variants: [],
         customization:
-          "Print scale to programme; fringe or hemmed ends, and the 3D file is supplied on request for buyer-side visualisation.",
+          "Print scale to programme; fringe or hemmed ends.",
         model: "/models/block-printed-runner.glb",
         image: "/images/products/fringed-runner/block-printed-runner.jpg",
       }),
@@ -574,22 +574,22 @@ const lineSheets: Collection[] = [
       p({
         id: "desert-autumn-print-cushion",
         slug: "autumn-print-cushion",
-        name: "3D Cotton Pillow",
+        name: "Cotton Pillow",
         category: "Autumn Cushions 2026",
         productType: "Cushions",
-        tagline: "Orange autumn print on white — turn the sample over.",
+        tagline: "Orange autumn print on white.",
         description:
-          "A printed cushion cover in an autumn print — scattered orange leaf and bloom motifs with fine dark accents on a white ground. Modelled here from a scan of the sample itself, so the print can be inspected from every side before a swatch is cut; the realtime viewer keeps the sample's own colour texture.",
+          "A printed cushion cover in an autumn print — scattered orange leaf and bloom motifs with fine dark accents on a white ground. The print is inspected from every side before a swatch is cut, and the sample's own colour texture is kept.",
         materials: ["100% cotton", "Pigment print"],
         applications: ["Living rooms", "Retail", "Gifting"],
         specs: [
           { label: "Colourway", value: "Orange on white" },
           { label: "Series", value: "Autumn Cushions 2026" },
-          { label: "3D model", value: "Realtime GLB — 66,882 faces, textured" },
+
         ],
         variants: ["Tangerine", "White"],
         customization:
-          "Cover-only or with inserts; print recolours and coordinated sets to programme; the 3D file is supplied on request for buyer-side visualisation.",
+          "Cover-only or with inserts; print recolours and coordinated sets to programme.",
         model: "/models/autumn-print-cushion.glb",
         image: "/images/products/cushions-chair-pads/autumn-print-cushion.jpg",
       }),
