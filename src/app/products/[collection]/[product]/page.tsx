@@ -11,6 +11,7 @@ import {
 import { company } from "@/content/company";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
+import { ProductModel } from "@/components/three/ProductModel";
 import { editorialImage } from "@/lib/editorial";
 
 /** Pre-render every product page at build time. */
@@ -98,7 +99,15 @@ export default async function ProductPage({
           <div className="mt-10 grid gap-12 lg:grid-cols-2">
             <div>
               <div className="aspect-[4/5] w-full overflow-hidden border border-hairline bg-cotton">
-                <img src={heroImage} alt={product.name} className="h-full w-full object-cover" />
+                {product.model ? (
+                  <ProductModel
+                    src={product.model}
+                    image={heroImage}
+                    alt={product.name}
+                  />
+                ) : (
+                  <img src={heroImage} alt={product.name} className="h-full w-full object-cover" />
+                )}
               </div>
             </div>
 

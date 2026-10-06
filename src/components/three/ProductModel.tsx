@@ -48,7 +48,7 @@ export function ProductModel({ src, image, alt, className }: Props) {
           ready ? "opacity-100" : "opacity-0"
         )}
       >
-        Realtime 3D — drag to turn
+        Drag to turn
       </span>
     </div>
   );
