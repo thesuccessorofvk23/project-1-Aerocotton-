@@ -574,7 +574,7 @@ const lineSheets: Collection[] = [
       p({
         id: "desert-autumn-print-cushion",
         slug: "autumn-print-cushion",
-        name: "Print Cushion",
+        name: "3D Cotton Pillow",
         category: "Autumn Cushions 2026",
         productType: "Cushions",
         tagline: "Orange autumn print on white — turn the sample over.",
