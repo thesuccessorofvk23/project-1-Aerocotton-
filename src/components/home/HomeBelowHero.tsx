@@ -6,11 +6,11 @@ import { Reveal } from "@/components/motion/Reveal";
 import { Container } from "@/components/ui/Container";
 
 const catalogueRows = [
-  { product: allProducts.find((prod) => prod.slug === "apron-design-01"), title: "Printed aprons", meta: "Apron with Gloves", image: "/images/products/apron-doodle-print.jpg", alt: "Printed cotton apron with a black doodle-animal print and contrast pocket on a cream ground", layout: "photo-first", fit: "contain" },
+  { product: allProducts.find((prod) => prod.slug === "apron-design-01"), title: "Printed aprons", meta: "Apron with Gloves", image: "/images/products/apron-doodle-print.jpg", alt: "Printed cotton apron with an all-over dog print, contrast pocket and tie straps displayed on a mannequin", layout: "photo-first", fit: "cover" },
   { product: allProducts.find((prod) => prod.slug === "kitchen-towel-set-03"), title: "Kitchen towel sets", meta: "Towels", image: "/images/products/kitchen-set-striped.jpg", alt: "Striped cotton apron with matching oven mitts, pot holders, double oven glove and folded kitchen towels", layout: "copy-first", fit: "cover" },
   { product: allProducts.find((prod) => prod.slug === "cushion-design-05"), title: "Printed cushions", meta: "Cushions", image: "/images/products/cushion-palm-gold.jpg", alt: "Printed cushion with black palm-leaf and gold-leaf artwork on a white ground", layout: "photo-first", fit: "cover" },
   { product: allProducts.find((prod) => prod.slug === "tablecloth-natural"), title: "Printed tablecloths", meta: "Table Top Cover", image: "/images/products/tablecloth-natural.jpg", alt: "Natural print tablecloth from the Kitchen & Table Presentation catalogue", layout: "copy-first", fit: "cover" },
-] as const;
+];
 export function HomeBelowHero() {
   return <div className="aero-home-lower overflow-hidden">
     <section data-luxury-section="origin" className="aero-origin bg-ivory py-24 md:py-36"><Container><Reveal className="aero-origin__inner"><p className="aero-origin__label">[ About Aero Cotton ]</p><span className="aero-origin__drop" aria-hidden="true" /><h2 className="aero-origin__statement">We make cotton textiles with clarity and care &mdash; considered materials, dependable processes, everyday comfort.</h2><Link href="/about" className="aero-arrow-link aero-origin__link">About <span aria-hidden="true">&rarr;</span></Link></Reveal></Container></section>
