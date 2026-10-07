@@ -62,7 +62,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Cover-only or with inserts; print recolours and coordinated sets to programme.",
-        image: "/images/products/cushion-design-05.jpg",
+        image: "/images/products/cushion-design-05.webp",
       }),
       p({
         id: "nature-tp-design-01",
@@ -82,7 +82,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Prints and hem finishes to programme; napery sets matched on request.",
-        image: "/images/products/tp-design-01.jpg",
+        image: "/images/products/tp-design-01.webp",
       }),
     ],
   },
@@ -115,7 +115,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Catalogue designs can be recoloured or printed to buyer artwork; glove pairing and branding on request.",
-        image: "/images/products/apron-design-02.jpg",
+        image: "/images/products/apron-design-02.webp",
       }),
       p({
         id: "mountain-kt-cad-01",
@@ -135,7 +135,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Buyer artwork reproduced from CAD files; colour matching and sampling before bulk.",
-        image: "/images/products/kt-cad-01.jpg",
+        image: "/images/products/kt-cad-01.webp",
       }),
       p({
         id: "mountain-tp-design-02",
@@ -155,7 +155,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Prints and hem finishes to programme; napery sets matched on request.",
-        image: "/images/products/tp-design-02.jpg",
+        image: "/images/products/tp-design-02.webp",
       }),
     ],
   },
@@ -189,7 +189,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Print artwork, set composition and hanging details to programme; woven-in logos available.",
-        image: "/images/products/kitchen-towel-design-04.jpg",
+        image: "/images/products/kitchen-towel-design-04.webp",
       }),
       p({
         id: "beach-kt-cad-02",
@@ -209,7 +209,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Buyer artwork reproduced from CAD files; colour matching and sampling before bulk.",
-        image: "/images/products/kt-cad-02.jpg",
+        image: "/images/products/kt-cad-02.webp",
       }),
       p({
         id: "beach-tp-design-03",
@@ -229,7 +229,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Prints and hem finishes to programme; napery sets matched on request.",
-        image: "/images/products/tp-design-03.jpg",
+        image: "/images/products/tp-design-03.webp",
       }),
       //
       // The catalogue's first 3D piece. Unlike every other line-sheet entry the
@@ -259,7 +259,7 @@ const lineSheets: Collection[] = [
         customization:
           "Gusset depth, handle drop and print artwork to programme.",
         model: "/models/cotton-tote-bag.obj",
-        image: "/images/products/cloth-bags/cotton-tote-bag.jpg",
+        image: "/images/products/cloth-bags/cotton-tote-bag.webp",
         featured: true,
       }),
     ],
@@ -293,7 +293,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Catalogue designs can be recoloured or printed to buyer artwork; glove pairing and branding on request.",
-        image: "/images/products/apron-design-01.jpg",
+        image: "/images/products/apron-design-01.webp",
       }),
       p({
         id: "city-kt-cad-03",
@@ -313,7 +313,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Buyer artwork reproduced from CAD files; colour matching and sampling before bulk.",
-        image: "/images/products/kt-cad-03.jpg",
+        image: "/images/products/kt-cad-03.webp",
       }),
       p({
         id: "city-tp-design-04",
@@ -333,7 +333,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Prints and hem finishes to programme; napery sets matched on request.",
-        image: "/images/products/tp-design-04.jpg",
+        image: "/images/products/tp-design-04.webp",
       }),
     ],
   },
@@ -366,7 +366,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Prints and hem finishes to programme; napery sets matched on request.",
-        image: "/images/products/tablecloth-cocoa.jpg",
+        image: "/images/products/tablecloth-cocoa.webp",
       }),
       p({
         id: "forest-kt-cad-04",
@@ -386,7 +386,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Buyer artwork reproduced from CAD files; colour matching and sampling before bulk.",
-        image: "/images/products/kt-cad-04.jpg",
+        image: "/images/products/kt-cad-04.webp",
       }),
       p({
         id: "forest-tp-design-05",
@@ -406,7 +406,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Prints and hem finishes to programme; napery sets matched on request.",
-        image: "/images/products/tp-design-05.jpg",
+        image: "/images/products/tp-design-05.webp",
       }),
     ],
   },
@@ -440,7 +440,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Print artwork, set composition and hanging details to programme; woven-in logos available.",
-        image: "/images/products/kitchen-towel-design-03.jpg",
+        image: "/images/products/kitchen-towel-design-03.webp",
       }),
       p({
         id: "lake-kt-cad-05",
@@ -460,7 +460,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Buyer artwork reproduced from CAD files; colour matching and sampling before bulk.",
-        image: "/images/products/kt-cad-05.jpg",
+        image: "/images/products/kt-cad-05.webp",
       }),
       p({
         id: "lake-tp-design-06",
@@ -480,7 +480,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Prints and hem finishes to programme; napery sets matched on request.",
-        image: "/images/products/tp-design-06.jpg",
+        image: "/images/products/tp-design-06.webp",
       }),
       //
       // The second 3D piece — an indigo block-printed runner, shipped as a
@@ -508,7 +508,7 @@ const lineSheets: Collection[] = [
         customization:
           "Print scale to programme; fringe or hemmed ends.",
         model: "/models/block-printed-runner.glb",
-        image: "/images/products/fringed-runner/block-printed-runner.jpg",
+        image: "/images/products/fringed-runner/block-printed-runner.webp",
       }),
     ],
   },
@@ -541,7 +541,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Cover-only or with inserts; print recolours and coordinated sets to programme.",
-        image: "/images/products/cushion-design-07.jpg",
+        image: "/images/products/cushion-design-07.webp",
       }),
       p({
         id: "desert-tablecloth-clay",
@@ -561,7 +561,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Prints and hem finishes to programme; napery sets matched on request.",
-        image: "/images/products/tablecloth-clay.jpg",
+        image: "/images/products/tablecloth-clay.webp",
       }),
       //
       // The third 3D piece — a client-supplied scan of an autumn-print sample
@@ -591,7 +591,7 @@ const lineSheets: Collection[] = [
         customization:
           "Cover-only or with inserts; print recolours and coordinated sets to programme.",
         model: "/models/autumn-print-cushion.glb",
-        image: "/images/products/cushions-chair-pads/autumn-print-cushion.jpg",
+        image: "/images/products/cushions-chair-pads/autumn-print-cushion.webp",
       }),
       p({
         id: "desert-kt-cad-06",
@@ -611,7 +611,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Buyer artwork reproduced from CAD files; colour matching and sampling before bulk.",
-        image: "/images/products/kt-cad-06.jpg",
+        image: "/images/products/kt-cad-06.webp",
       }),
       p({
         id: "desert-tp-design-07",
@@ -631,7 +631,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Prints and hem finishes to programme; napery sets matched on request.",
-        image: "/images/products/tp-design-07.jpg",
+        image: "/images/products/tp-design-07.webp",
       }),
     ],
   },
@@ -664,7 +664,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Cover-only or with inserts; print recolours and coordinated sets to programme.",
-        image: "/images/products/cushion-design-06.jpg",
+        image: "/images/products/cushion-design-06.webp",
       }),
       p({
         id: "waterfall-kt-cad-07",
@@ -684,7 +684,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Buyer artwork reproduced from CAD files; colour matching and sampling before bulk.",
-        image: "/images/products/kt-cad-07.jpg",
+        image: "/images/products/kt-cad-07.webp",
       }),
       p({
         id: "waterfall-tp-design-08",
@@ -704,7 +704,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Prints and hem finishes to programme; napery sets matched on request.",
-        image: "/images/products/tp-design-08.jpg",
+        image: "/images/products/tp-design-08.webp",
       }),
     ],
   },
@@ -737,7 +737,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Prints and hem finishes to programme; napery sets matched on request.",
-        image: "/images/products/tablecloth-natural.jpg",
+        image: "/images/products/tablecloth-natural.webp",
       }),
       p({
         id: "snow-tp-design-09",
@@ -757,7 +757,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Prints and hem finishes to programme; napery sets matched on request.",
-        image: "/images/products/tp-design-09.jpg",
+        image: "/images/products/tp-design-09.webp",
       }),
     ],
   },
@@ -790,7 +790,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Cover-only or with inserts; print recolours and coordinated sets to programme.",
-        image: "/images/products/cushion-design-08.jpg",
+        image: "/images/products/cushion-design-08.webp",
       }),
       p({
         id: "aurora-cushion-design-09",
@@ -810,7 +810,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Cover-only or with inserts; print recolours and coordinated sets to programme.",
-        image: "/images/products/cushion-design-09.jpg",
+        image: "/images/products/cushion-design-09.webp",
       }),
       p({
         id: "aurora-kt-cad-08",
@@ -830,7 +830,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Buyer artwork reproduced from CAD files; colour matching and sampling before bulk.",
-        image: "/images/products/kt-cad-08.jpg",
+        image: "/images/products/kt-cad-08.webp",
       }),
       p({
         id: "aurora-kt-cad-09",
@@ -850,7 +850,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Buyer artwork reproduced from CAD files; colour matching and sampling before bulk.",
-        image: "/images/products/kt-cad-09.jpg",
+        image: "/images/products/kt-cad-09.webp",
       }),
       p({
         id: "aurora-tp-design-10",
@@ -870,7 +870,7 @@ const lineSheets: Collection[] = [
         variants: [],
         customization:
           "Prints and hem finishes to programme; napery sets matched on request.",
-        image: "/images/products/tp-design-10.jpg",
+        image: "/images/products/tp-design-10.webp",
       }),
     ],
   },

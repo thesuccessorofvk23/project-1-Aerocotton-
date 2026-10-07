@@ -7,7 +7,9 @@
  *   node scripts/build-catalogue-images.mjs --check    # report coverage only
  *
  * Every image is normalised to the 4:5 frame the cards and detail pages use,
- * so nothing important is lost to object-fit cropping.
+ * so nothing important is lost to object-fit cropping. The extension on the
+ * catalogued `image` path picks the encoder: `.webp` for the shipped product
+ * stills (WebP q82), anything else for progressive mozjpeg q80 JPEG.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -38,11 +40,13 @@ for (const product of catalogueProducts) {
     continue;
   }
   fs.mkdirSync(path.dirname(outFile), { recursive: true });
-  await sharp(src)
+  const framed = sharp(src)
     .flatten({ background: "#ffffff" })
-    .resize(W, H, { fit: "contain", background: "#ffffff", withoutEnlargement: false })
-    .jpeg({ quality: 80, progressive: true, mozjpeg: true })
-    .toFile(outFile);
+    .resize(W, H, { fit: "contain", background: "#ffffff", withoutEnlargement: false });
+  await (path.extname(outFile).toLowerCase() === ".webp"
+    ? framed.webp({ quality: 82, effort: 6 })
+    : framed.jpeg({ quality: 80, progressive: true, mozjpeg: true })
+  ).toFile(outFile);
   written++;
 }
 

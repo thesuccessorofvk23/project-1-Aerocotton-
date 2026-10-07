@@ -83,10 +83,10 @@ export default function ProductsPage() {
 
   /** Pinned department thumbnails — the tile that best represents each shelf. */
   const DEPARTMENT_THUMBNAILS: Record<string, string> = {
-    Table: "/images/products/tablecloth-clay.jpg",
-    "Kitchen & Dining": "/images/products/kitchen-set-striped.jpg",
-    Beddings: "/images/products/cushion-palm-gold.jpg",
-    Bags: "/images/products/cloth-bags/cotton-tote-bag.jpg",
+    Table: "/images/products/tablecloth-clay.webp",
+    "Kitchen & Dining": "/images/products/kitchen-set-striped.webp",
+    Beddings: "/images/products/cushion-palm-gold.webp",
+    Bags: "/images/products/cloth-bags/cotton-tote-bag.webp",
   };
 
   const departmentCategories = PRODUCT_TAXONOMY.map(({ department }) => {

@@ -3,11 +3,13 @@
  * Normalises a supplier/client photograph into the still convention the cards
  * and product pages expect, and writes it into `public/`.
  *
- *   node scripts/import-product-still.mjs <source> <public/images/.../slug.jpg> [--bg auto|#rrggbb|white]
+ *   node scripts/import-product-still.mjs <source> <public/images/.../slug.webp> [--bg auto|#rrggbb|white]
  *
- * Same 4:5 frame as `scripts/build-catalogue-images.mjs` (900x1125, `contain`,
- * JPEG progressive mozjpeg q80) so a still shot on a studio ground sits in the
- * grid without the object-fit crop showing a seam.
+ * Same 4:5 frame as `scripts/build-catalogue-images.mjs` (900x1125, `contain`)
+ * so a still shot on a studio ground sits in the grid without the object-fit
+ * crop showing a seam. The destination extension picks the encoder: `.webp`
+ * for the shipped product stills (WebP q82), anything else for the original
+ * progressive mozjpeg q80 JPEG.
  *
  * `--bg auto` (the default) samples the source's top-left pixel and pads with
  * that colour, but only when it reads as a light studio ground — otherwise the
@@ -32,7 +34,7 @@ for (let i = 0; i < argv.length; i++) {
 
 if (positional.length !== 2) {
   console.error(
-    "usage: node scripts/import-product-still.mjs <source> <public/images/products/.../slug.jpg> [--bg auto|#rrggbb|white]"
+    "usage: node scripts/import-product-still.mjs <source> <public/images/products/.../slug.webp> [--bg auto|#rrggbb|white]"
   );
   process.exit(1);
 }
@@ -76,15 +78,18 @@ if (bgArg === "white") {
 fs.mkdirSync(path.dirname(dest), { recursive: true });
 
 const meta = await sharp(src).metadata();
-await sharp(src)
+const framed = sharp(src)
   .flatten({ background })
   .resize(W, H, { fit: "contain", kernel: "lanczos3", background, withoutEnlargement: false })
-  .sharpen({ sigma: 0.8 })
-  .jpeg({ quality: 80, progressive: true, mozjpeg: true })
-  .toFile(dest);
+  .sharpen({ sigma: 0.8 });
+const webp = path.extname(dest).toLowerCase() === ".webp";
+await (webp
+  ? framed.webp({ quality: 82, effort: 6 })
+  : framed.jpeg({ quality: 80, progressive: true, mozjpeg: true })
+).toFile(dest);
 
 const out = await sharp(dest).metadata();
 console.log(
-  `${dest}\n  ${meta.format} ${meta.width}x${meta.height} -> ${out.width}x${out.height} jpeg, ` +
+  `${dest}\n  ${meta.format} ${meta.width}x${meta.height} -> ${out.width}x${out.height} ${webp ? "webp" : "jpeg"}, ` +
     `${(fs.statSync(dest).size / 1024).toFixed(0)} KB, background ${background}`
 );

@@ -32,18 +32,38 @@
  *
  *   mkdir -p .pdf-work/tools && cd .pdf-work/tools
  *   npm init -y && npm install ffmpeg-static@5
+ *
+ * The file currently shipped (4.6 MiB) is a *second-generation* re-encode of the
+ * previous shipped encode, made to cut the home-page payload from 14.2 MiB — no
+ * higher-quality master of this film survives. It was produced with
+ * `-preset veryslow -tune film -crf 33`, which measured VMAF 78 against the file
+ * it replaced (the `-crf 22` default above scores 82 at 5.2 MiB). Re-import from
+ * a master with the defaults when a new film arrives.
  */
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 
 const args = process.argv.slice(2);
-const src = args.find((a) => !a.startsWith("--"));
-const outFlag = args.indexOf("--out");
-const OUT = outFlag === -1 ? "public/hero/hero-cotton-intro.mp4" : args[outFlag + 1];
+const VALUE_FLAGS = ["out", "crf", "preset", "tune"];
+const positional = [];
+const values = {};
+for (let i = 0; i < args.length; i++) {
+  const a = args[i];
+  const eq = a.indexOf("=");
+  const name = a.startsWith("--") ? a.slice(2, eq === -1 ? undefined : eq) : null;
+  if (name && VALUE_FLAGS.includes(name)) {
+    values[name] = eq === -1 ? args[++i] : a.slice(eq + 1);
+    continue;
+  }
+  if (a.startsWith("--")) continue;
+  positional.push(a);
+}
+const src = positional[0];
+const OUT = values.out ?? "public/hero/hero-cotton-intro.mp4";
 
 if (!src) {
-  console.error('usage: node scripts/import-hero-video.mjs "<master.mp4>" [--out public/hero/<file>.mp4]');
+  console.error('usage: node scripts/import-hero-video.mjs "<master.mp4>" [--out public/hero/<file>.mp4] [--crf 22] [--preset slow] [--tune film]');
   process.exit(1);
 }
 if (!fs.existsSync(src)) {
@@ -74,8 +94,9 @@ if (!ffmpeg) {
 /** Encode settings. CRF 22 measured at SSIM 0.985 against the delivered master. */
 const ENCODE = [
   "-c:v", "libx264",
-  "-preset", "slow",
-  "-crf", "22",
+  "-preset", values.preset ?? "slow",
+  "-crf", values.crf ?? "22",
+  ...(values.tune ? ["-tune", values.tune] : []),
   "-maxrate", "4500k",
   "-bufsize", "9000k",
   "-profile:v", "high",
