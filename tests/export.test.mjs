@@ -29,6 +29,15 @@
  *                the new build id, and `out/api/` was checked to match
  *                `public/api/` before re-pinning.
  *
+ *   30 Oct 2026  re-baselined again after a verification `npm run build`. This
+ *                time nothing in the source changed, so the pin had to move
+ *                for the build id alone: that build was repeated into a
+ *                throwaway directory (NEXT_DIST_DIR=out-verify), and the two
+ *                exports compared file by file with the id normalised — 494 of
+ *                them identical, the only differences being the three
+ *                build-id manifests, the flattened segment payload paths and
+ *                sitemap.xml's build timestamp. Still 545 files.
+ *
  * Any further change to `out/` still has to be a deliberate `npm run build`
  * with this fixture regenerated as part of it — reviewed, not a side effect.
  */
