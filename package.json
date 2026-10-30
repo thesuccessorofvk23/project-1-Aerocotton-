@@ -5,9 +5,22 @@
   "description": "Aerocotton — premium cotton home textiles, Karur, India. Multi-page B2B platform.",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "typecheck": "tsc --noEmit"
+    "build": "next build && node scripts/normalize-segment-payloads.mjs && node scripts/clean-api-runtime-state.mjs",
+    "start": "node scripts/serve-export.mjs",
+    "open": "node scripts/open-site.mjs",
+    "pack": "npm run build && node scripts/pack-upload.mjs",
+    "portable": "node scripts/make-portable-export.mjs",
+    "build:portable": "npm run build && node scripts/make-portable-export.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/api.test.mjs tests/export.test.mjs tests/forms.test.mjs",
+    "test:api": "node --test tests/api.test.mjs",
+    "test:export": "node --test tests/export.test.mjs",
+    "test:forms": "node --test tests/forms.test.mjs",
+    "mail:start": "node scripts/dev-mail-stack.mjs start",
+    "mail:stop": "node scripts/dev-mail-stack.mjs stop",
+    "mail:status": "node scripts/dev-mail-stack.mjs status",
+    "sample:send": "node scripts/send-sample-enquiry.mjs",
+    "pack:api": "node scripts/pack-backend.mjs"
   },
   "dependencies": {
     "@types/three": "0.185.4",
@@ -15,7 +28,6 @@
     "next": "16.3.4",
     "react": "19.3.0",
     "react-dom": "19.3.0",
-    "resend": "6.27.0",
     "three": "0.186.0",
     "vecteur": "0.3.0",
     "zod": "4.6.2"

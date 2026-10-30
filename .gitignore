@@ -5,6 +5,16 @@
 /.next/
 /out/
 
+# portable copy of out/ — opens by double-clicking index.html (no server)
+/out-portable/
+
+# throwaway output of an isolated verification build
+#     NEXT_DIST_DIR=out-verify npx next build
+/out-verify/
+
+# single-file upload of out/ (npm run pack) — never commit or leave on the server
+aerocotton-site-upload.zip
+
 # production
 /build
 
@@ -22,10 +32,18 @@ yarn-error.log*
 .env*.local
 
 # mail endpoint — real credentials and runtime state never enter the repo
+#
+# NOTE: lib/config.php is deliberately NOT ignored. It holds only the safe
+# defaults plus the loader; a password in it would be the operator editing the
+# wrong file. It has to ship, so it is tracked. The credentials file is
+# /public/api/config.php (and /aero-config.php above the web root).
 /public/api/config.php
-/public/api/lib/config.php
 /public/api/data/
 /public/api/logs/
+
+# the built backend upload package (scripts/pack-backend.mjs)
+/aerocotton-api-upload.zip
+/api-package/
 
 # typescript
 *.tsbuildinfo
@@ -34,3 +52,9 @@ next-env.d.ts
 
 # catalogue extraction scratch (scripts/pdf-images.mjs, normalize-media.mjs)
 /.pdf-work/
+
+# mail endpoint credentials kept OUTSIDE the web root (see DEPLOY.md)
+/aero-config.php
+
+# real mail credentials — never committed (upload to the vhost folder above httpdocs)
+/deploy/aero-config.php

@@ -37,12 +37,37 @@ function aero_fail(int $status, string $message, array $extra = []): void
     aero_json($status, ['ok' => false, 'message' => $message] + $extra);
 }
 
+/** Bytes for a php.ini shorthand such as "8M", "512K" or "1G". */
+function aero_ini_bytes(string $key): int
+{
+    $raw = trim((string) ini_get($key));
+    if ($raw === '') {
+        return 0;
+    }
+
+    $unit = strtolower(substr($raw, -1));
+    $value = (float) $raw;
+
+    return (int) match ($unit) {
+        'g' => $value * 1024 * 1024 * 1024,
+        'm' => $value * 1024 * 1024,
+        'k' => $value * 1024,
+        default => $value,
+    };
+}
+
 /**
- * True when PHP discarded the body because it exceeded post_max_size.
+ * True when the body exceeded what the server will accept.
  *
- * The signature is a declared Content-Length with completely empty
- * superglobals — but only for form encodings. A JSON body legitimately leaves
- * $_POST empty, so it must not be mistaken for an oversized form post.
+ * PHP discards an oversized form post before any script runs: $_POST and
+ * $_FILES come back empty and the visitor is told their fields are missing,
+ * which is both untrue and unactionable. Two signals, in order of certainty:
+ *
+ *   1. the declared length is past post_max_size — proof on its own, and it
+ *      does not depend on how the host surfaced the discarded body
+ *   2. an empty set of superglobals on a POST with a form content type
+ *
+ * A JSON body is excluded from both: it legitimately leaves $_POST empty.
  */
 function aero_body_too_large(): bool
 {
@@ -56,7 +81,16 @@ function aero_body_too_large(): bool
     }
 
     $length = (int) ($_SERVER['CONTENT_LENGTH'] ?? 0);
-    return $length > 0 && $_POST === [] && $_FILES === [];
+    if ($length <= 0) {
+        return false;
+    }
+
+    $limit = aero_ini_bytes('post_max_size');
+    if ($limit > 0 && $length > $limit) {
+        return true;
+    }
+
+    return $_POST === [] && $_FILES === [];
 }
 
 /**

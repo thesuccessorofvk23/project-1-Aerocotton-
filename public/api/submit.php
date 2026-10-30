@@ -32,6 +32,7 @@ require __DIR__ . '/lib/guard.php';
 require __DIR__ . '/lib/request.php';
 require __DIR__ . '/lib/uploads.php';
 require __DIR__ . '/lib/mailer.php';
+require __DIR__ . '/lib/mailmode.php';
 require __DIR__ . '/lib/forms.php';
 
 $config = aero_config();
@@ -154,16 +155,37 @@ if ($uploads['errors'] !== []) {
     ]);
 }
 
-/* ── Delivery ──────────────────────────────────────────────────────────── */
+/* ── Delivery ──────────────────────────────────────────────────────────── *
+ * Which state this server is in, and whether that state may send at all, is
+ * decided from configuration alone — never from anything in the request. A
+ * refusal here means no message was generated, no attachment was read back off
+ * disk, and nothing was handed to SMTP.
+ */
+
+$plan = aero_mail_plan($config);
+
+if (!$plan['ok']) {
+    aero_log($config, 'mail_mode_blocked', [
+        'form' => $form,
+        'mail_mode' => $plan['mode'],
+        'ip' => aero_client_ip(),
+        'problems' => $plan['problems'],
+    ]);
+    aero_fail(503, (string) $plan['message']);
+}
+
+$mailConfig = $plan['config'];
 
 $now = aero_now();
 $reference = aero_reference($config);
 
-$notification = aero_build_notification($form, $data, $now, $reference, $config);
+$notification = aero_build_notification($form, $data, $now, $reference, $mailConfig);
+$notification['to'] = (string) $plan['to'];
 $notification['reply_to'] = (string) ($data['email'] ?? '');
 $notification['attachments'] = $uploads['attachments'];
+$notification = aero_apply_mail_plan($notification, $plan);
 
-$mailer = new AeroMailer($config);
+$mailer = new AeroMailer($mailConfig);
 $sent = $mailer->send($notification);
 
 if (!$sent['ok']) {
@@ -186,14 +208,29 @@ if (!$sent['ok']) {
     );
 }
 
-/* ── Acknowledgement to the visitor (best effort) ──────────────────────── */
+/* ── Acknowledgement to the visitor (best effort) ──────────────────────── *
+ * In the two demo states every message goes to the one review inbox, so a
+ * reviewer sees both halves of the exchange and no real visitor is written to.
+ * Only in production does the visitor's own address receive the confirmation.
+ */
 
 $visitor = (string) ($data['email'] ?? '');
 $acknowledged = false;
 
-if ($visitor !== '' && strcasecmp($visitor, (string) $config['to_email']) !== 0) {
-    $confirmation = aero_build_confirmation($form, $data, $now, $reference, $config);
-    $confirmation['to'] = $visitor;
+if ($plan['redirect_acknowledgement']) {
+    $ackTo = (string) $plan['to'];
+} elseif ($visitor !== '' && strcasecmp($visitor, (string) $plan['to']) !== 0) {
+    $ackTo = $visitor;
+} else {
+    // The visitor already received the notification inbox's copy: a second
+    // identical message would be noise.
+    $ackTo = '';
+}
+
+if ($ackTo !== '') {
+    $confirmation = aero_build_confirmation($form, $data, $now, $reference, $mailConfig);
+    $confirmation['to'] = $ackTo;
+    $confirmation = aero_apply_mail_plan($confirmation, $plan);
 
     $result = $mailer->send($confirmation);
     $acknowledged = $result['ok'];
@@ -209,6 +246,7 @@ if ($visitor !== '' && strcasecmp($visitor, (string) $config['to_email']) !== 0)
 aero_log($config, 'sent', [
     'form' => $form,
     'reference' => $reference,
+    'mail_mode' => $plan['mode'],
     'ip' => aero_client_ip(),
     'attachments' => count($uploads['attachments']),
     'acknowledged' => $acknowledged,
@@ -218,6 +256,7 @@ aero_json(200, [
     'ok' => true,
     'reference' => $reference,
     'acknowledged' => $acknowledged,
+    'mailMode' => $plan['mode'],
     'submittedAt' => $now['human'],
     'message' => 'Thank you. Your request has been successfully submitted. Our team will review it and get back to you shortly.',
 ]);

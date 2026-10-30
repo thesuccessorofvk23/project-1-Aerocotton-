@@ -1,0 +1,18 @@
+# Apache / LiteSpeed twin of web.config, for BigRock Linux-style plans.
+# Travels with the build: public/ is copied into out/, so out/.htaccess sits
+# next to out/index.html. Upload the CONTENTS of out/ into httpdocs/.
+
+DirectoryIndex index.html
+
+# MultiViews makes /about resolve unpredictably against this export
+Options -MultiViews
+
+ErrorDocument 404 /404.html
+
+<IfModule mod_mime.c>
+  AddType font/woff2 .woff2
+  AddType image/webp .webp
+  AddType application/json .json
+  AddType video/mp4 .mp4
+  AddType model/gltf-binary .glb
+</IfModule>

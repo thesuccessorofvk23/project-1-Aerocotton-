@@ -13,9 +13,29 @@ procedural WebGL fabric hero and every page accent. One shader, ten moods.
 ```bash
 npm install
 npm run dev        # http://localhost:3000
- npm run build      # production build; exports the site to out/
+npm run build      # production build; exports the site to out/
+npm run pack       # build, then wrap out/ in one uploadable zip
+npm run open       # serve the built out/ over HTTP and open the browser
 npm run typecheck  # strict TypeScript, no emit
 ```
+
+### Looking at a production build
+
+`npm run open` — or double-click **View Site.cmd** — serves `out/` over HTTP
+and opens the browser at it. Deployment is the same folder: upload the
+**contents of `out/`** into the hosting document root (`httpdocs/` on BigRock).
+
+Do not open `out/index.html` from the file system. The export is written with
+root-relative URLs (`/_next/...`, `/images/...`), which is what a web server
+expects; a browser opening the file directly resolves them against the root of
+the drive, so the page appears as unstyled HTML with no images, video or
+JavaScript. `out/` therefore only works over HTTP — which is exactly how
+BigRock serves it. `web.config` (IIS) and `.htaccess` (Apache/LiteSpeed) travel
+inside `out/` and supply the default document, a real 404 and the MIME types
+the export uses. The site must sit at the root of a domain or subdomain: a URL
+subpath such as `example.com/aerocotton/` does not work, because the same
+absolute paths cannot be prefixed without rewriting every image reference in
+the components and CSS.
 
 Copy `.env.example` to `.env.local` and set:
 
@@ -235,26 +255,153 @@ log so an enquiry is never lost.
 | Field contracts | `src/lib/forms/schema.ts` (fast answer in the browser) and `public/api/lib/forms.php` (the authority) |
 | Option lists | `src/lib/forms/options.ts`, **mirrored** in `public/api/lib/forms.php` — add to both |
 | Endpoint | `public/api/submit.php` with `public/api/lib/` |
-| Credentials | `public/api/config.php` — git-ignored, denied by `.htaccess`, never sent to the browser |
+| Delivery mode | `public/api/lib/mailmode.php` — decides who may receive mail, and refuses when it is not authorised |
+| Credentials | `aero-config.php` beside the web root, `AERO_*` environment variables, or `public/api/config.php` — never sent to the browser |
 | Diagnostics | `public/api/health.php?token=…` |
 | Private log | `public/api/logs/submissions.log` (JSON lines) and `public/api/data/` (rate limits, reference counter) |
 
+### The three delivery modes
+
+The endpoint never chooses a recipient on its own. `mail_mode` decides who may
+receive mail, and the gate refuses outright when it is not authorised — a
+half-configured server cannot email a customer:
+
+| `mail_mode` | Delivers to | Gate |
+| --- | --- | --- |
+| `local` | A local SMTP capture server. The recipient must be at a reserved test domain (`.test`, `.invalid`) and the server must be on loopback | none needed — it cannot reach a person by construction |
+| `sample` | The reviewer, for approval | `mail_sample_approved` must be true |
+| `production` | The company inbox, plus a confirmation to the enquirer | `mail_production_approved` must be true **and** the mailbox must be fully configured |
+
+Approval is never inferred — not from a successful SMTP login, and not from
+having just sent a sample. Demo messages carry a banner and a
+`[SAMPLE FOR REVIEW]` / `[LOCAL CAPTURE]` subject prefix; production mail has
+neither. **[PRODUCTION_HANDOVER.md](PRODUCTION_HANDOVER.md)** §4 walks through
+the two edits that switch modes, and the rollback.
+
+### Running it locally
+
+PowerShell, from the repository root:
+
+```powershell
+# 1. Once: the local stack needs two tools. The script looks for them under
+#    .pdf-work/tools/ first, then on PATH, then at AERO_PHP / AERO_MAILPIT.
+php --version          # PHP 8.0 or newer (needs the openssl extension)
+mailpit --version      # or: mailpit.exe from github.com/axllent/mailpit/releases
+
+# 2. Start the SMTP capture server and the PHP endpoint, detached.
+npm run mail:start                     # capture mode; cannot reach a person
+
+#    ...or rehearse the review flow against the same capture server:
+npm run mail:start -- --mode sample
+
+# 3. Point the browser at the local endpoint instead of the shipped one,
+#    then start the site as usual.
+$env:NEXT_PUBLIC_FORMS_ENDPOINT = "http://127.0.0.1:8787/api/submit.php"
+npm run dev
+
+# 4. Use the form at http://localhost:3000/contact, then read the captured
+#    mail at http://127.0.0.1:8025 — the notification and the acknowledgement.
+
+# 5. Check which mode the endpoint is in.
+Invoke-RestMethod "http://127.0.0.1:8787/api/health.php?token=local-demo" |
+  ConvertTo-Json -Depth 6
+
+# 6. Run the checks (starts its own capture server; needs nothing running).
+#    45 checks in three suites: the endpoint, the protected export, and the
+#    two forms' contract with it. `npm run test:forms` runs the last one alone.
+npm test
+
+# 7. Stop what step 2 started.
+npm run mail:stop
+```
+
+### Looking at the built export
+
+`npm run dev` runs the source. To click through the **export that actually gets
+uploaded**, use `npm run start` — or double-click `View Site.cmd` — which serves
+`out/` over HTTP and opens it:
+
+```powershell
+npm run mail:start     # capture server, so submissions can be delivered
+npm run start          # serves out/ on http://localhost:4181
+```
+
+The preview runs `/api/submit.php` and `/api/health.php` through PHP, looked up
+the same way the mail stack looks it up (`AERO_PHP`, then `.pdf-work/tools/`, then
+`PATH`), and proxies them, because that is what the Windows host does. Every
+other path under `api/` — the library, the config examples, the runtime data —
+answers 404 there exactly as it does in production, and PHP source is never
+served as a file. Its rate-limit and log files are written under the git-ignored
+`.pdf-work/`, so using the form cannot add anything to `out/`. If 4181 is busy it
+binds another port and allows that origin automatically. `--no-php` serves the
+files only.
+
+Capture only works if the endpoint is in `local` mode, which it is by default.
+`npm run mail:status` reports the processes and the mode; `npm run sample:send`
+posts a clearly-marked sample enquiry through the endpoint.
+
+The capture server binds `127.0.0.1` only, accepts only reserved test recipients,
+and is started with **no relay and no forwarding flag** — a captured message has
+nowhere to go.
+
+Authentication follows the mode, because the two modes need opposite things.
+`local` capture sends no credentials at all (`smtp_user` is blank by design), so
+the capture server accepts an unauthenticated session, exactly as it always has.
+`sample` mode always authenticates, so for that mode the capture server is started
+with a password file holding the stack's own synthetic credentials — written into
+the git-ignored `.pdf-work/` and removed again on `mail:stop` — and it verifies
+them for real: the right password is accepted, a wrong one is refused with `535`,
+exactly as production would refuse it. (Mailpit rejects `--smtp-auth-file`
+together with `--smtp-auth-accept-any`, so one setting genuinely cannot serve both
+modes.)
+
+`npm run mail:start -- --mode sample` is the local rehearsal of the review flow.
+The endpoint then runs with `mail_sample_approved` on and the **loopback relay
+escape hatch** set — `health.php` reports that as a warning, and it must never be
+set on a host that can reach the internet — delivering to the reserved
+`sample-review@aerocotton.test`, never the real reviewer. (The real reviewer's
+address is still exercised, against this same capture server, by `npm test`.)
+
+The stack refuses to start if it is asked for `--mode production`, if the SMTP
+host is not loopback, or if the recipient is not a reserved test address — a
+clear message instead of a confusing SMTP failure later. It also refuses to reuse
+a capture server it started for the other mode, because Mailpit fixes its
+authentication setting at startup and a mismatch would surface as a puzzling
+failed send.
+
+The local stack is authoritative for behaviour, not for transport: see
+[TEST_REPORT.md](TEST_REPORT.md) §4 for what a local run cannot prove, and
+[FINAL_VERIFICATION_REPORT.md](FINAL_VERIFICATION_REPORT.md) for the most recent
+end-to-end verification of both trailing entry points.
+
 ### Deploying it
 
-`public/api/` is copied into `out/api/` by `npm run build`, so uploading `out/`
-to the PHP host's web root is the whole installation.
+The site is already live, so the backend goes up **on its own**:
 
-1. Copy the credentials template and fill it in — the mailbox the site sends
-   through, the inbox enquiries land in, the origins allowed to post:
-   ```bash
-   cp public/api/config.example.php public/api/config.php
-   ```
-   (Alternatively set `AERO_*` environment variables; they win over the file.)
-2. Open `https://<domain>/api/health.php?token=<health_token>` and confirm
-   `ok: true`. Append `&probe=1` to make the endpoint connect, negotiate TLS and
-   authenticate against the mailbox without sending anything.
-3. Send one real enquiry through each form and check the inbox.
-4. Put SPF/DKIM on the sending domain, or the notifications will be filtered.
+```powershell
+npm run pack:api     # stages api-package/ and aerocotton-api-upload.zip
+```
+
+Extract the archive's contents into `httpdocs/`, add the credentials, and check
+`https://<domain>/api/health.php?token=<health_token>`. The exact file list, the
+backups to take first and the reasons are in
+**[DEPLOYMENT_MANIFEST.md](DEPLOYMENT_MANIFEST.md)**; the mailbox settings, the
+sample-review step and the post-deployment checks are in
+**[PRODUCTION_HANDOVER.md](PRODUCTION_HANDOVER.md)**. Every value that has to
+come from the mailbox administrator — and why none of them is guessed or shipped
+as a placeholder — is in
+**[SMTP_CONFIGURATION_CHECKLIST.md](SMTP_CONFIGURATION_CHECKLIST.md)**. The
+mailbox settings ship **blank** on purpose: with a blank `smtp_host` the
+endpoint refuses to send and names the missing key, whereas a placeholder would
+read as a value and produce *"cannot reach the mail server"* for what is simply
+an unset setting. (For a full rebuild from
+scratch — a new host, or a fresh clone — `npm run pack` still wraps the whole
+`out/` tree, and the older, fuller upload notes are in [DEPLOY.md](DEPLOY.md).
+Treat that path as superseded for the backend.)
+
+**Do not re-upload `out/` just to update the endpoint.** It is the site that is
+already serving, and the backend package exists so that a mail fix never touches
+the homepage.
 
 **GitHub Pages cannot run PHP.** On a purely static host the endpoint is inert,
 and the forms say so honestly rather than pretending to succeed. Set
@@ -276,8 +423,10 @@ the pages and the endpoint ever live apart; `NEXT_PUBLIC_RFQ_EMAIL` adds an
 
 ### Security
 
-- Credentials only ever exist in `public/api/config.php` or `AERO_*` env vars;
-  the browser is told nothing beyond whether the mail was accepted.
+- Credentials only ever exist in `aero-config.php` beside the web root, in
+  `public/api/config.php`, or in `AERO_*` environment variables; the browser is
+  told nothing beyond whether the mail was accepted. The preferred location is
+  outside the web root, where no URL can fetch it.
 - Origin allow-list, per-address rate limit, daily cap, honeypot field and a
   too-fast-to-be-human timing check; Cloudflare Turnstile is enforced when a
   secret is configured.
@@ -289,11 +438,22 @@ the pages and the endpoint ever live apart; `NEXT_PUBLIC_RFQ_EMAIL` adds an
 
 ### Not yet on the endpoint
 
-The homepage brief form (section 12, `RfqForm`) still opens a `mailto:` draft;
-so does the older `src/lib/rfq/` path. The product and collection pages already
-deep-link correctly — `/contact?product=Nature%20collection` lands on the real
-form with that collection pre-selected — so moving the homepage form onto the
-same endpoint is only a matter of swapping the component.
+The homepage brief form (`src/components/rfq/RfqForm.tsx`, section 12) still
+opens a `mailto:` draft rather than posting to the endpoint, so those enquiries
+get no reference number and are not rate-limited or logged. Everything else uses
+the endpoint: the contact and support pages, and the product and collection deep
+links (`/contact?product=Nature%20collection` lands on the real form with that
+collection pre-selected). Moving the homepage form across is a matter of
+swapping the component.
+
+The older Resend-based server action that used to sit beside it
+(`src/lib/rfq/actions.ts`, `send.ts`, `rate-limit.ts`) has been removed. It was a
+second submission endpoint and a second mailer, it was imported by nothing — the
+homepage form only ever used `src/lib/rfq/schema.ts`, which remains — and it
+could not have run here in any case, because a static export has no server to
+run a server action on. Its default sender was `onboarding@resend.dev`, so
+wiring it up by accident would have sent enquiries from Resend's demo domain.
+The `resend` package is still listed in `package.json`; nothing imports it now.
 
 ## Design system quick reference
 

@@ -1,90 +1,102 @@
 <?php
 
 /**
- * Aero Cotton — mail endpoint credentials.
+ * Aero Cotton — every setting the mail endpoint understands, and nothing else.
  *
- * COPY THIS FILE TO public/api/config.php AND FILL IN THE REAL VALUES.
+ * This file is documentation, not a template to fill in: it is never loaded.
+ * Copy the template for the state you are actually in.
  *
- *     cp public/api/config.example.php public/api/config.php
+ *     local development      cp public/api/config.local.example.php public/api/config.php
+ *     production             cp public/api/config.production.example.php ../../aero-config.php
  *
- * config.php is git-ignored and denied by .htaccess: the password never lands in
- * the repository, in the built out/ directory that other people can read, or in
- * front-end JavaScript.
+ * Where a config file may live, in precedence order (later wins):
  *
- * Anything you leave out falls back to the defaults in lib/config.php, and an
- * environment variable named AERO_<KEY> (uppercase) overrides both — for
- * example AERO_SMTP_PASS, AERO_TO_EMAIL, AERO_ALLOWED_ORIGINS.
+ *   1. `AERO_CONFIG_FILE` — an absolute path, if set
+ *   2. `public/api/config.php` — beside this file, denied by .htaccess and web.config
+ *   3. `<folder containing the site root>/aero-config.php` — outside the web root,
+ *      which from `httpdocs/api/lib/` means three directories up
  *
- * Then open https://your-domain/api/health.php?token=<health_token> to confirm
- * that PHP can read the file, reach the mailbox and write its own data.
+ * Environment variables override all three. Both spellings work:
  *
- * @return array<string, mixed>
+ *   canonical   AERO_ENV  AERO_MAIL_MODE  AERO_SMTP_HOST  AERO_SMTP_PORT
+ *               AERO_SMTP_ENCRYPTION  AERO_SMTP_USER  AERO_SMTP_PASS
+ *               AERO_MAIL_FROM  AERO_MAIL_TO  AERO_HEALTH_TOKEN
+ *   generic     AERO_<KEY> in capitals, e.g. AERO_FROM_NAME, AERO_RATE_LIMIT_MAX,
+ *               AERO_ALLOWED_ORIGINS (comma-separated), AERO_MAIL_SAMPLE_APPROVED=1
+ *
+ * ── The mail modes, and what each one is allowed to do ──────────────────────
+ *
+ *   mail_mode = 'local'
+ *     Capture into a local SMTP server. Refused unless the SMTP host is on
+ *     loopback AND the recipient is at a reserved test domain (.test, .invalid,
+ *     .example, example.com), so a demo cannot reach a person.
+ *
+ *   mail_mode = 'sample'
+ *     Send a marked copy to the reviewer. Needs mail_sample_approved = true.
+ *     Refused on a loopback host.
+ *
+ *   mail_mode = 'production'
+ *     Send for real. Needs mail_production_approved = true and a complete
+ *     mailbox setup (host, user, password, valid sender). Refused on a loopback
+ *     host.
+ *
+ * Neither approval flag is ever inferred. Not from a successful SMTP login, and
+ * not from having just sent a sample.
+ *
+ * ── Settings ───────────────────────────────────────────────────────────────
+ *
+ *  env                        development | staging | production. Reported by
+ *                             health.php; does not itself change routing.
+ *  mail_mode                  local | sample | production. Decides everything.
+ *
+ *  mail_local_inbox           Recipient while in local mode. Must be unroutable.
+ *  mail_sample_inbox          The reviewer (jeinfonet@gmail.com as requested).
+ *  mail_production_inbox      The live company inbox (export@aerocotton.in).
+ *  mail_local_from            Sender while in local mode.
+ *  mail_sample_from           Sender for the review copy (admin@aerocotton.in).
+ *  mail_production_from       Sender for live mail. Blank reuses smtp_user.
+ *  mail_sample_approved       bool. Authorises the review copy.
+ *  mail_production_approved   bool. Authorises live delivery. Set only after the
+ *                             sample has been approved by the client.
+ *
+ *  smtp_host                  Mailbox provider's submission host. No default on
+ *                             purpose — an invented one is worse than a blank.
+ *  smtp_port                  Usually 587 (STARTTLS) or 465 (implicit TLS).
+ *  smtp_secure                'tls' | 'ssl' | '' (plain, local capture only).
+ *                             Blank with 587 resolves to tls, with 465 to ssl;
+ *                             any other port with no encryption is refused.
+ *  smtp_user                  The mailbox account. May be a full address.
+ *  smtp_pass                  Its password, or an application password if the
+ *                             provider issues those. Never your login password
+ *                             on a provider that has app passwords.
+ *  smtp_timeout               Seconds. Default 30.
+ *
+ *  from_email                 Explicit sender, overriding the mode's own.
+ *  from_name                  Display name on the From line.
+ *  to_email                   Explicit recipient, overriding the mode's own.
+ *                             Still inside the mode's safety rules.
+ *  brand                      Names the brand in subject lines.
+ *
+ *  allowed_origins            Browsers allowed to post. Never a wildcard.
+ *  rate_limit_max             Submissions per window, per client.
+ *  rate_limit_window          Window length in seconds.
+ *  daily_limit                Submissions per day across all clients.
+ *  allow_uploads              Whether attachments are accepted.
+ *  max_upload_bytes           Per file.
+ *  max_upload_files           Count per submission.
+ *  max_upload_total           Across all files in one submission.
+ *  allowed_upload_types       MIME types kept, decided by finfo on the contents.
+ *
+ *  turnstile_secret           Cloudflare Turnstile. Blank disables it.
+ *  health_token               Unlocks /api/health.php. Blank = the page 404s.
+ *  data_dir, log_file         Runtime state. Must be writable by PHP, and must
+ *                             not be reachable over HTTP.
+ *  debug                      Never true in production.
+ *
+ * ── What none of this can tell you ─────────────────────────────────────────
+ *
+ * The endpoint reports whether the mail server *accepted* a message. Only the
+ * recipient's mailbox can show that it arrived. Use
+ * /api/health.php?token=<health_token>&probe=1 to check the connection, TLS and
+ * authentication without sending anything.
  */
-
-return [
-    // ── Where enquiries are delivered ───────────────────────────────────
-    // The company inbox that receives every contact and support submission.
-    'to_email' => 'enquiries@aerocotton.in',
-
-    // ── The mailbox the site sends through (BigRock-hosted domain email) ─
-    // This is a real mailbox on your domain, not a guess: the same host,
-    // port, address and password you use in Outlook/Gmail to read it.
-    'smtp_host' => 'mail.aerocotton.in',
-    'smtp_port' => 587,
-    // 'tls' = STARTTLS on 587 (recommended) · 'ssl' = implicit TLS on 465
-    'smtp_secure' => 'tls',
-    'smtp_user' => 'enquiries@aerocotton.in',
-    'smtp_pass' => 'PUT-THE-MAILBOX-PASSWORD-HERE',
-    'smtp_timeout' => 45,
-
-    // ── The From: line on outbound mail ─────────────────────────────────
-    // Must be a mailbox on your own domain, or the big providers will treat
-    // the message as spam. Leave blank to reuse smtp_user.
-    'from_email' => '',
-    'from_name' => 'Aerocotton Website',
-
-    // ── Branding used in the email subject lines ────────────────────────
-    // Subjects read "New Contact Inquiry - Aerocotton". Change this one
-    // value to rename the brand in every notification.
-    'brand' => 'Aerocotton',
-
-    // ── Which browsers may post to the endpoint ─────────────────────────
-    // Your live site plus local development. Never a wildcard.
-    'allowed_origins' => [
-        'https://aerocotton.in',
-        'https://www.aerocotton.in',
-        'http://localhost:4181',
-        'http://127.0.0.1:4181',
-    ],
-
-    // ── Abuse limits, per visitor ───────────────────────────────────────
-    'rate_limit_max' => 5,      // submissions allowed per window
-    'rate_limit_window' => 600, // window length, seconds
-    'daily_limit' => 60,        // submissions per day across everybody
-
-    // ── File uploads (off by default) ───────────────────────────────────
-    // Turn on to accept artwork, tech packs and photos with a submission.
-    // Keep these small on shared hosting: PHP's own upload_max_filesize and
-    // post_max_size still cap what the server accepts (health.php reports
-    // both). Messages above roughly 10 MB are often refused by the host's
-    // outgoing mail limits, so raise these only if the host allows it.
-    'allow_uploads' => true,
-    'max_upload_bytes' => 4194304, // 4 MiB per file
-    'max_upload_files' => 3,
-    'max_upload_total' => 6291456, // 6 MiB across all files
-
-    // ── Bot protection (optional) ───────────────────────────────────────
-    // Cloudflare Turnstile. Leave the secret blank to rely on the built-in
-    // honeypot, timing check and rate limiter alone.
-    'turnstile_secret' => '',
-
-    // ── Diagnostics ─────────────────────────────────────────────────────
-    // A shared secret that unlocks /api/health.php. Treat it like a password:
-    // the health page reports config state, not credentials, but it is still
-    // for your eyes only.
-    'health_token' => 'PUT-A-LONG-RANDOM-STRING-HERE',
-
-    // Serve the SMTP conversation back in error responses while testing.
-    // MUST be false in production.
-    'debug' => false,
-];

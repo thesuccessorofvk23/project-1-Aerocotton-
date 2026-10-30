@@ -20,12 +20,12 @@ Options -Indexes
 #    (The runtime data/ and logs/ directories also write their own .htaccess,
 #    so they stay private even if this file is ever lost.)
 RedirectMatch 404 ^/api/lib/
-RedirectMatch 404 ^/api/config\.php$
 RedirectMatch 404 ^/api/data/
 RedirectMatch 404 ^/api/logs/
+RedirectMatch 404 ^/api/config[^/]*\.php$
 
 <IfModule mod_authz_core.c>
-  <FilesMatch "^(config\.php|config\.example\.php)$">
+  <FilesMatch "^(config[^/]*\.php)$">
     Require all denied
   </FilesMatch>
 </IfModule>

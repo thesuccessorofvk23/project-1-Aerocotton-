@@ -49,16 +49,31 @@ final class AeroMailer
     {
         $cfg = $this->config;
         $to = (string) ($message['to'] ?? $cfg['to_email']);
-        $from = (string) $cfg['from_email'];
+
+        // config.example.php documents a blank from_email as "reuse smtp_user".
+        // That fallback has to exist here, not just in the comment: a host with
+        // the mailbox configured but the From line left blank would otherwise
+        // fail every enquiry with "no valid sender address", which is both
+        // untrue and unactionable. The authenticated mailbox is also the
+        // address the domain's SPF and DKIM records are set up for, so it is
+        // the correct default rather than merely a convenient one.
+        $from = trim((string) $cfg['from_email']);
+        if ($from === '') {
+            $from = trim((string) $cfg['smtp_user']);
+        }
 
         if (!filter_var($to, FILTER_VALIDATE_EMAIL)) {
             return ['ok' => false, 'error' => 'No valid recipient address is configured.'];
         }
         if (!filter_var($from, FILTER_VALIDATE_EMAIL)) {
-            return ['ok' => false, 'error' => 'No valid sender address is configured.'];
+            return ['ok' => false, 'error' => 'No sending mailbox is configured: set smtp_user (and its password) in the API config.'];
         }
-        if (trim((string) $cfg['smtp_pass']) === '') {
-            return ['ok' => false, 'error' => 'No SMTP password is configured.'];
+        // A password is only needed when there is a mailbox to authenticate as.
+        // Requiring one unconditionally broke local capture, where the SMTP
+        // server takes no credentials at all — and it reported a configuration
+        // error for a setup that was in fact complete.
+        if (trim((string) $cfg['smtp_user']) !== '' && trim((string) $cfg['smtp_pass']) === '') {
+            return ['ok' => false, 'error' => 'No password is configured for the sending mailbox: set smtp_pass in the API config.'];
         }
 
         $raw = $this->buildMessage($message, $from, $to);
